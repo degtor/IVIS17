@@ -110,9 +110,9 @@ d3.json("world-topo-min.json", function(error, world) {
 
 function draw(topo, brushSelected) {
  // Clear map if brush is selected
-  if (brushSelected) {
-	  worldG.html("");
-  }
+  //if (brushSelected) {
+//	  worldG.html("");
+  //}
   
   var country = worldG.selectAll(".country").data(topo);
   
