@@ -133,22 +133,22 @@ function draw(topo, brushSelected) {
       .attr("id", function(d,i) { return d.id; })
       .attr("title", function(d,i) { return d.properties.name; })
       .style("fill", function(d, i) {
-
-
+      	//console.log(d.properties.name);
       	var kod=name2code(d.properties.name);
+      	//console.log(kod);
 
-      	//Om vi har problem med att matcha namn:
       	if(kod==undefined){
       		return "#000"
       	}
 
       	else{
-      		//Hämta co2 för 2010
       		var co2 = countries[kod].co2['2010'];
 
-      		//Generera färg beroende på co2 utsläpp	
       		var color = d3.scale.linear().domain([0,5,20]).range(["#A8FB54", "#FFFE5D", "#EB382F"]); 
           	return color(co2); 
+      		//console.log(countries[kod]);
+      		//console.log(countries[kod].co2['2000']);
+      		// return "#ccc";
       	}
 
       	//console.log(countries[kod]);   //
@@ -188,7 +188,6 @@ function draw(topo, brushSelected) {
     .on("mousemove", function(d,i) {
 		f = 0;
 
-		//Hämtar export-/importinfo från data
 		var code = name2code(d.properties.name);
 		var exportInfo = "";
 		var importInfo = "";
@@ -196,11 +195,11 @@ function draw(topo, brushSelected) {
 		var countryImports = countries[code].topImport
 
 		for(var key in countryExports) {
-		    exportInfo += "</br>" + countryExports[key].Partner;
+		    exportInfo = exportInfo + "</br>" + countryExports[key].Partner;
 		}
 
 		for(var key in countryImports) {
-		    importInfo += "</br>" + countryImports[key].Partner;
+		    importInfo = importInfo + "</br>" + countryImports[key].Partner;
 		}
 
       var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );

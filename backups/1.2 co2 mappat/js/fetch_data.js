@@ -123,7 +123,7 @@ function sortTop5ExportImport(exports, imports){
 
 //Add co2 to countries
 function readCo2(){
-	// Create dictionary of co2 emissions where key = year (1960-2010) and  value = co2 per capita
+	// Create dictionary of co2 emissions where key = year and  value = co2 per capita
 		d3.csv('data/co2_capita.csv', function(data){
 			
 			for(i in data){
@@ -140,12 +140,13 @@ function readCo2(){
 }
 
 
-//Returns country code for country name. i.e. Sweden->SWE
+// Returns country code for country name. i.e. Sweden->SWE
 function name2code(name){
 
 	if(codeList[name]==undefined){
 		//console.log(name + " stämmer ej med namn i land/kod-lista")
 	}
+
 	return codeList[name];
 }
 
