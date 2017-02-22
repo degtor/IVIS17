@@ -5,7 +5,7 @@ var zoom = d3.behavior.zoom()
     .on("zoom", move);
 
 var width = document.getElementById('container').offsetWidth;
-var height = width / 2;
+var height = width / 1.9;
 
 var colors = {
 	"Albania": "#8dd3c7",
@@ -85,7 +85,8 @@ setup(width,height);
 function setup(width,height){
   projection = d3.geo.mercator()
     .translate([(width/2), (height/2)])
-    .scale( width / 2 / Math.PI);
+    .scale( width / 2 / Math.PI)
+    .center( [ 0 , 20] );
 
   worldPath = d3.geo.path().projection(projection);
 
@@ -114,7 +115,7 @@ function draw(topo, brushSelected) {
 //	  worldG.html("");
   //}
   
-  var country = worldG.selectAll(".country").data(topo);
+  var country = worldG.selectAll(".country").data(topo); 
   
   worldSvg.append("path")
      .datum(graticule)
@@ -132,7 +133,29 @@ function draw(topo, brushSelected) {
       .attr("id", function(d,i) { return d.id; })
       .attr("title", function(d,i) { return d.properties.name; })
       .style("fill", function(d, i) {
-		  return d.properties.color;
+
+
+      	var kod=name2code(d.properties.name);
+
+      	//Om vi har problem med att matcha namn:
+      	if(kod==undefined){
+      		return "#000"
+      	}
+
+      	else{
+      		//Hämta co2 för 2010
+      		var co2 = countries[kod].co2['2010'];
+
+      		//Generera färg beroende på co2 utsläpp	
+      		var color = d3.scale.linear().domain([0,5,20]).range(["#A8FB54", "#FFFE5D", "#EB382F"]); 
+          	return color(co2); 
+      	}
+
+      	//console.log(countries[kod]);   //
+      
+		  //return d.properties.color;
+
+
 		  //var returncolor = "efefef";
 		  //if (!brushSelected) {
 	    	//  Object.keys(colors).forEach(function(colorName) {
@@ -165,6 +188,21 @@ function draw(topo, brushSelected) {
     .on("mousemove", function(d,i) {
 		f = 0;
 
+		//Hämtar export-/importinfo från data
+		var code = name2code(d.properties.name);
+		var exportInfo = "";
+		var importInfo = "";
+		var countryExports = countries[code].topExport
+		var countryImports = countries[code].topImport
+
+		for(var key in countryExports) {
+		    exportInfo += "</br>" + countryExports[key].Partner;
+		}
+
+		for(var key in countryImports) {
+		    importInfo += "</br>" + countryImports[key].Partner;
+		}
+
       var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 	  
 	  
@@ -182,7 +220,7 @@ function draw(topo, brushSelected) {
 
       tooltip.classed("hidden", false)
              .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-             .html(d.properties.name);
+             .html(d.properties.name + "</br></br>  Top  exports: " + exportInfo + "</br></br>  Top  imports: " + importInfo);
 
       })
       .on("mouseout",  function(d,i) {
