@@ -1,3 +1,7 @@
+body{
+    font-family: "Arial", "Helvetica", sans-serif;
+}
+
 path {
     stroke: white;
     stroke-width: 0.5px;
@@ -85,3 +89,45 @@ p {
     font-size:12px;
     margin:0;
 }
+
+
+/* Tooltips barchart */
+.bar:hover {
+  fill: orange ;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  padding: 12px;
+  background: #EDF0F1;
+  color: black;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px 0px #a6a6a6;
+  opacity: 0.9;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: #EDF0F1;
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+/* Tooltips barchart end */
