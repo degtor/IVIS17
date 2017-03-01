@@ -89,6 +89,7 @@ function getTop5ExportImport(error, files){
 			};			
 		}
 	}
+	console.log(exports);
 	sortTop5ExportImport(exports, imports);
 }
 
@@ -100,8 +101,6 @@ function sortTop5ExportImport(exports, imports){
 		// loops all countries in code-name list and compares name to reporting country name in export-list
 		for(j in countries){
 			
-			
-			//console.log(y);
 			if(countries[j].name == exports[i].Reporter){
 				// compares export partner with names in countries code-name list and adds partner country to 
 				// reporting countries topExport. Adds partner as an object with partner country code as key and data as value. 
@@ -110,7 +109,10 @@ function sortTop5ExportImport(exports, imports){
 					for(y=1988;y<2016;y++){
 					
 						if(countries[k].name == exports[i].Partner && exports[i][y] != ""){
-							countries[j].topExport[y][countries[k].code] = exports[i][y];
+							countries[j].topExport[y][countries[k].code] = {
+							  mDollars:exports[i][y].replace(/\s+/g, ''),
+							  partner:exports[i].Partner
+							  };
 						}
 					
 					}
@@ -126,7 +128,10 @@ function sortTop5ExportImport(exports, imports){
 				for(k in countries){
 					for(y=1988;y<2016;y++){
 						if(countries[k].name == imports[i].Partner && imports[i][y] != ""){
-							countries[j].topImport[y][countries[k].code] = imports[i][y];
+							countries[j].topImport[y][countries[k].code] = {
+							  mDollars:imports[i][y].replace(/\s+/g, ''),
+							  partner:exports[i].Partner
+							  };
 						}
 					}
 				}
