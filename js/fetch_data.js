@@ -31,7 +31,7 @@ countries =
 var countries;
 var codeList;
 var test = [1,2,3];
-var year = 2010; 
+var year = 1960; 
 
 function readCountries(callback){
 	// Create list object containing objects with Key = Country Code and Value = {Country: Name of country} 

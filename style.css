@@ -18,8 +18,14 @@ canvas {
     left: 0;
 }
 
-#chart {
-    position: relative;
+#barChart{
+    display: block 
+    margin: auto
+}
+
+#chart {    
+  width: 90%;
+  margin: auto;
 }
 
 .brush .extent {
@@ -131,3 +137,10 @@ p {
 }
 
 /* Tooltips barchart end */
+
+/*Slider area*/
+.slider{
+  width: 70%;
+  margin: 0 auto;
+}
+/*Slider area end*/

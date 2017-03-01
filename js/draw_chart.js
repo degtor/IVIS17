@@ -1,3 +1,13 @@
+//Create svg-area for bar chart
+var svg = d3.select( "#chart")
+            .append( "svg" )
+            .attr('id', 'barChart')
+            .attr( "width", 1150 )
+            .attr( "height", 220 )
+            .attr( "display", "block")
+            .attr( "margin", "auto");
+
+
 function drawBarChart(){
 
   //Year to display is now set in fetch_data.js
@@ -10,11 +20,6 @@ function drawBarChart(){
     return d.value.name + "</br>Co2: " + Math.round(d.value.co2[year] * 100) / 100;
   })
 
-  //Create svg-area for bar chart
-	var svg = d3.select( "#chart")
-              .append( "svg" )
-              .attr( "width", 2200 )
-              .attr( "height", 280 );
 
   //Make selection and connect to data              
   var selection = svg.selectAll( "rect" )
@@ -30,20 +35,20 @@ function drawBarChart(){
         return d.value.code
       })
       .attr( "x", function(d,i){
-        return i*11;
+        return i*6;
       })
-      .attr( "width", 10 )
+      .attr( "width", 5 )
       .attr( "fill", "black" )
 
     //Set bar heights based on data
     selection
       .attr( "height", function(d){
-        return d.value.co2[year]*3
+        return d.value.co2[year]*5
       })
 
       //Set y position to get bars in right orientation
       .attr( "y", function(d){
-        return 100 - d.value.co2[year]*3;
+        return 220 - d.value.co2[year]*5;
       })
 
       //Show tooltip on hover
