@@ -192,15 +192,15 @@ function draw(topo, brushSelected) {
 		var code = name2code(d.properties.name);
 		var exportInfo = "";
 		var importInfo = "";
-		var countryExports = countries[code].topExport
-		var countryImports = countries[code].topImport
+		var countryExports = countries[code].topExport[2015]
+		var countryImports = countries[code].topImport[2015]
 
 		for(var key in countryExports) {
-		    exportInfo += "</br>" + countryExports[key].Partner;
+		    exportInfo += "</br>" + countryExports[key].partner;
 		}
 
 		for(var key in countryImports) {
-		    importInfo += "</br>" + countryImports[key].Partner;
+		    importInfo += "</br>" + countryImports[key].partner;
 		}
 
       var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
