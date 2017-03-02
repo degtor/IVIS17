@@ -66,6 +66,7 @@ var q1 = d3.queue();
 function readData(){
 	var q2 = d3.queue();
 	for(i in countries){
+
 		q2.defer(d3.csv, 'data/allcountries_allyears_full/en_'+countries[i].code+'_AllYears_WITS_Trade_Summary.csv')			
 	}
 	q2.awaitAll(getTop5ExportImport)
@@ -147,24 +148,16 @@ function sortTop5ExportImport(exports, imports){
 
 //Add trading balance to countries
 function readTradingBalance(){
-	// Create dictionary of co2 emissions where key = year (1960-2010) and  value = co2 per capita
+	// Create dictionary of trading balance where key = year (1960-2016) and  value = trading balance as % of GDP
 	d3.csv('data/trading_balance/trading_balance_data.csv', function(data){
-			
-		console.log('Tjosan!');
+		//Loops through the csv getting the country code
 		for(i in data){
-			//var countryCode = name2code(data[i].country);
 			countryCode = data[i].Country_Code;
+			//Excludes empty rows in the csv
 			if (countryCode != "") {
-				console.log(countryCode);
-				//Only if name is correct: 
-				// if(countryCode != undefined){
-				for(j=1960 ; j<=2017; j++ ){
-					//console.log(data[i][j]);
-					try {
-						countries[countryCode].tradingBalance[j] = data[i][j];
-					} catch(err) {
-						console.log('Country with country code '+countryCode+' not found. Error message: '+err.message);
-					}
+				//For every year, add to the object countries
+				for(j=1960 ; j<2017; j++ ){
+					countries[countryCode].tradingBalance[j] = data[i][j];
 				}
 			}
 				// }	
