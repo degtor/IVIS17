@@ -31,7 +31,7 @@ countries =
 var countries;
 var codeList;
 var test = [1,2,3];
-var year = 1960; 
+var year = 1960 ; 
 
 function readCountries(callback){
 	// Create list object containing objects with Key = Country Code and Value = {Country: Name of country} 
@@ -193,7 +193,7 @@ function readCo2(){
 function name2code(name){
 
 	if(codeList[name]==undefined){
-		//console.log(name + " stämmer ej med namn i land/kod-lista")
+		// console.log(name + " stämmer ej med namn i land/kod-lista")
 	}
 	return codeList[name];
 }
