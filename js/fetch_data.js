@@ -38,7 +38,7 @@ function readCountries(callback){
 		codeList = {};
 		for(i in data){
 			// Adding country object to list object
-			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'topExport': {}, 'topImport': {}, 'co2':{} }
+			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'topExport': {}, 'topImport': {}, 'co2':{}, 'tradingBalance': {} }
 			//console.log(countries);
 			for (y=1988;y<2016;y++){
 				countries[data[i]['ISO 3166-1 3 Letter Code']].topExport[y] = {};
@@ -52,6 +52,7 @@ function readCountries(callback){
 	})
 	//Fick inte riktigt grepp om d3.queue så jag la denna här /David
 	readCo2(); 
+	readTradingBalance();
 }
 
 // Waits until readCountries is ready and then runs readCo2 and readData 
@@ -144,6 +145,34 @@ function sortTop5ExportImport(exports, imports){
 }
 
 
+//Add trading balance to countries
+function readTradingBalance(){
+	// Create dictionary of co2 emissions where key = year (1960-2010) and  value = co2 per capita
+	d3.csv('data/trading_balance/trading_balance_data.csv', function(data){
+			
+		console.log('Tjosan!');
+		for(i in data){
+			//var countryCode = name2code(data[i].country);
+			countryCode = data[i].Country_Code;
+			if (countryCode != "") {
+				console.log(countryCode);
+				//Only if name is correct: 
+				// if(countryCode != undefined){
+				for(j=1960 ; j<=2017; j++ ){
+					//console.log(data[i][j]);
+					try {
+						countries[countryCode].tradingBalance[j] = data[i][j];
+					} catch(err) {
+						console.log('Country with country code '+countryCode+' not found. Error message: '+err.message);
+					}
+				}
+			}
+				// }	
+			// }
+		}
+	})
+}
+
 //Add co2 to countries
 function readCo2(){
 	// Create dictionary of co2 emissions where key = year (1960-2010) and  value = co2 per capita
@@ -156,10 +185,10 @@ function readCo2(){
 				if(countryCode != undefined){
 					for(j=0 ; j<=50; j++ ){
 						countries[countryCode].co2[1960+j] = data[i][1960+j];
-				}	
-			}
-		}
-	})
+					}	
+				}
+			}	
+		})
 }
 
 
