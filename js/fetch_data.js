@@ -245,8 +245,9 @@ function addContinent(){
 	});
 }
 
+// Fetching renewable energy data, in percent per year, and adding to countries. 
 function addRenewables(){
-	console.log("In renewables")
+	console.log("Getting renewables")
 	d3.csv("data/renewable_energy_percent.csv", function(data){
 		for(i in data){
 			var code = data[i].CountryCode;
@@ -256,15 +257,10 @@ function addRenewables(){
 				}
 			}
 			else{
-				console.log("Finns ej", data[i].Country)
+				// These country codes are not in the countries-list
 			}
-//				for(j=0 ; j<=22; j++ ){
-//					countries[countryCode].co2[1990+j] = data[i][1960+j];
-//				}	
-//			}
 		}
 	});
-	console.log("out of renew loop")	
 }
 
 
