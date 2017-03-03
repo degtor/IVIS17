@@ -53,7 +53,7 @@ function readCountries(callback){
 		codeList = {};
 		for(i in data){
 			// Adding country object to list object
-			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'exports': {}, 'imports': {}, 'co2':{}, 'tradingBalance': {}, 'twoLetterCode': data[i]['ISO 3166-1 2 Letter Code'], 'continent': {} }
+			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'exports': {}, 'imports': {}, 'co2':{}, 'tradingBalance': {}, 'twoLetterCode': data[i]['ISO 3166-1 2 Letter Code'], 'continent': {}, 'renewables': {} }
 			
 			for (y=1988;y<2016;y++){
 				countries[data[i]['ISO 3166-1 3 Letter Code']].exports[y] = {};
@@ -85,6 +85,8 @@ function readData(){
 		.defer(addContinent)
 		//Finally adding trade balance
 		.defer(readTradingBalance)
+		//
+		.defer(addRenewables)
 		//On callback we move on to update visualisations 
 		//with correct values
 		.await(updateVis);
@@ -241,6 +243,28 @@ function addContinent(){
 		}
 		console.log("out of continent loop")
 	});
+}
+
+function addRenewables(){
+	console.log("In renewables")
+	d3.csv("data/renewable_energy_percent.csv", function(data){
+		for(i in data){
+			var code = data[i].CountryCode;
+			if(countries[code]){
+				for(j=0; j<=22; j++){
+					countries[code].renewables[1990+j] = data[i][1990+j]
+				}
+			}
+			else{
+				console.log("Finns ej", data[i].Country)
+			}
+//				for(j=0 ; j<=22; j++ ){
+//					countries[countryCode].co2[1990+j] = data[i][1960+j];
+//				}	
+//			}
+		}
+	});
+	console.log("out of renew loop")	
 }
 
 
