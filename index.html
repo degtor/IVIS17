@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="row">
-    <div id="mapScreen" class="col-lg-6">
+    <div id="mapScreen" class="col-lg-6 col-md-6">
         <div id="container">
 
         </div>
@@ -32,15 +32,42 @@
             <div id="slider"></div>
         </div>
     </div>
-    <div id="sidebar" class="col-lg-6">
+
+<!--  Details on demand sidebar--> 
+    <div id="sidebar" class="col-lg-6 col-md-6">
         <!--put cool graphics here-->
-        <h1 style="padding:20px; text-align:center; background-color:#999;">ENVIROMIND</h1>
-        <div id="stateTwoContainer">
-            <div id="compareContainer"></div>
-            <div id="compareLineChart"></div>
+        <h1>ENVIROMIND</h1>
+        <!-- Displayed if no country is selected -->
+        <div id="sidebarNoCountry" class="display">
+            <p id="selectCountry">Select a country on the map for additional information...</p>
         </div>
-        <div class="sidebarContainer"></div>
-        <p id="selectCountry">Select a country on the map for additional information...</p>
+
+        <!-- Displayed if one country is selected --> 
+        <div id="sidebarOneCountry" class="hidden">
+            <span id="country-name"></span>
+            <p> BY THE YEAR OF 1990 </p> <!-- Lägg till data här -->
+            <p> Annual CO2 per capita data</p>
+            <p> Trade balance: data </p>
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                    <div id="line-chart-container"class="col-lg-6 col-md-6">LINE CHART</div>
+                    <div id="pie-chart-container"class="col-lg-6 col-md-6">PIE CHART</div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                    <div id="top-export-container"class="col-lg-6 col-md-6">TOP 5 EXPORT</div>
+                    <div id="top-import-container"class="col-lg-6 col-md-6">TOP 5 IMPORT</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Displayed if several countries is selected --> 
+        <div id="sidebarMultipleCountries" class="hidden">
+            <div id="compareContainer"></div>
+            <div id="compare-line-chart"> Line chart</div>
+        </div>
 
     </div>
 </div>

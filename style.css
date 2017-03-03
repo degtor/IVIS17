@@ -12,6 +12,12 @@ svg {
     font: 10px sans-serif;
 }
 
+h1{
+  padding:20px; 
+  text-align:center; 
+  background-color:#999;
+}
+
 canvas {
     position: absolute;
     top: 0;
@@ -174,7 +180,6 @@ p {
 .countrySizePos {
 }
 
-#compareLineChart {
+#compare-line-chart {
     border:solid 1px #000;
-    height:500px;
 }
