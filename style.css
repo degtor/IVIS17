@@ -183,3 +183,19 @@ p {
 #compare-line-chart {
     border:solid 1px #000;
 }
+
+#line-chart-container { font: 12px Arial;}
+
+#line-chart-container path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+#line-chart-container .axis path,
+#line-chart-container .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
