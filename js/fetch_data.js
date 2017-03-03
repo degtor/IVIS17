@@ -53,7 +53,7 @@ function readCountries(callback){
 		codeList = {};
 		for(i in data){
 			// Adding country object to list object
-			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'exports': {}, 'imports': {}, 'co2':{}, 'tradingBalance': {}, 'twoLetterCode': data[i]['ISO 3166-1 2 Letter Code'], 'continent': {}, 'renewables': {} }
+			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'exports': {}, 'imports': {}, 'co2':{}, 'tradingBalance': {}, 'twoLetterCode': data[i]['ISO 3166-1 2 Letter Code'], 'continent': {}, 'continentID': {}, 'renewables': {} }
 			
 			for (y=1988;y<2016;y++){
 				countries[data[i]['ISO 3166-1 3 Letter Code']].exports[y] = {};
@@ -83,10 +83,10 @@ function readData(){
 		.defer(readCo2)
 		//Continues with adding continents
 		.defer(addContinent)
+		//Adding renewable data
+		.defer(addRenewables)
 		//Finally adding trade balance
 		.defer(readTradingBalance)
-		//
-		.defer(addRenewables)
 		//On callback we move on to update visualisations 
 		//with correct values
 		.await(updateVis);
@@ -199,8 +199,8 @@ function readTradingBalance(callback){
 		}
 		console.log("out of trading balance loop")
 
-		//Let's send a message that we are ready with adding tradeBalance so we can move on
-		callback("trading done");
+		//Let's send a message that we are ready with adding everything so we can move on
+		callback("all done");
 	})
 }
 
@@ -238,6 +238,11 @@ function addContinent(){
 				if(countries[j].twoLetterCode == data[i].country){
 					//Add continent code to country if match
 					countries[j].continent = data[i].continent;
+
+					//We also want to give each country a continentID 
+					//so that we can sort by map position and not by continentName
+					addContinentID(countries[j], data[i].continent)
+
 				}
 			}
 		}
@@ -245,6 +250,44 @@ function addContinent(){
 	});
 }
 
+//Adds a continentID depending on what continent 
+//Going from North America (=1) to Ociania (=7)
+//If no match id is set to 8 so that we can group any 'leftovers' to the right (as safty)
+function addContinentID(position, value){
+	//North America
+	if(value == "NA"){
+		position.continentID = 1;
+	}
+	//South America
+	else if(value == "SA"){
+		position.continentID = 2;
+	}
+	//Antarctica
+	else if(value == "AN"){
+		position.continentID = 3;
+	}
+	//Europe
+	else if(value == "EU"){
+		position.continentID = 4;
+	}
+	//Africa
+	else if(value == "AF"){
+		position.continentID = 5;
+	}
+	//Asia
+	else if(value == "AS"){
+		position.continentID = 6;
+	}
+	//Ociania
+	else if(value == "OC"){
+		position.continentID = 7;
+	}
+	//If there should be some leftovers
+	else{
+		position.continentID = 8;
+	}
+
+}
 // Fetching renewable energy data, in percent per year, and adding to countries. 
 function addRenewables(){
 	console.log("Getting renewables")
@@ -260,6 +303,7 @@ function addRenewables(){
 				// These country codes are not in the countries-list
 			}
 		}
+		console.log("out or renewable");
 	});
 }
 
