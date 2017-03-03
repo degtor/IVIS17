@@ -31,7 +31,7 @@ countries =
 var countries;
 var codeList;
 var test = [1,2,3];
-var year = 1960; 
+var year = 1960 ; 
 
 function readCountries(callback){
 	// Create list object containing objects with Key = Country Code and Value = {Country: Name of country} 
@@ -40,7 +40,7 @@ function readCountries(callback){
 		codeList = {};
 		for(i in data){
 			// Adding country object to list object
-			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'topExport': {}, 'topImport': {}, 'co2':{} }
+			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'topExport': {}, 'topImport': {}, 'co2':{}, 'tradingBalance': {} }
 			//console.log(countries);
 			for (y=1988;y<2016;y++){
 				countries[data[i]['ISO 3166-1 3 Letter Code']].topExport[y] = {};
@@ -54,7 +54,7 @@ function readCountries(callback){
 	})
 	//Fick inte riktigt grepp om d3.queue så jag la denna här /David
 	readCo2(); 
-	// drawBarChart();
+	readTradingBalance();
 
 }
 
@@ -69,6 +69,7 @@ var q1 = d3.queue();
 function readData(){
 	var q2 = d3.queue();
 	for(i in countries){
+
 		q2.defer(d3.csv, 'data/allcountries_allyears_full/en_'+countries[i].code+'_AllYears_WITS_Trade_Summary.csv')			
 	}
 	q2.awaitAll(getTop5ExportImport)
@@ -149,6 +150,26 @@ function sortTop5ExportImport(exports, imports){
 }
 
 
+//Add trading balance to countries
+function readTradingBalance(){
+	// Create dictionary of trading balance where key = year (1960-2016) and  value = trading balance as % of GDP
+	d3.csv('data/trading_balance/trading_balance_data.csv', function(data){
+		//Loops through the csv getting the country code
+		for(i in data){
+			countryCode = data[i].Country_Code;
+			//Excludes empty rows in the csv
+			if (countryCode != "") {
+				//For every year, add to the object countries
+				for(j=1960 ; j<2017; j++ ){
+					countries[countryCode].tradingBalance[j] = data[i][j];
+				}
+			}
+				// }	
+			// }
+		}
+	})
+}
+
 //Add co2 to countries
 function readCo2(){
 	// Create dictionary of co2 emissions where key = year (1960-2010) and  value = co2 per capita
@@ -161,10 +182,10 @@ function readCo2(){
 				if(countryCode != undefined){
 					for(j=0 ; j<=50; j++ ){
 						countries[countryCode].co2[1960+j] = data[i][1960+j];
-				}	
-			}
-		}
-	})
+					}	
+				}
+			}	
+		})
 }
 
 
@@ -172,7 +193,7 @@ function readCo2(){
 function name2code(name){
 
 	if(codeList[name]==undefined){
-		//console.log(name + " stämmer ej med namn i land/kod-lista")
+		// console.log(name + " stämmer ej med namn i land/kod-lista")
 	}
 	return codeList[name];
 }
