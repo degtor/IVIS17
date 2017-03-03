@@ -10,6 +10,7 @@ var svg = d3.select( "#chart")
 
 function drawBarChart(){
 
+  console.log("in chart");
   //Year to display is now set in fetch_data.js
 
   //Create tooltip
@@ -21,9 +22,17 @@ function drawBarChart(){
   })
 
 
+
   //Make selection and connect to data              
   var selection = svg.selectAll( "rect" )
-                     .data(d3.entries(countries));
+                    //Fetching countries data and sorts it before creating bars
+                     .data(d3.entries(countries).sort(
+                                        function(a,b){
+                                          //sorting from 1-8 of continentID to get 
+                                          //order of data for the bars to match the map
+                                          return d3.ascending(a.value.continentID, b.value.continentID);
+                                        })
+                     );
 
   svg.call(tip);
 

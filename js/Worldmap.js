@@ -226,8 +226,8 @@ function draw(topo, brushSelected) {
 		var code = name2code(d.properties.name);
 		var exportInfo = "";
 		var importInfo = "";
-		var countryExports = countries[code].topExport[2015]
-		var countryImports = countries[code].topImport[2015]
+		var countryExports = countries[code].exports[2015]
+		var countryImports = countries[code].imports[2015]
 
 		for(var key in countryExports) {
 		    exportInfo += "</br>" + countryExports[key].partner;
