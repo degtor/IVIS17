@@ -129,7 +129,7 @@ d3.json("world-topo-min.json", function(error, world) {
 });
 
 function draw2(clickedCountries, mouse) {
-	console.log(mouse);
+//	console.log(mouse);
 
 	//zoom.translate(mouse[0]);
 	//worldG.attr("transform", "translate(" + 3 + ")scale(" + 3 + ")");
@@ -226,16 +226,16 @@ function draw(topo, brushSelected) {
 		var code = name2code(d.properties.name);
 		var exportInfo = "";
 		var importInfo = "";
-		var countryExports = countries[code].exports[2015]
-		var countryImports = countries[code].imports[2015]
+//		var countryExports = countries[code].exports[2015]
+//		var countryImports = countries[code].imports[2015]
 
-		for(var key in countryExports) {
-		    exportInfo += "</br>" + countryExports[key].partner;
-		}
+//		for(var key in countryExports) {
+//		    exportInfo += "</br>" + countryExports[key].partner;
+//		}
 
-		for(var key in countryImports) {
-		    importInfo += "</br>" + countryImports[key].partner;
-		}
+//		for(var key in countryImports) {
+//		    importInfo += "</br>" + countryImports[key].partner;
+//		}
 
       var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 
@@ -259,42 +259,39 @@ function draw(topo, brushSelected) {
 
 	  .on("click", function(d, i) {
 		  if (clickState == 0) {
-			  d3.select("#selectCountry").classed("hidden", true);
-			  d3.select("#compareLineChart").classed("hidden", true);
-			  d3.select(".sidebarContainer").classed("hidden", false);
-			  d3.select("#compareContainer").classed("hidden", true);
-			  d3.select(".sidebarContainer").remove();
-			  d3.select("#sidebar").insert("div").attr("class", "sidebarContainer");
+		  	d3.select("#sidebarNoCountry").classed("hidden", true);
+		  	d3.select("#sidebarOneCountry").classed("hidden", false);
+		  	d3.select("#sidebarMultipleCountries").classed("hidden", true);
+
+			d3.select("#sidebarOneCountry").selectAll(".value").remove()
+			
+			// Append values to sidebarOneContry with the class=value and they will be cleared in the line above on new click
+			d3.select("#country-name").insert("p").attr("class", "value").html(d.properties.name)
+
 			  console.log("i IF" + clickState);
 			  landETT = d;
 			  clickState++;
 
 
-			  d3.select(".sidebarContainer").insert("p").html(d.properties.name + " BY THE YEAR OF " + "NittoHundra"); //Lägg på data här
-			  d3.select(".sidebarContainer").insert("p").html("Annual CO2 per capita: " + "DATAFFS"); //Lägg på data här
-			  d3.select(".sidebarContainer").insert("p").html("Trade balance: " + "DATAFNISS" ); //Lägg på data här
-			  d3.select(".sidebarContainer").insert("div").attr("class", "top5exports").html("Snygga charts här inne va"); //Lägg in charts här
-			  d3.select(".sidebarContainer").insert("p").attr("class", "selectCountry").html("Select additional countries to compare...");
-		  } else if (clickState == 1) {
-			  d3.selectAll(".compareWorld").remove();
-			  d3.select("#compareContainer").classed("hidden", false);
-			  d3.select(".sidebarContainer").classed("hidden", true);
-			  d3.select("#selectCountry").classed("hidden", true);
-			  d3.select("#compareLineChart").classed("hidden", false);
-			  console.log("i ELSE IF" + clickState);
-			  landTwo = d;
-			  clickState = 0;
+		} else if (clickState == 1) {
+			d3.selectAll(".compareWorld").remove();
+			d3.select("#sidebarOneCountry").classed("hidden", true);
+			d3.select("#sidebarMultipleCountries").classed("hidden", false);
 
-			  //var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
+			console.log("i ELSE IF" + clickState);
+			landTwo = d;
+			clickState = 0;
 
-			  var width = document.getElementById('compareContainer').offsetWidth/2;
-			  var height = width / 1.9;
+			//var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 
-			  //Kan eventuell kolla hur man väljer fler länder här.
-			  setup2(width,height);
-			  draw2([landETT], mouse);
-			  setup2(width,height);
-			  draw2([landTwo], mouse);
+			var width = document.getElementById('compareContainer').offsetWidth/2;
+			var height = width / 1.9;
+
+			//Kan eventuell kolla hur man väljer fler länder här.
+			setup2(width,height);
+			draw2([landETT], mouse);
+			setup2(width,height);
+			draw2([landTwo], mouse);
 			  
 		  }
 		  //Hämtar landskod
