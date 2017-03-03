@@ -5,7 +5,7 @@ countries =
 	{	Country code:{	
 					name: country name,
 					code: country code,
-					topImport:{
+					imports:{
 						import partner1 country code:{
 							indicator, 
 							indicator type, 
@@ -16,10 +16,22 @@ countries =
 						}import partner2 country code:{
 							indicator... 
 						}
-					topExport{
+					exports{
 						export partner1 country code:{
 							indicator... 
-						}
+						},
+					co2: { 	year: "value",
+							year: "value",
+							...
+						},
+					tradingBalance: { 	year: "value",
+										year: "value",
+										...
+						},
+					twoLetterCode: { two letter code for country 
+						},
+					continent: { ex. "NA" 
+					}
 				}
 	}	Country 2 code {
 					name: country name, 
@@ -34,17 +46,18 @@ var test = [1,2,3];
 var year = 1960 ; 
 
 function readCountries(callback){
+	console.log("in country")
 	// Create list object containing objects with Key = Country Code and Value = {Country: Name of country} 
 		d3.csv('data/iso_countries.csv', function(data){
 		countries = {};	
 		codeList = {};
 		for(i in data){
 			// Adding country object to list object
-			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'topExport': {}, 'topImport': {}, 'co2':{}, 'tradingBalance': {} }
-			//console.log(countries);
+			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'exports': {}, 'imports': {}, 'co2':{}, 'tradingBalance': {}, 'twoLetterCode': data[i]['ISO 3166-1 2 Letter Code'], 'continent': {} }
+			
 			for (y=1988;y<2016;y++){
-				countries[data[i]['ISO 3166-1 3 Letter Code']].topExport[y] = {};
-				countries[data[i]['ISO 3166-1 3 Letter Code']].topImport[y] = {};
+				countries[data[i]['ISO 3166-1 3 Letter Code']].exports[y] = {};
+				countries[data[i]['ISO 3166-1 3 Letter Code']].imports[y] = {};
 			}
 
 			//Adding data to codelist
@@ -52,32 +65,60 @@ function readCountries(callback){
 		}
 		callback(null);
 	})
-	//Fick inte riktigt grepp om d3.queue så jag la denna här /David
-	readCo2(); 
-	readTradingBalance();
-
 }
 
-// Waits until readCountries is ready and then runs readCo2 and readData 
-var q1 = d3.queue();
-	q1.defer(readCountries);
-	q1.await(readData);
-	// q1.await(readCo2);  //ligger i slutet på sortTop.. ist
-	// 
+// Waits until readCountries is ready and then runs readData 
+d3.queue()
+	.defer(readCountries)
+	.await(readData);
 
-// Queing all datafiles and waits until they are all in. When done, it moves on to getTop5ExportImport
+
+// Queing all datafiles and waits until they are all in. 
+//When done, it moves on to getTop5ExportImport
 function readData(){
-	var q2 = d3.queue();
-	for(i in countries){
+	console.log("in readData")
+	//if(error) throw error;
+	d3.queue()
+		//Starts with adding CO2
+		.defer(readCo2)
+		//Continues with adding continents
+		.defer(addContinent)
+		//Finally adding trade balance
+		.defer(readTradingBalance)
+		//On callback we move on to update visualisations 
+		//with correct values
+		.await(updateVis);
 
-		q2.defer(d3.csv, 'data/allcountries_allyears_full/en_'+countries[i].code+'_AllYears_WITS_Trade_Summary.csv')			
-	}
-	q2.awaitAll(getTop5ExportImport)
+				//THIS IS FOR EXPORT/IMPORT	
+						// for(i in countries){
+						// 	q2.defer(d3.csv, 'data/allcountries_allyears_full/en_'+countries[i].code+'_AllYears_WITS_Trade_Summary.csv')
+						// }
+
+						// q2.defer(getTop5ExportImport)
+						// 	.defer(sortTop5ExportImport, exports)
+						// 	.defer(sortTop5ExportImport, imports)
 }
+
+
+//Updates visualisations when manipulation 
+//of countries-list is finished
+function updateVis(){
+	console.log("In vis");
+	console.log("here are our countries after manipulation",countries);
+	drawBarChart();
+	updateMapColors();
+
+}
+
+
+// ************** NOT USED RIGHT NOW (EXPORT/IMPORT) ****************
+
 
 // Takes out all data for top 5 export and top 5 import
 function getTop5ExportImport(error, files){
-	console.log("här är jag");
+
+	//There are no files here, so reading the csv-files in readData is not working correctly
+	console.log(files);
 	if(error){
 		console.log("Ops, something went wrong")
 	}
@@ -94,29 +135,32 @@ function getTop5ExportImport(error, files){
 			};			
 		}
 	}
-	console.log(exports);
-	sortTop5ExportImport(exports, imports);
-}
+
+	}
+
 
 // Sorts all the top 5 export and import data by country 
 // Adding the whole object(indicator, partner, category, reporter, year) to the export/import-list with the country code as key
-function sortTop5ExportImport(exports, imports){
+function sortTop5ExportImport(list){
+	//NOTE: Går att sortera listor i d3 med .sort() om vi inte vill loopa genom allt 
+	// Kan nog spara tid - om vi kommer använda detta nu :) 
+
 	// loops through list of export data 
-	for(i in exports){
+	for(i in list){
 		// loops all countries in code-name list and compares name to reporting country name in export-list
 		for(j in countries){
 			
-			if(countries[j].name == exports[i].Reporter){
+			if(countries[j].name == list[i].Reporter){
 				// compares export partner with names in countries code-name list and adds partner country to 
 				// reporting countries topExport. Adds partner as an object with partner country code as key and data as value. 
 				for(k in countries){
 					
 					for(y=1988;y<2016;y++){
 					
-						if(countries[k].name == exports[i].Partner && exports[i][y] != ""){
-							countries[j].topExport[y][countries[k].code] = {
-							  mDollars:exports[i][y].replace(/\s+/g, ''),
-							  partner:exports[i].Partner
+						if(countries[k].name == list[i].Partner && list[i][y] != ""){
+							countries[j].list[y][countries[k].code] = {
+							  mDollars:list[i][y].replace(/\s+/g, ''),
+							  partner:list[i].Partner
 							  };
 						}
 					
@@ -126,36 +170,21 @@ function sortTop5ExportImport(exports, imports){
 			
 		}
 	}
-	// Same as above for import
-	for(i in imports){
-		for(j in countries){
-			if(countries[j].name == imports[i].Reporter){
-				for(k in countries){
-					for(y=1988;y<2016;y++){
-						if(countries[k].name == imports[i].Partner && imports[i][y] != ""){
-							countries[j].topImport[y][countries[k].code] = {
-							  mDollars:imports[i][y].replace(/\s+/g, ''),
-							  partner:exports[i].Partner
-							  };
-						}
-					}
-				}
-			}
-		}
-	}
-	// Our adorable list of countries
-	console.log(countries)
-	drawBarChart();   //Hittade inget bättre sätt att anropa denna än först efter att hela fetch-data är körd //David
- 
+	console.log(countries);
 }
+
+// *************************************************
+
 
 
 //Add trading balance to countries
-function readTradingBalance(){
+function readTradingBalance(callback){
+	console.log("in trading")
 	// Create dictionary of trading balance where key = year (1960-2016) and  value = trading balance as % of GDP
 	d3.csv('data/trading_balance/trading_balance_data.csv', function(data){
 		//Loops through the csv getting the country code
 		for(i in data){
+			console.log("in trading balance loop")
 			countryCode = data[i].Country_Code;
 			//Excludes empty rows in the csv
 			if (countryCode != "") {
@@ -164,18 +193,24 @@ function readTradingBalance(){
 					countries[countryCode].tradingBalance[j] = data[i][j];
 				}
 			}
-				// }	
-			// }
+
 		}
+		console.log("out of trading balance loop")
+
+		//Let's send a message that we are ready with adding tradeBalance so we can move on
+		callback("trading done");
 	})
 }
 
 //Add co2 to countries
 function readCo2(){
+
+	console.log("in co2")
 	// Create dictionary of co2 emissions where key = year (1960-2010) and  value = co2 per capita
 		d3.csv('data/co2_capita.csv', function(data){
 			
 			for(i in data){
+				console.log("in co2 loop")
 				var countryCode = name2code(data[i].country);
 
 				//Only if name is correct: 
@@ -184,9 +219,30 @@ function readCo2(){
 						countries[countryCode].co2[1960+j] = data[i][1960+j];
 					}	
 				}
-			}	
+			}
+			console.log("out of co2 loop")	
 		})
 }
+
+//Add continent-code to countries
+function addContinent(){
+	console.log("in continent")
+	d3.csv('data/country_continent.csv', function(data){
+		//loop all items in continent-data
+		for(i in data){
+			console.log("in contintent loop")
+			// loops all countries and match twoLetterCode with country-code in continent-data
+			for(j in countries){
+				if(countries[j].twoLetterCode == data[i].country){
+					//Add continent code to country if match
+					countries[j].continent = data[i].continent;
+				}
+			}
+		}
+		console.log("out of continent loop")
+	});
+}
+
 
 
 //Returns country code for country name. i.e. Sweden->SWE

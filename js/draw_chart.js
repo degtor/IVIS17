@@ -10,6 +10,7 @@ var svg = d3.select( "#chart")
 
 function drawBarChart(){
 
+  console.log("in chart");
   //Year to display is now set in fetch_data.js
 
   //Create tooltip
@@ -20,6 +21,15 @@ function drawBarChart(){
     return d.value.name + "</br>Co2: " + Math.round(d.value.co2[year] * 100) / 100;
   })
 
+
+// Code for grouping data by continent in d3: http://www.jeromecukier.net/blog/2012/05/28/manipulating-data-like-a-boss-with-d3/
+
+
+//Kan inte använda för continent är inte klart än, så finns inget
+
+  var datis = d3.nest().key(function(d) {return d.value.continent;})
+  .entries(countries);
+  console.log(datis)
 
   //Make selection and connect to data              
   var selection = svg.selectAll( "rect" )
