@@ -2,7 +2,7 @@
 var svg = d3.select( "#chart")
             .append( "svg" )
             .attr('id', 'barChart')
-            .attr( "width", 1150 )
+            .attr( "width", 540 )
             .attr( "height", 220 )
             .attr( "display", "block")
             .attr( "margin", "auto");

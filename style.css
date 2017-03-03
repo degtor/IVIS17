@@ -144,3 +144,37 @@ p {
   margin: 0 auto;
 }
 /*Slider area end*/
+
+#sidebar {
+    background-color: #ccc;
+}
+
+.row{
+    overflow: hidden;
+}
+
+[class*="col-"]{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+}
+
+#selectCountry {
+    margin:auto; text-align:center; font-weight:bold; line-height: 400px;
+}
+
+.top5exports {
+    border:solid 1px #000;
+    width:400px;
+    height:400px;
+}
+
+.compareWorld {
+}
+
+.countrySizePos {
+}
+
+#compareLineChart {
+    border:solid 1px #000;
+    height:500px;
+}
