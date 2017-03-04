@@ -1,5 +1,8 @@
 d3.select(window).on("resize", throttle);
 
+//Declaring initial variables
+var country; 
+
 var zoom = d3.behavior.zoom()
     .scaleExtent([1, 9])
     .on("zoom", move);
@@ -7,6 +10,7 @@ var zoom = d3.behavior.zoom()
 var width = document.getElementById('container').offsetWidth;
 var height = width / 1.9;
 
+//Not using right now
 var colors = {
 	"Albania": "#8dd3c7",
 	"Azerbaijan": "#ffffb3",
@@ -80,9 +84,16 @@ var colors = {
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
-setup(width,height);
 
-function setup(width,height){
+
+//Calling setup-function to start setting up map
+setup(width,height, "#container", "world");
+
+
+
+//Setting up countries
+//variables 'container' and 'theclass' changes depending on large or small map-view
+function setup(width,height, container, theclass){
   projection = d3.geo.mercator()
     .translate([(width/2), (height/2)])
     .scale( width / 2 / Math.PI)
@@ -90,95 +101,54 @@ function setup(width,height){
 
   worldPath = d3.geo.path().projection(projection);
 
-  worldSvg = d3.select("#container").append("svg")
-      .attr("class", "world")
+  worldSvg = d3.select(container).append("svg")
+      .attr("class", theclass)
       .attr("width", width)
       .attr("height", height)
-      .call(zoom)
-      .on("click", click)
-      .append("g");
+      .append("g");;
+
+      if(container == "#container"){
+      	worldSvg
+      		.call(zoom)
+      		.on("click", click);
+  		}
+  		else{
+  			worldSvg.attr("class", "countrySizePos");
+  		}
+
 
   worldG = worldSvg.append("g");
 
 }
 
-function setup2(width,height){
-	projection = d3.geo.mercator()
-		.translate([(width/2), (height/2)])
-		.scale( width / 2 / Math.PI)
-		.center( [ 0 , 20] );
-
-	worldPath = d3.geo.path().projection(projection);
-
-	worldSvg = d3.select("#compareContainer").append("svg")
-		.attr("class", "compareWorld")
-		.attr("width", width)
-		.attr("height", height)
-		//.call(zoom)
-//		.on("click", click)
-		.append("g")
-		.attr("class", "countrySizePos");
-	worldG = worldSvg.append("g");
-
-}
-
+//Drawing large map
 d3.json("world-topo-min.json", function(error, world) {
   var countries = topojson.feature(world, world.objects.countries).features;
   topo = countries;
-  draw(topo);
+  draw(topo, "large");
 });
 
-function draw2(clickedCountries, mouse) {
-//	console.log(mouse);
 
-	//zoom.translate(mouse[0]);
-	//worldG.attr("transform", "translate(" + 3 + ")scale(" + 3 + ")");
-
-
-	var country = worldG.selectAll(".country").data(clickedCountries);
-
-	country.enter().insert("path")
-		.attr("class", "country")
-		.attr("d", worldPath)
-		.attr("id", function(d,i) { return d.id; })
-		.attr("title", function(d,i) { return d.properties.name; })
-		.style("fill",function(d, i) {
-
-
-			var kod=name2code(d.properties.name);
-
-			//Om vi har problem med att matcha namn:
-			if(kod==undefined){
-				return "#000"
-			}
-
-			else{
-				//Hämta co2 för 2010
-				var co2 = countries[kod].co2['2010'];
-
-				//Generera färg beroende på co2 utsläpp
-				var color = d3.scale.linear().domain([0,5,20]).range(["#A8FB54", "#FFFE5D", "#EB382F"]);
-				return color(co2);
-			}
-		});
-}
-
-function draw(topo, brushSelected) {
+//Drawing map and/or small country depending on mapType
+function draw(topo,mapType) {
 	console.log(topo);
 
-  var country = worldG.selectAll(".country").data(topo); 
-  
-  worldSvg.append("path")
-     .datum(graticule)
-     .attr("class", "graticule")
-     .attr("d", worldPath);
+	if(mapType == "large"){
+		worldSvg.append("path")
+	     .datum(graticule)
+	     .attr("class", "graticule")
+	     .attr("d", worldPath);
 
-  worldG.append("path")
-   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
-   .attr("class", "equator")
-   .attr("d", worldPath);
+	  worldG.append("path")
+	   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
+	   .attr("class", "equator")
+	   .attr("d", worldPath);
 
+	}
+	country = worldG.selectAll(".country").data(topo);
 
+	//check id attrubite here (d.properties.name for large, d.id for small???)
+	//With d.properties.name for both the info-box shows up on hover for both
 	country.enter().insert("path")
       .attr("class", "country")
       .attr("d", worldPath)
@@ -187,24 +157,18 @@ function draw(topo, brushSelected) {
       .style("fill", function(d, i) {
 
 
-      	var kod=name2code(d.properties.name);
-
-      	//Om vi har problem med att matcha namn:
-      	if(kod==undefined){
-      		return "#000"
-      	}
-
-      	else{
-      		//Hämta co2 för 2010
-      		var co2 = countries[kod].co2[year];
-
-      		//Generera färg beroende på co2 utsläpp	
-      		var color = d3.scale.linear().domain([0,5,20]).range(["#7860B9", "#EAE8E6", "#5AA9EC"]); 
-          	return color(co2); 
-      	}
+      	//Setting colors for the map
+      	updateMapColors();
        });
 
-  //offsets for tooltips
+		//Calling interaction function and sends country as variable
+	  	countryInteraction(country);
+
+}
+
+//Function that holds all interaction functionality with a country
+function countryInteraction(country){
+	 //offsets for tooltips
   var offsetL = document.getElementById('container').offsetLeft+20;
   var offsetT = document.getElementById('container').offsetTop+10;
   //tooltips
@@ -213,8 +177,9 @@ function draw(topo, brushSelected) {
 	var sidebarDiv = document.getElementById('sidebar');
 	var mapScreen = document.getElementById('mapScreen');
 	d3.select("#compareLineChart").classed("hidden", true);
-	//f = 0;
-  country
+
+	country
+	//Hover a country
     .on("mousemove", function(d,i) {
 		f = 0;
 
@@ -245,6 +210,7 @@ function draw(topo, brushSelected) {
              .html(d.properties.name + "</br></br>  Top  exports: " + exportInfo + "</br></br>  Top  imports: " + importInfo);
 
       })
+	//Stop hovering a country
       .on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true);
 
@@ -256,8 +222,9 @@ function draw(topo, brushSelected) {
 
 
       })
-
+      //Clicking a country
 	  .on("click", function(d, i) {
+	  	//If first country to be clicked
 		  if (clickState == 0) {
 		  	d3.select("#sidebarNoCountry").classed("hidden", true);
 		  	d3.select("#sidebarOneCountry").classed("hidden", false);
@@ -268,17 +235,28 @@ function draw(topo, brushSelected) {
 			// Append values to sidebarOneContry with the class=value and they will be cleared in the line above on new click
 			d3.select("#country-name").insert("p").attr("class", "value").html(d.properties.name)
 
-			  console.log("i IF" + clickState);
+			  console.log("i IF " + clickState);
 			  landETT = d;
+
+				//Clear multiple lineChart if we have one
+				clearLineChart();
+
+			  	//---- Calling left chart here when we have it ----
+
+			  	//---- Call piechart here as well ---- 
+
+
 			  clickState++;
 
 
-		} else if (clickState == 1) {
+		} 
+		//If second country to be clicked
+		else if (clickState == 1) {
 			d3.selectAll(".compareWorld").remove();
 			d3.select("#sidebarOneCountry").classed("hidden", true);
 			d3.select("#sidebarMultipleCountries").classed("hidden", false);
 
-			console.log("i ELSE IF" + clickState);
+			console.log("i ELSE IF " + clickState);
 			landTwo = d;
 			clickState = 0;
 
@@ -288,30 +266,39 @@ function draw(topo, brushSelected) {
 			var height = width / 1.9;
 
 			//Kan eventuell kolla hur man väljer fler länder här.
-			setup2(width,height);
-			draw2([landETT], mouse);
-			setup2(width,height);
-			draw2([landTwo], mouse);
+			setup(width,height, "#compareContainer", "compareWorld");
+			draw([landETT], "small");
+			setup(width,height, "#compareContainer", "compareWorld");
+			draw([landTwo], "small");
+			
+			//Create code for each country
+			var kod1 = name2code(landETT.properties.name);
+			var kod2 = name2code(landTwo.properties.name);
+			
+			//Call multiple line chart 
+			drawLine(countries[kod1].co2, countries[kod2].co2);
 			  
 		  }
-		  //Hämtar landskod
-		  var code = name2code(d.properties.name);
-		  console.log(code);
-
-		  //Nollställ eventuell  highlightad stapel
-		  d3.selectAll(".bar")
-		  	.attr('fill', 'black');
-
-		  //Highlighta ny stapel i bar chart
-		  d3.select(".bar#" + code)
-		  	.attr('fill', 'orange');
 
 
-	      var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
+	  //Nollställ eventuell  highlightad stapel
+	  d3.selectAll(".bar")
+	  	.attr('fill', 'black');
 
-	      tooltip.classed("hidden", false)
-	             .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-	             .html(d.properties.name);
+
+	  //Hämtar landskod så kan fylla i rätt land 
+	  var code = name2code(d.properties.name);
+
+	  //Highlighta ny stapel i bar chart
+	  d3.select(".bar#" + code)
+	  	.attr('fill', 'orange');
+
+
+      var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
+
+      tooltip.classed("hidden", false)
+             .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+             .html(d.properties.name);
 	  });
 
 }
@@ -321,8 +308,8 @@ function redraw() {
   width = document.getElementById('container').offsetWidth;
   height = width / 2;
   d3.select('svg').remove();
-  setup(width,height);
-  draw(topo);
+  setup(width,height, "#container", "world");
+  draw(topo, "large");
 }
 
 
@@ -353,6 +340,7 @@ function move() {
 }
 
 var throttleTimer;
+
 function throttle() {
   window.clearTimeout(throttleTimer);
     throttleTimer = window.setTimeout(function() {
@@ -366,7 +354,7 @@ function click() {
 }
 
 
-
+//Updating map-values
 function updateMapColors(){
 
 	    d3.selectAll("path.country")
@@ -381,11 +369,11 @@ function updateMapColors(){
 	      	}
 
 	      	//Hämta co2 för rätt år och land
-      		var co2 = countries[kod].co2[year];
+      		var tradingBalance = countries[kod].tradingBalance[year];
 
       		//Generera färg beroende på co2-utsläpp	
       		var color = d3.scale.linear().domain([0,5,20]).range(["#7860B9", "#EAE8E6", "#5AA9EC"]); 
-          	return color(co2); 
+          	return color(tradingBalance); 
 
         });
 }
