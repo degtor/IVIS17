@@ -22,12 +22,9 @@
 <body>
 <div class="row">
     <div id="mapScreen" class="col-lg-6 col-md-6">
-        <div id="container">
-
-        </div>
+        <div id="container"></div>
         <div id="chart"></div>
-
-        <div class="slider" >
+        <div class="slider">
             <h2>Year: <span id="slider4text">1960</span></h2>
             <div id="slider"></div>
         </div>
@@ -44,34 +41,49 @@
 
         <!-- Displayed if one country is selected --> 
         <div id="sidebarOneCountry" class="hidden">
-            <span id="country-name"></span>
-            <p> BY THE YEAR OF <span id="year-label"></span></p> <!-- Lägg till data här -->
-            <p> Annual CO2 per capita <span id="co2-label"></span></p>
-            <p> Trade balance <span id="trade-label"></span> </p>
-            <div class="col-lg-12 col-md-12">
-                <div class="row">
-
-                    <div id="line-chart-container"class="col-lg-6 col-md-6">Line chart here</div>
-                    <div id="pie-chart-container"class="col-lg-6 col-md-6"></div>
+            <div id="headings" class="row">
+                <div class="col-md-3">
+                    <span id="country-name"></span>
+                </div>
+                <div class="col-md-9">
+                    <div id="year-info">
+                        <h3> BY THE YEAR OF <span id="year-label"></span><h3>
+                    </div> <!-- Lägg till data här -->
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12">
+            
+            <h3> Annual CO2 per capita: <span class="infoText" id="co2-label"></span></h3>
+            <h3> Trade balance: <span class="infoText" id="trade-label"></span> </h3>
+   
+            <div id="charts-view">
                 <div class="row">
-                    <div id="top-export-container"class="col-lg-6 col-md-6">TOP 5 EXPORT</div>
-                    <div id="top-import-container"class="col-lg-6 col-md-6">TOP 5 IMPORT</div>
+                    <div id="line-chart-container" class="col-lg-6 col-md-6">Line chart here</div>
+                    <div id="pie-chart-container" class="col-lg-6 col-md-6"></div>
                 </div>
+                <div class="row" id="impExp">
+                    <div id="top-export-container" class="col-lg-6 col-md-6"><h4>TOP 5 EXPORT</h4></div>
+                    <div id="top-import-container" class="col-lg-6 col-md-6"><h4>TOP 5 IMPORT</h4></div>
+                </div>
+            </div>
+
+            <!-- On view 2 append text 'Select two countries to compare them' -->
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <span id="additional-countries-hint"></span>
+                </div>
+                <div class="col-md-3"></div>
             </div>
 
         </div>
 
-        <!-- Displayed if several countries is selected --> 
+         <!-- Displayed if several countries are selected --> 
         <div id="sidebarMultipleCountries" class="hidden">
             <div id="compareContainer"></div>
             <div id="compare-line-chart"></div>
         </div>
-
     </div>
-</div>
+</div><!-- End of row --> 
 
 
 

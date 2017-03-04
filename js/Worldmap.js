@@ -156,7 +156,6 @@ function countryInteraction(country){
 		  	d3.select("#sidebarNoCountry").classed("hidden", true);
 		  	d3.select("#sidebarOneCountry").classed("hidden", false);
 		  	d3.select("#sidebarMultipleCountries").classed("hidden", true);
-
 			  console.log("i IF " + clickState);
 			  landETT = d;
 
