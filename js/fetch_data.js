@@ -108,6 +108,7 @@ function updateVis(){
 	console.log("here are our countries after manipulation",countries);
 	drawBarChart();
 	updateMapColors();
+	//drawLine();
 }
 
 
