@@ -8,6 +8,10 @@ path {
     fill: black;
 }
 
+span{
+  display: inline-block;
+}
+
 svg {
     font: 10px sans-serif;
 }

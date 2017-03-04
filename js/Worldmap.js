@@ -13,6 +13,7 @@ var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
 var landETT;
+var landTwo; 
 
 //Calling setup-function to start setting up map
 setup(width,height, "#container", "world");
@@ -156,12 +157,6 @@ function countryInteraction(country){
 		  	d3.select("#sidebarOneCountry").classed("hidden", false);
 		  	d3.select("#sidebarMultipleCountries").classed("hidden", true);
 
-			d3.select("#sidebarOneCountry").selectAll(".value").remove()
-			
-			// Append values to sidebarOneContry with the class=value and they will be cleared in the line above on new click
-			d3.select("#country-name").insert("p").attr("class", "value").html(d.properties.name)
-			d3.select("#year-label").insert("p").attr("class", "value").html(year)
-
 			  console.log("i IF " + clickState);
 			  landETT = d;
 
@@ -172,8 +167,9 @@ function countryInteraction(country){
 
 			  	//---- Call piechart here as well ---- 
 
+	        updateSideBar()
   			drawPieChart();
-			  clickState++;
+			clickState++;
         
 		} 
 		//If second country to be clicked

@@ -5,6 +5,7 @@ d3.select('#slider').call(d3.slider()
 	      drawBarChart();
           updateMapColors();
           drawPieChart()
+          updateSideBar()
 		 })
 
   	.axis(true)
