@@ -184,16 +184,16 @@ p {
     border:solid 1px #000;
 }
 
-#line-chart-container { font: 12px Arial;}
+#compare-line-chart { font: 12px Arial;}
 
-#line-chart-container path { 
+#compare-line-chart path { 
     stroke: steelblue;
     stroke-width: 2;
     fill: none;
 }
 
-#line-chart-container .axis path,
-#line-chart-container .axis line {
+#compare-line-chart .axis path,
+#compare-line-chart .axis line {
     fill: none;
     stroke: grey;
     stroke-width: 1;

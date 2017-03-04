@@ -238,13 +238,12 @@ function countryInteraction(country){
 			  console.log("i IF " + clickState);
 			  landETT = d;
 
-			  var kod=name2code(landETT.properties.name);
+				//Clear multiple lineChart if we have one
+				clearLineChart();
 
-			  //Calling drawLine to draw the linechart on countryClick.
-			  //Sending the co2 list for that country as attribute.
-			  drawLine(countries[kod].co2);
+			  	//---- Calling left chart here when we have it ----
 
-			  //---- Call piechart here as well ---- 
+			  	//---- Call piechart here as well ---- 
 
 
 			  clickState++;
@@ -271,9 +270,13 @@ function countryInteraction(country){
 			draw([landETT], "small");
 			setup(width,height, "#compareContainer", "compareWorld");
 			draw([landTwo], "small");
-
-			//Clear lineChart
-			clearLineChart();
+			
+			//Create code for each country
+			var kod1 = name2code(landETT.properties.name);
+			var kod2 = name2code(landTwo.properties.name);
+			
+			//Call multiple line chart 
+			drawLine(countries[kod1].co2, countries[kod2].co2);
 			  
 		  }
 
