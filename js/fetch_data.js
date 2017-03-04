@@ -105,7 +105,6 @@ function readData(){
 //Updates visualisations when manipulation 
 //of countries-list is finished
 function updateVis(){
-	console.log("In vis");
 	console.log("here are our countries after manipulation",countries);
 	drawBarChart();
 	updateMapColors();
@@ -296,14 +295,15 @@ function addRenewables(){
 			var code = data[i].CountryCode;
 			if(countries[code]){
 				for(j=0; j<=22; j++){
-					countries[code].renewables[1990+j] = data[i][1990+j]
+					countries[code].renewables[1990+j] = [	["renewable", Number(data[i][1990+j])],
+															["fossil", 100-data[i][1990+j]]
+														]
 				}
 			}
 			else{
 				// These country codes are not in the countries-list
 			}
 		}
-		console.log("out or renewable");
 	});
 }
 

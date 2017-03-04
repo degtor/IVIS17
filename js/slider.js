@@ -4,7 +4,7 @@ d3.select('#slider').call(d3.slider()
 	      year = value;
 	      drawBarChart();
           updateMapColors();
-
+          drawPieChart()
 		 })
 
   	.axis(true)

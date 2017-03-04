@@ -45,13 +45,14 @@
         <!-- Displayed if one country is selected --> 
         <div id="sidebarOneCountry" class="hidden">
             <span id="country-name"></span>
-            <p> BY THE YEAR OF 1990 </p> <!-- Lägg till data här -->
+            <p> BY THE YEAR OF <span id="year-label"></span></p> <!-- Lägg till data här -->
             <p> Annual CO2 per capita data</p>
             <p> Trade balance: data </p>
             <div class="col-lg-12 col-md-12">
                 <div class="row">
+
                     <div id="line-chart-container"class="col-lg-6 col-md-6"></div>
-                    <div id="pie-chart-container"class="col-lg-6 col-md-6">PIE CHART</div>
+                    <div id="pie-chart-container"class="col-lg-6 col-md-6"></div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12">
@@ -78,6 +79,7 @@
 
     <!-- SCRIPT -->
     <script type="text/javascript" src="js/Worldmap.js" ></script>
+    <script type="text/javascript" src="js/pie-chart.js"></script>
     <script type="text/javascript" src="js/topojson.v1.min.js" ></script>
     <script type="text/javascript" src="js/fetch_data.js" ></script>
     <script type="text/javascript" src="js/draw_chart.js" defer ></script>
