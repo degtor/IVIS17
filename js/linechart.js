@@ -1,13 +1,10 @@
 
-function drawLine(){
+function drawLine(data){
 
 console.log("in linechar");
 
-var data = d3.entries(countries.SWE.co2);
+var data = d3.entries(data);
 console.log("data", data);
-
-
-
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 20, bottom: 30, left: 20},
@@ -45,7 +42,7 @@ var mySVG = d3.select("#line-chart-container")
 // Get the data
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { return d.key; }));
+    x.domain(d3.extent(data, function(d) { console.log(d.key);return d.key; }));
     
     y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
@@ -65,6 +62,10 @@ var mySVG = d3.select("#line-chart-container")
         .attr("class", "y axis")
         .call(yAxis);
 
+}
+
+function clearLineChart(){
+    var mySVG = d3.select("#line-chart-container").html("");
 }
 
 
