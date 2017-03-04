@@ -6,81 +6,11 @@ var zoom = d3.behavior.zoom()
 
 var width = document.getElementById('container').offsetWidth;
 var height = width / 1.9;
-
-var colors = {
-	"Albania": "#8dd3c7",
-	"Azerbaijan": "#ffffb3",
-	"Argentina": "#bebada",
-	"Australia": "#fb8072",
-	"Bangladesh": "#80b1d3",
-	"Armenia": "#fdb462",
-	"Bulgaria": "#b3de69",
-	"Belarus": "#fccde5",
-	"Chile": "#d9d9d9",
-	"China": "#bc80bd",
-	"Colombia": "#ccebc5",
-	"Croatia": "#ffed6f",
-	"Czech Rep.": "#66c2a5",
-	"Dominican Rep.": "#fc8d62",
-	"El Salvador": "#8da0cb",
-	"Estonia": "#e78ac3",
-	"Finland": "#a6d854",
-	"Georgia": "#ffd92f",
-	"Hungary": "#e5c494",
-	"India": "#b3b3b3",
-	"Japan": "#e41a1c",
-	"Latvia": "#377eb8",
-	"Lithuania":"#4daf4a",
-	"Mexico":"#984ea3",
-	"Moldova":"#ff7f00",
-	"Macedonia":"#ffff33",
-	"United Kingdom":"#a65628",
-	"Bosnia":"#f781bf",
-	"Algeria":"#999999",
-	"Bosnia Herzegovina": "#b3e2cd",
-	"Canada":"#fdcdac",
-	"Indonesia":"#cbd5e8",
-	"Iran":"#f4cae4",
-	"Iraq":"#e6f5c9",
-	"Jordan":"#fff2ae",
-	"South Korea":"#f1e2cc",
-	"Kyrgyzstan":"#cccccc",
-	"Morocco":"#fbb4ae",
-	"Nigeria":"#b3cde3",
-	"Pakistan":"#ccebc5",
-	"Peru":"#decbe4",
-	"Philippines":"#fed9a6",
-	"Puerto Rico":"#ffffcc",
-	"Saudi Arabia":"#e5d8bd",
-	"Singapore":"#fddaec",
-	"South Africa":"#f2f2f2",
-	"Egypt":"#ccc",
-	"Serbia":"#ece2f0",
-	"Montenegro":"#d0d1e6",
-	"Andorra":"#a6bddb",
-	"Brazil":"#67a9cf",
-	"Cyprus":"#3690c0",
-	"Ethiopia":"#02818a",
-	"France":"#016c59",
-	"Ghana":"#014636",
-	"Guatemala":"#f7fcfd",
-	"Hong Kong":"#e0ecf4",
-	"Italy":"#bfd3e6",
-	"Malaysia":"#9ebcda",
-	"Mali":"#8c96c6",
-	"Bahrain":"#8c6bb1",
-	"Ecuador":"#88419d",
-	"Kazakhstan":"#810f7c",
-	"Kuwait":"#4d004b",
-	"Lebanon":"#f7fcf5",
-	"Libya":"#e5f5e0",
-	"Netherlands":"#c7e9c0",
-};
-
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
 setup(width,height);
+var landETT;
 
 function setup(width,height){
   projection = d3.geo.mercator()
@@ -267,18 +197,18 @@ function draw(topo, brushSelected) {
 			
 			// Append values to sidebarOneContry with the class=value and they will be cleared in the line above on new click
 			d3.select("#country-name").insert("p").attr("class", "value").html(d.properties.name)
+			d3.select("#year-label").insert("p").attr("class", "value").html(year)
 
-			  console.log("i IF" + clickState);
-			  landETT = d;
-			  clickState++;
+			landETT = d;
+			clickState++;
 
+			drawPieChart();
 
 		} else if (clickState == 1) {
 			d3.selectAll(".compareWorld").remove();
 			d3.select("#sidebarOneCountry").classed("hidden", true);
 			d3.select("#sidebarMultipleCountries").classed("hidden", false);
 
-			console.log("i ELSE IF" + clickState);
 			landTwo = d;
 			clickState = 0;
 
