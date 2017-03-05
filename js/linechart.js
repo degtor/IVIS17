@@ -6,11 +6,10 @@ console.log("in linechar");
 var data = d3.entries(data1);
 var data2 = d3.entries(data2);
 
-
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 30, bottom: 30, left: 30},
-    width = 600 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 320 - margin.top - margin.bottom;
 
 
 // Set the ranges

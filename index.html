@@ -23,10 +23,12 @@
 <div class="row">
     <div id="mapScreen" class="col-lg-6 col-md-6">
         <div id="container"></div>
-        <div id="chart"></div>
-        <div class="slider">
-            <h2>Year: <span id="slider4text">1960</span></h2>
-            <div id="slider"></div>
+        <div id="belowChart">
+            <div id="chart"></div>
+            <div class="slider">
+                <div id="slider"></div>
+                <h2>Year: <span id="slider4text">1960</span></h2>
+            </div>
         </div>
     </div>
 
@@ -55,14 +57,32 @@
             <h3> Annual CO2 per capita: <span class="infoText" id="co2-label"></span></h3>
             <h3> Trade balance: <span class="infoText" id="trade-label"></span> </h3>
    
-            <div id="charts-view">
+            <div class="charts-view">
                 <div class="row">
                     <div id="line-chart-container" class="col-lg-6 col-md-6">Line chart here</div>
                     <div id="pie-chart-container" class="col-lg-6 col-md-6"></div>
                 </div>
                 <div class="row" id="impExp">
-                    <div id="top-export-container" class="col-lg-6 col-md-6"><h4>TOP 5 EXPORT</h4></div>
-                    <div id="top-import-container" class="col-lg-6 col-md-6"><h4>TOP 5 IMPORT</h4></div>
+                    <div id="top-export-container" class="col-lg-6 col-md-6">
+                        <h4>TOP 5 EXPORT</h4>
+                        <ol>
+                            <li>Country 1</li>
+                            <li>Country 2</li>
+                            <li>Country 3</li>
+                            <li>Country 4</li>
+                            <li>Country 5</li>
+                        </ol>
+                    </div>
+                    <div id="top-import-container" class="col-lg-6 col-md-6">
+                        <h4>TOP 5 IMPORT</h4>
+                        <ol>
+                            <li>Country 1</li>
+                            <li>Country 2</li>
+                            <li>Country 3</li>
+                            <li>Country 4</li>
+                            <li>Country 5</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
 
@@ -80,7 +100,9 @@
          <!-- Displayed if several countries are selected --> 
         <div id="sidebarMultipleCountries" class="hidden">
             <div id="compareContainer"></div>
-            <div id="compare-line-chart"></div>
+            <div class="charts-view" id="multiples">
+                <div id="compare-line-chart"></div>
+            </div>
         </div>
     </div>
 </div><!-- End of row --> 

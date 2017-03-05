@@ -61,15 +61,15 @@ function draw(topo,mapType) {
 	console.log(topo);
 
 	if(mapType == "large"){
-		worldSvg.append("path")
-	     .datum(graticule)
-	     .attr("class", "graticule")
-	     .attr("d", worldPath);
+		// worldSvg.append("path")
+	 //     .datum(graticule)
+	 //     .attr("class", "graticule")
+	 //     .attr("d", worldPath);
 
-	  worldG.append("path")
-	   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
-	   .attr("class", "equator")
-	   .attr("d", worldPath);
+	 //  worldG.append("path")
+	 //   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
+	 //   .attr("class", "equator")
+	 //   .attr("d", worldPath);
 
 	}
 	country = worldG.selectAll(".country").data(topo);
@@ -197,7 +197,7 @@ function countryInteraction(country){
 			//Create code for each country
 			var kod1 = name2code(landETT.properties.name);
 			var kod2 = name2code(landTwo.properties.name);
-			
+
 			//Call multiple line chart 
 			drawLine(countries[kod1].co2, countries[kod2].co2);
 			  

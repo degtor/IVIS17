@@ -5,7 +5,15 @@ html,body
   padding: 0;
 }
 body {
-    font-family: "Arial", "Helvetica", sans-serif;
+    font-family: "Helvetica Neue";
+}
+
+h3{
+  margin-top: 10px !important;
+}
+
+h2{
+  margin-top: 15px !important;
 }
 
 path {
@@ -40,9 +48,18 @@ canvas {
 }
 
 #chart {    
-  width: 90%;
+  width: 100%;
   margin: auto;
 }
+
+#belowChart{
+  padding-left: 16%;
+}
+
+/*#mapScreen{
+  text-align: right;
+  margin-left: 20px;
+}*/
 
 .brush .extent {
     fill-opacity: .3;
@@ -72,6 +89,7 @@ canvas {
     margin:10px 10%;
     height:100%;
     border:solid #000;
+    margin-top: 20px;
 }
 .hidden {
     display: none;
@@ -92,7 +110,7 @@ div.tooltip {
     opacity: 0.9;
     position: absolute;
 }
-.graticule {
+/*.graticule {
     fill: none;
     stroke: #bbb;
     stroke-width: .5px;
@@ -101,7 +119,7 @@ div.tooltip {
 .equator {
     stroke: #ccc;
     stroke-width: 1px;
-}
+}*/
 
 .world {
     top:600px;
@@ -156,8 +174,15 @@ p {
 
 /*Slider area*/
 .slider{
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
+  margin: auto;
+  padding-top: 40px;
+
+}
+
+.slider h2{
+  padding-top: 40px;
+  padding-left: 25%;
 }
 /*Slider area end*/
 
@@ -191,9 +216,13 @@ p {
 
 #compare-line-chart {
     border:solid 1px #000;
+    overflow: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-right: 20px;
 }
 
-#compare-line-chart { font: 12px Arial;}
+#compare-line-chart { font: 12px;}
 
 #compare-line-chart path { 
     stroke: steelblue;
@@ -214,14 +243,18 @@ p {
   font-size: 38px;
 }
 
-#charts-view{
+.charts-view{
   background-color: white;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-left:10px; padding-right: 10px;
   border: 2px solid rgba(204,204,204,1);
   height: 100%;
-  padding-bottom:50px;; padding-top: 50px;
+  padding-bottom:20px; padding-top: 20px;
+}
+
+#multiples{
+  height: 370px;
 }
 
 #additional-countries-hint p{
@@ -231,10 +264,6 @@ p {
 
 #impExp{
   margin-top: 20px;
-}
-
-#year-info{
-  margin-top: -17px;
 }
 
 #sidebar p{

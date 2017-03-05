@@ -2,7 +2,7 @@
 var svg = d3.select( "#chart")
             .append( "svg" )
             .attr('id', 'barChart')
-            .attr( "width", 540 )
+            .attr( "width", 1200 )
             .attr( "height", 220 )
             .attr( "display", "block")
             .attr( "margin", "auto");
@@ -44,9 +44,9 @@ function drawBarChart(){
         return d.value.code
       })
       .attr( "x", function(d,i){
-        return i*6;
+        return i*2;
       })
-      .attr( "width", 5 )
+      .attr( "width", 1 )
       .attr( "fill", "black" )
 
     //Set bar heights based on data

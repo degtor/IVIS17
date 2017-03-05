@@ -4,7 +4,7 @@ var radius = Math.min(width, height) / 2;
 
 var color = d3.scale.ordinal()
   .domain(["fossil", "renewable", "no data"])
-  .range(["#FF0000", "#009933", "#000000"]);
+  .range(["#8c8c8c", "#40bf80", "#f1f1f1"]);
 
 var svg2 = d3.select("#pie-chart-container")
 	.append('svg')
