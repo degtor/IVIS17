@@ -184,6 +184,23 @@ p {
   padding-top: 40px;
   padding-left: 25%;
 }
+
+#slider{
+  background-color: black;
+  height: 4px;
+  width: 455px;
+}
+.d3-slider-handle{
+    background: white !important;
+
+}
+#handle-one{
+  border-radius: 50%;
+  width: 20px;
+  border: 2px solid black;
+}
+
+
 /*Slider area end*/
 
 #sidebar {
