@@ -52,15 +52,13 @@ function setup(width,height, container, theclass){
 d3.json("world-topo-min.json", function(error, world) {
   var countries = topojson.feature(world, world.objects.countries).features;
   topo = countries;
-  draw(topo, "large");
+  draw(topo);
 });
 
 
 //Drawing map and/or small country depending on mapType
-function draw(topo,mapType) {
-	console.log(topo);
-
-	if(mapType == "large"){
+function draw(topo) {
+	//if(mapType == "large"){
 		// worldSvg.append("path")
 	 //     .datum(graticule)
 	 //     .attr("class", "graticule")
@@ -70,8 +68,7 @@ function draw(topo,mapType) {
 	 //   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
 	 //   .attr("class", "equator")
 	 //   .attr("d", worldPath);
-
-	}
+	//}
 	country = worldG.selectAll(".country").data(topo);
 
 	//check id attrubite here (d.properties.name for large, d.id for small???)
@@ -80,26 +77,21 @@ function draw(topo,mapType) {
       .attr("class", "country")
       .attr("d", worldPath)
       .attr("id", function(d,i) { return name2code(d.properties.name); })
-      .attr("title", function(d,i) { return d.properties.name; })
-      .style("fill", function(d, i) {
+      .attr("title", function(d,i) { return d.properties.name; });
+  		
 
-
-      	//Setting colors for the map
+  		//Setting colors for the map
       	updateMapColors();
-       });
 
-		//Calling interaction function and sends country as variable
-	  	countryInteraction(country);
-
+        countryInteraction();
 }
 
 //Function that holds all interaction functionality with a country
-function countryInteraction(country){
-	 //offsets for tooltips
-  var offsetL = document.getElementById('container').offsetLeft+20;
-  var offsetT = document.getElementById('container').offsetTop+10;
-  //tooltips
-	//
+function countryInteraction(){
+ 	//offsets for tooltips
+  	var offsetL = document.getElementById('container').offsetLeft+20;
+  	var offsetT = document.getElementById('container').offsetTop+10;
+  	//tooltips
 	var clickState = 0;
 	var sidebarDiv = document.getElementById('sidebar');
 	var mapScreen = document.getElementById('mapScreen');
@@ -137,8 +129,9 @@ function countryInteraction(country){
              .html(d.properties.name + "</br></br>  Top  exports: " + exportInfo + "</br></br>  Top  imports: " + importInfo);
 
       })
+
 	//Stop hovering a country
-      .on("mouseout",  function(d,i) {
+  	.on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true);
 
        //ta bort eventuell highlight på bar chart 
@@ -146,9 +139,8 @@ function countryInteraction(country){
 
      //   d3.select(".bar#" + code)
 		  	// .attr('fill', 'black');
-
-
       })
+
       //Clicking a country
 	  .on("click", function(d, i) {
 	  	//If first country to be clicked
@@ -156,18 +148,16 @@ function countryInteraction(country){
 		  	d3.select("#sidebarNoCountry").classed("hidden", true);
 		  	d3.select("#sidebarOneCountry").classed("hidden", false);
 		  	d3.select("#sidebarMultipleCountries").classed("hidden", true);
-			  console.log("i IF " + clickState);
-			  landETT = d;
+		  	console.log("i IF " + clickState);
+			landETT = d;
 
-				//Clear multiple lineChart if we have one
-				clearLineChart();
+			//Clear multiple lineChart if we have one
+			clearLineChart();
 
-			  	//---- Calling left chart here when we have it ----
-
-			  	//---- Call piechart here as well ---- 
-
-	        updateSideBar()
+			// Update sidebar values and draw piechart
+	        updateSideBar();
   			drawPieChart();
+
 			clickState++;
         
 		} 
@@ -177,11 +167,7 @@ function countryInteraction(country){
 			d3.select("#sidebarOneCountry").classed("hidden", true);
 			d3.select("#sidebarMultipleCountries").classed("hidden", false);
 
-
-			console.log("i ELSE IF " + clickState);
-
 			landTwo = d;
-			clickState = 0;
 
 			//var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 
@@ -190,9 +176,9 @@ function countryInteraction(country){
 
 			//Kan eventuell kolla hur man väljer fler länder här.
 			setup(width,height, "#compareContainer", "compareWorld");
-			draw([landETT], "small");
+			draw([landETT]);
 			setup(width,height, "#compareContainer", "compareWorld");
-			draw([landTwo], "small");
+			draw([landTwo]);
 			
 			//Create code for each country
 			var kod1 = name2code(landETT.properties.name);
@@ -200,7 +186,7 @@ function countryInteraction(country){
 
 			//Call multiple line chart 
 			drawLine(countries[kod1].co2, countries[kod2].co2);
-			  
+			clickState = 0;
 		  }
 
 
@@ -232,7 +218,7 @@ function redraw() {
   height = width / 2;
   d3.select('svg').remove();
   setup(width,height, "#container", "world");
-  draw(topo, "large");
+  draw(topo);
 }
 
 
@@ -279,7 +265,6 @@ function click() {
 
 //Updating map-values
 function updateMapColors(){
-
 	    d3.selectAll("path.country")
         .style("fill", function(){
       		
@@ -299,4 +284,5 @@ function updateMapColors(){
           	return color(tradingBalance); 
 
         });
+
 }

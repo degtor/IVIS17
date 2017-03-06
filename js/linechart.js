@@ -49,12 +49,12 @@ var mySVG = d3.select("#compare-line-chart")
 // Get the data
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { console.log(d.key);return d.key; }));
+    x.domain(d3.extent(data, function(d) {return d.key; }));
     
     y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
     // Scale the range of the data
-    x.domain(d3.extent(data2, function(d) { console.log(d.key);return d.key; }));
+    x.domain(d3.extent(data2, function(d) { return d.key; }));
     
     y.domain([0, d3.max(data2, function(d) { return d.value; })]);
 
