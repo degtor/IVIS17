@@ -6,11 +6,10 @@ console.log("in linechar");
 var data = d3.entries(data1);
 var data2 = d3.entries(data2);
 
-
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 30, bottom: 30, left: 30},
-    width = 600 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 320 - margin.top - margin.bottom;
 
 
 // Set the ranges
@@ -50,12 +49,12 @@ var mySVG = d3.select("#compare-line-chart")
 // Get the data
 
     // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { console.log(d.key);return d.key; }));
+    x.domain(d3.extent(data, function(d) {return d.key; }));
     
     y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
     // Scale the range of the data
-    x.domain(d3.extent(data2, function(d) { console.log(d.key);return d.key; }));
+    x.domain(d3.extent(data2, function(d) { return d.key; }));
     
     y.domain([0, d3.max(data2, function(d) { return d.value; })]);
 

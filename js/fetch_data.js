@@ -43,7 +43,7 @@ countries =
 var countries;
 var codeList;
 var test = [1,2,3];
-var year = 1960 ; 
+var year = 1960; 
 
 function readCountries(callback){
 	console.log("in country")
@@ -108,7 +108,7 @@ function updateVis(){
 	console.log("here are our countries after manipulation",countries);
 	drawBarChart();
 	updateMapColors();
-	//drawLine();
+	//countryInteraction();
 }
 
 
@@ -125,7 +125,6 @@ function getTop5ExportImport(error, files){
 	}
 	exports = [];
 	imports = [];
-	//years = [];
 	for(i in files){
 		file = files[i];
 		for(j in file){
