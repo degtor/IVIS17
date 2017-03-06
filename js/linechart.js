@@ -51,8 +51,8 @@ var mySVG = d3.select("#compare-line-chart")
     // Scale the range of the data (same years for both sets)
     x.domain(d3.extent(data, function(d) {return d.key; }));
     
-    //Setting y-domain to go from 0 to greates value of both datasets
-    if(d3.max(data, function(d) { return d.value; }) >= d3.max(data2, function(d) { return d.value; }))
+    //Setting y-domain to go from 0 to greates value of both datasets (verkar inte fungera helt hundra, vet ej varför)
+    if( (d3.max(data, function(d) { return d.value;})) >= (d3.max(data2, function(d) {return d.value;})) )
     {
     y.domain([0, d3.max(data, function(d) { return d.value; })]);
     }
