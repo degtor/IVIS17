@@ -241,7 +241,7 @@ p {
 #compare-line-chart { font: 12px;}
 
 #compare-line-chart path { 
-    stroke: steelblue;
+    stroke: black;
     stroke-width: 2;
     fill: none;
 }

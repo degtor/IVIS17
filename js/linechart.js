@@ -70,7 +70,7 @@ var mySVG = d3.select("#compare-line-chart")
      mySVG.append("path")
             .attr("class", "line")
             .attr("d", valueline2(data2))
-            .style("stroke", "red");
+            .style("stroke", "black");
 
     // Add the X Axis
     mySVG.append("g")
@@ -105,14 +105,14 @@ var mySVG = d3.select("#compare-line-chart")
         .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")")
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
-        .style("fill", "steelblue")
+        .style("fill", "black")
         .text(landETT.properties.name);
 
     mySVG.append("text")
         .attr("transform", "translate(" + (width+3) + "," + y(data2[50].value) + ")")
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
-        .style("fill", "red")
+        .style("fill", "black")
         .text(landTwo.properties.name);  
 
 }
