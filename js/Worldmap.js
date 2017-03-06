@@ -280,7 +280,7 @@ function updateMapColors(){
       		var tradingBalance = countries[kod].tradingBalance[year];
 
       		//Generera färg beroende på co2-utsläpp	
-      		var color = d3.scale.linear().domain([0,5,20]).range(["#7860B9", "#EAE8E6", "#5AA9EC"]); 
+      		var color = d3.scale.linear().domain([-40,0,40]).range(["#7860B9", "#EAE8E6", "#5AA9EC"]); 
           	return color(tradingBalance); 
 
         });
