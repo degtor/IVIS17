@@ -232,7 +232,6 @@ p {
 }
 
 #compare-line-chart {
-    border:solid 1px #000;
     overflow: auto;
     margin-left: 10px;
     margin-right: 10px;
@@ -285,4 +284,8 @@ p {
 
 #sidebar p{
   float: center;
+}
+
+.anchor{
+  font-size: 16px;
 }

@@ -8,7 +8,7 @@ var data2 = d3.entries(data2);
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 30, bottom: 30, left: 30},
-    width = 500 - margin.left - margin.right,
+    width = 450 - margin.left - margin.right,
     height = 320 - margin.top - margin.bottom;
 
 
@@ -39,7 +39,7 @@ var valueline2 = d3.svg.line()
 var mySVG = d3.select("#compare-line-chart")
     .append("svg")
         .attr('id', 'lineChart')
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", width + margin.left + margin.right+30)
         .attr("height", height + margin.top + margin.bottom)
     .append("g")
         .attr("transform", 
@@ -48,17 +48,20 @@ var mySVG = d3.select("#compare-line-chart")
 
 // Get the data
 
-    // Scale the range of the data
+    // Scale the range of the data (same years for both sets)
     x.domain(d3.extent(data, function(d) {return d.key; }));
     
+    //Setting y-domain to go from 0 to greates value of both datasets
+    if(d3.max(data, function(d) { return d.value; }) >= d3.max(data2, function(d) { return d.value; }))
+    {
     y.domain([0, d3.max(data, function(d) { return d.value; })]);
+    }
 
-    // Scale the range of the data
-    x.domain(d3.extent(data2, function(d) { return d.key; }));
-    
-    y.domain([0, d3.max(data2, function(d) { return d.value; })]);
+    else{
+         y.domain([0, d3.max(data2, function(d) { return d.value; })]);
+    }
 
-
+   
     // Add the valueline path.
     mySVG.append("path")
         .attr("class", "line")
@@ -79,6 +82,24 @@ var mySVG = d3.select("#compare-line-chart")
     mySVG.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+
+
+// text label for the axis
+  mySVG.append("text")
+  .attr("class","anchor")
+      .attr("y", -30)
+      .attr("x",0 )
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("CO2");   
+    
+    mySVG.append("text")
+    .attr("class","anchor")
+      .attr("y", height-10)
+      .attr("x",width+35)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("YEAR");   
 
 }
 
