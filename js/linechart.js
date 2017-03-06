@@ -99,7 +99,21 @@ var mySVG = d3.select("#compare-line-chart")
       .attr("x",width+35)
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("YEAR");   
+      .text("YEAR"); 
+
+      mySVG.append("text")
+        .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "start")
+        .style("fill", "steelblue")
+        .text(landETT.properties.name);
+
+    mySVG.append("text")
+        .attr("transform", "translate(" + (width+3) + "," + y(data2[50].value) + ")")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "start")
+        .style("fill", "red")
+        .text(landTwo.properties.name);  
 
 }
 
