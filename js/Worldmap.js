@@ -154,9 +154,13 @@ function countryInteraction(){
 			//Clear multiple lineChart if we have one
 			clearLineChart();
 
-			// Update sidebar values and draw piechart
+			//Create code for country
+			var kod = name2code(landETT.properties.name);
+			
+			// Update sidebar values and draw pie chart and line chart
 	        updateSideBar();
   			drawPieChart();
+			drawLineTradeBalance(countries[kod].tradingBalance);
 
 			clickState++;
         
