@@ -91,8 +91,14 @@ canvas {
     border:solid #000;
     margin-top: 20px;
 }
+
 .hidden {
     display: none;
+}
+
+.vishidden{
+  opacity: 0;
+  visibility: hidden;
 }
 
 #dims {
