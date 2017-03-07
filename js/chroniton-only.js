@@ -39,7 +39,7 @@ function chroniton() {
     play = false,
     noLabel = false,
     loop = false,
-    playbackRate = 1,
+    playbackRate = 0.5,      //Change the speed for the playback /David
 
     // internal state
     playLastTick = null,
