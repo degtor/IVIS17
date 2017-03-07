@@ -72,7 +72,6 @@ var mySVG = d3.select("#line-chart-container")
     mySVG.append("path")
         .attr("class", "line")
         .attr("d", valueline(data))
-		.style("fill","none");
 
     /* mySVG.append("path")
             .attr("class", "line")
