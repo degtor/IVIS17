@@ -278,8 +278,7 @@ function updateMapColors(){
 
       		//Om landet från kartan inte inte finns i iso-listan
       		if(kod==''){
-            console.log(this);
-	      		return "red"
+            return "black"
 	      	}
 
 	      	//Hämta trading balance för rätt år och land
