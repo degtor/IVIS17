@@ -276,16 +276,25 @@ function updateMapColors(){
       		//Hämta landskod	
       		var kod = this.id;
 
-      		//Om nåt är knas
+      		//Om landet från kartan inte inte finns i iso-listan
       		if(kod==''){
-	      		return "#000"
+            return "black"
 	      	}
 
-	      	//Hämta co2 för rätt år och land
+	      	//Hämta trading balance för rätt år och land
       		var tradingBalance = countries[kod].tradingBalance[year];
 
-      		//Generera färg beroende på co2-utsläpp	
+      		//Fixa färgskala 
       		var color = d3.scale.linear().domain([-30,0,30]).range(["#5AA9EC", "#EAE8E6", "#F3C14B"]); 
-          	return color(tradingBalance); 
+
+          //Returnera svart om data saknas
+            if (tradingBalance == ".." || tradingBalance == undefined){
+              return "black";
+            }
+
+            //Generera annars färg beroende på trading balance 
+            else{
+              return color(tradingBalance); 
+            }
         });
 }
