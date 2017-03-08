@@ -153,7 +153,7 @@ function countryInteraction(){
 
 			//Clear multiple lineChart if we have one
 			clearLineChart();
-			//clearTradeLineChart();
+			clearTradeLineChart();
 
 			//Create code for country
 			var kod = name2code(landETT.properties.name);
