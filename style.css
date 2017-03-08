@@ -298,6 +298,10 @@ p {
   float: center;
 }
 
+#pie-chart g{
+  font-size: 10px;
+}
+
 
 /* ny slider */
 .chroniton {
