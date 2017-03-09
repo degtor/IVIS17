@@ -47,7 +47,7 @@ var year = 1960;
 var topo;
 var imports = [];
 var exports = [];
-var co2val = "total"  //vs. "total" för att kunna switcha mellan
+var co2val = "capita"  //vs. "total" för att kunna switcha mellan
 
 // These countries are missing for export and import data
 var exceptCountries = [	'AGO', 'ASM', 'VGB', 'CHI', 'ZAR', 'CUW', 'GNQ', 'GUM', 'GIB', 
