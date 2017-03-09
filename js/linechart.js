@@ -8,7 +8,7 @@ var data2 = d3.entries(data2);
 
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 30, bottom: 30, left: 30},
-    width = 500 - margin.left - margin.right,
+    width = 450 - margin.left - margin.right,
     height = 320 - margin.top - margin.bottom;
 
 
@@ -18,7 +18,7 @@ var y = d3.scale.linear().range([height, 0]);
 
 // Define the axes
 var xAxis = d3.svg.axis().scale(x)
-    .orient("bottom").ticks(4);
+    .orient("bottom").ticks(4).tickFormat(d3.format("d"));
 
 var yAxis = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
@@ -39,7 +39,7 @@ var valueline2 = d3.svg.line()
 var mySVG = d3.select("#compare-line-chart")
     .append("svg")
         .attr('id', 'lineChart')
-        .attr("width", width + margin.left + margin.right)
+        .attr("width", "100%")
         .attr("height", height + margin.top + margin.bottom)
     .append("g")
         .attr("transform", 
@@ -48,17 +48,11 @@ var mySVG = d3.select("#compare-line-chart")
 
 // Get the data
 
-    // Scale the range of the data
+    // Scale the range of the data (same years for both sets)
     x.domain(d3.extent(data, function(d) {return d.key; }));
-    
-    y.domain([0, d3.max(data, function(d) { return d.value; })]);
+    y.domain([0, 30]);
 
-    // Scale the range of the data
-    x.domain(d3.extent(data2, function(d) { return d.key; }));
-    
-    y.domain([0, d3.max(data2, function(d) { return d.value; })]);
-
-
+   
     // Add the valueline path.
     mySVG.append("path")
         .attr("class", "line")
@@ -67,7 +61,7 @@ var mySVG = d3.select("#compare-line-chart")
      mySVG.append("path")
             .attr("class", "line")
             .attr("d", valueline2(data2))
-            .style("stroke", "red");
+            .style("stroke", "black");
 
     // Add the X Axis
     mySVG.append("g")
@@ -79,6 +73,39 @@ var mySVG = d3.select("#compare-line-chart")
     mySVG.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+
+
+// text label for the axis
+  mySVG.append("text")
+  .attr("class","anchor")
+      .attr("y", -30)
+      .attr("x",0 )
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("CO2");   
+    
+    mySVG.append("text")
+    .attr("class","anchor")
+      .attr("y", height-10)
+      .attr("x",width+35)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("YEAR"); 
+
+    //labels for each line
+    mySVG.append("text")
+        .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "start")
+        .style("fill", "black")
+        .text(landETT.properties.name);
+
+    mySVG.append("text")
+        .attr("transform", "translate(" + (width+3) + "," + y(data2[50].value) + ")")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "start")
+        .style("fill", "black")
+        .text(landTwo.properties.name);  
 
 }
 

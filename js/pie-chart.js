@@ -11,8 +11,8 @@ var color = d3.scale.ordinal()
 var svg2 = d3.select("#pie-chart-container")
 	.append('svg')
 	.attr('id', 'pie-chart')
-  	.attr('width', width*2)
-  	.attr('height', height)
+  	.attr('width', width)
+  	.attr('height', height*2)
   	.append('g')
   	.attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
 
@@ -44,8 +44,8 @@ var legend = svg2.selectAll('.legend')
   .attr('transform', function(d, i) {
     var height = legendRectSize + legendSpacing;
     var offset =  height * color.domain().length / 2;
-    var horz = radius*(3/2);
-    var vert = i * height - offset;
+    var horz = -radius/3;
+    var vert = i * height - offset+(5/3)*radius;
     return 'translate(' + horz + ',' + vert + ')';
   });
   

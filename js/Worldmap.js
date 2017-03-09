@@ -24,7 +24,7 @@ setup(width, height, "#container");
 //Setting up countries
 //variables 'container' and 'theclass' changes depending on large or small map-view
 function setup(width, height, container){
-  projection = d3.geo.mercator()
+  projection = d3.geo.robinson()
     .translate([(width/2), (height/2)])
     .scale( width / 2 / Math.PI)
     .center( [ 0 , 20] );
@@ -64,11 +64,10 @@ function draw(topo) {
 	 //     .attr("class", "graticule")
 	 //     .attr("d", worldPath);
 
-	 //  worldG.append("path")
-	 //   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
-	 //   .attr("class", "equator")
-	 //   .attr("d", worldPath);
-	//}
+	   worldG.append("path")
+	    .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
+	    .attr("class", "equator")
+	    .attr("d", worldPath);
 	country = worldG.selectAll(".country").data(topo);
 
 	//check id attrubite here (d.properties.name for large, d.id for small???)
@@ -144,13 +143,33 @@ function countryInteraction(){
 
       //Clicking a country
 	  .on("click", function(d, i) {
+		  var clicked = d3.select(this);
+
+		  if (clicked.classed("selected")) {
+			  d3.selectAll(".country").classed("unfocus", false);
+			  clicked.classed("unfocus", true);
+			  clicked.classed("selected", false);
+		  } else {
+			  d3.selectAll(".country").classed("unfocus", true);
+			  clicked.classed("unfocus", false);
+			  clicked.classed("selected", true);
+		  }
+
+
+
+
+		  if (multipleCountriesCheckbox.val() == "true") {
+			  d3.select("#sidebarOneCountry").classed("hidden", true);
+			  multipleCountries.push[d]; //FRIDA detta är knasboll och funkar inte. Vet ej varför du kanske vill göra om från början.
+		  }
+		  console.log(multipleCountries); // Av någon kul anledning så skickar detta ut ett DOM-element.
 	  	//If first country to be clicked
-		  if (clickState == 0) {
+		  if (clickState == 0 && multipleCountriesCheckbox.val() != "true") {
 		  	d3.select("#sidebarNoCountry").classed("hidden", true);
 		  	d3.select("#sidebarOneCountry").classed("hidden", false);
 		  	d3.select("#sidebarMultipleCountries").classed("hidden", true);
-		  	console.log("i IF " + clickState);
-			landETT = d;
+
+			  landETT = d;
 
 			//Clear multiple lineChart if we have one
 			clearLineChart();
@@ -164,7 +183,7 @@ function countryInteraction(){
   			drawPieChart();
 			drawLineTradeBalance(countries[kod].tradingBalance);
 
-			clickState++;
+			//clickState++; OBS! FRIDA DU KANSKE VILL ANVÄNDA DET HÄR SEN?
         
 		} 
 		//If second country to be clicked
@@ -181,10 +200,10 @@ function countryInteraction(){
 			var height = width / 1.9;
 
 			//Kan eventuell kolla hur man väljer fler länder här.
-			setup(width,height, "#compareContainer", "compareWorld");
-			draw([landETT]);
-			setup(width,height, "#compareContainer", "compareWorld");
-			draw([landTwo]);
+			//setup(width,height, "#compareContainer", "compareWorld");
+			//draw([landETT]);
+			//setup(width,height, "#compareContainer", "compareWorld");
+			//draw([landTwo]);
 			
 			//Create code for each country
 			var kod1 = name2code(landETT.properties.name);
@@ -298,3 +317,49 @@ function updateMapColors(){
             }
         });
 }
+
+var multipleCountriesCheckbox = $('#multipleCountriesCheckbox');
+var sidebar = $("#sidebar");
+
+multipleCountriesCheckbox.change(function(){
+	cb = $(this);
+	cb.val(cb.prop('checked'));
+
+	multipleCountries = [];
+	//Object for storing selected countries RESET on toggle
+
+	if (multipleCountriesCheckbox.val() == "true") {
+		d3.select("#sideBarChart").classed("hidden", false);
+		d3.select("#sidebarOneCountry").classed("hidden", true);
+		d3.select("#multipleCountries").classed("hidden", false);
+		d3.select("#sidebarNoCountry").classed("hidden", true);
+	} else {
+		d3.select("#sidebarNoCountry").classed("hidden", false);
+		d3.select("#sidebarOneCountry").classed("hidden", false);
+		d3.select("#multipleCountries").classed("hidden", true);
+	}
+});
+
+$('.leftTriangle').click(function() {
+	if (sidebar.attr("out") == "false") {
+		sidebar.attr("out", "true");
+		$(".streck1").addClass("rotate rotate_transition");
+		sidebar
+			.animate({
+				right: "50%"
+			}, 600 );
+	} else {
+		$(".streck1").removeClass("rotate rotate_transition");
+		sidebar.attr("out", "false");
+		sidebar
+			.animate({
+				right: 0
+			}, 600 );
+	}
+
+
+});
+
+$('#deselectCountries').click(function() {
+	multipleCountries = [];
+});
