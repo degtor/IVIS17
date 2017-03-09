@@ -3,12 +3,13 @@ var margin = {top:10, right:10, bottom:90, left:10};
 
 var width = 500 - margin.left - margin.right;
 
-var height = 1000 - margin.top - margin.bottom;
+var height = 200 - margin.top - margin.bottom;
 
 var xScale = d3.scale.ordinal().rangeRoundBands([0, width], .03)
 
-var yScale = d3.scale.linear()
-      .range([height, 0]);
+var yScale = d3.scale.log().range([height, 0]);
+
+
 
 
 var xAxis = d3.svg.axis()
@@ -51,9 +52,8 @@ function drawBarChart(){
     return d.value.name + "</br>Co2: " + Math.round(d.value.co2[year] * 100) / 100;
   })
 
-
   xScale.domain(data.map(function(d) { return d.value.name; }));
-  yScale.domain([0, d3.max(data, function(d) { return d.value.co2[year]; })]);
+  yScale.domain([0.001, d3.max(data, function(d) { return d.value.co2[year]; })]);
 
 
   //Make selection and connect to data              
@@ -63,8 +63,6 @@ function drawBarChart(){
 
 
   svg.call(tip);
-
-  //LOOPA DETTA BEROENDE PÅ HUR MÅNGA SOM SKA VISAS 
   
     //Create new bars
     selection.enter()
@@ -79,10 +77,10 @@ function drawBarChart(){
 
     //Set bar heights based on data
     selection
-      .attr( "height", function(d) { return (height - yScale(d.value.co2[year]))/2; })
+      .attr( "height", function(d) { return height - yScale(d.value.co2[year]); })
 
       //Set y position to get bars in right orientation
-      .attr( "y", function(d) { return yScale(d.value.co2[year])/2; })
+      .attr( "y", function(d) { return yScale(d.value.co2[year]*0.2); })
 
       //Show tooltip on hover
       .on('mouseover', tip.show)
@@ -124,10 +122,6 @@ function resizeBar() {
       .attr("width", xScale.rangeBand())
       .attr("y", function(d) { return yScale(d.value.co2[year]); })
       .attr("height", yScale.rangeBand());
-               
-
-    // Swap the version below for the one above to disable rotating the titles
-    // svgContainer.select('.x.axis').call(xAxis.orient('top')).selectAll("text").attr("x",55).attr("y",-25);
-      
+                     
    
 }
