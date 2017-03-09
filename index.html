@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Enviromind</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="d3.slider.css" />  
+    <link rel="stylesheet" href="d3.slider.css" />
     <script src="d3/d3.js"></script>
+    <script src="//d3js.org/d3.geo.projection.v0.min.js"></script>
     <script src="d3-queue/d3-queue.js"></script>
     <script src="js/d3.slider.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
     <!--  <script src="http://d3js.org/topojson.v0.min.js"></script> -->
 
     <!-- Latest compiled and minified CSS -->
@@ -27,7 +28,8 @@
 
 <div id="maincontent" class="vishidden">
 <div class="row">
-    <div id="mapScreen" class="col-lg-6 col-md-6">
+    <div id="mapScreen" class="col-lg-9 col-md-9">
+        <input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false"> Select multiple countries<br>
         <div id="container"></div>
         <div id="belowChart">
             <div id="chart"></div>
@@ -39,7 +41,7 @@
     </div>
 
 <!--  Details on demand sidebar--> 
-    <div id="sidebar" class="col-lg-6 col-md-6">
+    <div id="sidebar" out="false" class="col-lg-3 col-md-3">
         <!--put cool graphics here-->
         <h1>ENVIROMIND</h1>
         <!-- Displayed if no country is selected -->
@@ -101,6 +103,25 @@
                 <div class="col-md-3"></div>
             </div>
 
+        </div>
+
+        <div id="multipleCountries" class="hidden">
+            <div class="leftTriangle">
+                <p class="streck1">-</p>
+                <p class="streck2">-</p>
+            </div>
+            <h2>SELECTED COUNTRIES:</h2>
+            <ul id="selectedCountries">
+                <li>sample1</li><!-- Sample länder sålänge -->
+                <li>sample2</li>
+                <li>sample3</li>
+            </ul>
+            <span id="deselectCountries">Deselect all</span>
+        </div>
+
+        <div id="sideBarChart">
+            <div id="sideBarChartContainer">Insert pretty barchart here</div>
+            <div id="sideLineChartContainer">Insert pretty TIMELINE here</div>
         </div>
 
          <!-- Displayed if several countries are selected --> 
