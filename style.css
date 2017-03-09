@@ -457,6 +457,28 @@ p {
 }
 /* ny slider end*/
 
+<<<<<<< HEAD
+
+/*Nedsänkt 2a på CO2. alltså:  <p>This text contains <sub>subscript</sub> text.</p>*/
+#sup,
+#sub {
+    height: 0;
+    line-height: 1;
+    vertical-align: baseline;
+    _vertical-align: bottom;
+    position: relative;
+
+}
+
+#sup {
+bottom: 1ex;
+}
+
+sub {
+top: .5ex;
+}
+/*Nedsänkt 2a end*/
+=======
 #deselectCountries {
     text-decoration: underline;
     cursor:pointer;
@@ -465,3 +487,4 @@ p {
 .unfocus {
     opacity:0.3;
 }
+>>>>>>> master
