@@ -63,9 +63,9 @@ function drawBarChart(){
         return d.value.code
       })
       .attr( "x", function(d,i){
-        return i*2;
+        return i*4;
       })
-      .attr( "width", 1 )
+      .attr( "width", 3 )
       .attr( "fill", "black" )
 
     //Set bar heights based on data
