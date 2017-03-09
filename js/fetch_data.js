@@ -184,29 +184,6 @@ function getTop5ExportImport(error, files){
 // Sorts all the top 5 export and import data by country 
 // Adding the whole object(indicator, partner, category, reporter, year) to the export/import-list with the country code as key
 function sortTop5ExportImport(list, type){
-	// loops through list of export data 
-	// for(i in list){
-		// // loops all countries in code-name list and compares name to reporting country name in export-list
-		// for(j in countries){
-			// if(countries[j].name == list[i].Reporter){
-				// // compares export partner with names in countries code-name list and adds partner country to 
-				// // reporting countries topExport. Adds partner as an object with partner country code as key and data as value. 
-				// for(k in countries){
-
-					// for(y=1988;y<2016;y++){
-						// if(countries[k].name == list[i].Partner && list[i][y] != ""){
-							// countries[j][type][y].push() = {
-							  // 'partnerCode':code,
-							  // 'mDollars' :list[i][y].replace(/\s+/g, ''),
-							  // 'partner' :list[i].Partner
-							  // };
-						// }
-					
-					// }
-				// }
-			// }
-		// }
-	// }
 	// Läser igenom varje csv-fils-rad 
     for(i in list){
 	// Hämtar ut kod för reporter och partner-land
@@ -244,6 +221,7 @@ function readTradingBalance(callback){
 		//Loops through the csv getting the country code
 		for(i in data){
 			countryCode = data[i].Country_Code;
+
 			//Excludes empty rows in the csv
 			if (countryCode != undefined) {
 				//For every year, add to the object countries
@@ -358,7 +336,6 @@ function addRenewables(){
 
 //Returns country code for country name. i.e. Sweden->SWE
 function name2code(name){
-
 	if(codeList[name]==undefined){
 		// console.log(name + " stämmer ej med namn i land/kod-lista")
 	}
