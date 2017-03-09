@@ -15,6 +15,7 @@ var graticule = d3.geo.graticule();
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
 var landETT;
 var landTwo; 
+var clickState = 0;
 var mapDone = false;
 
 //Calling setup-function to start setting up map
@@ -91,7 +92,7 @@ function countryInteraction(){
   	var offsetL = document.getElementById('container').offsetLeft+20;
   	var offsetT = document.getElementById('container').offsetTop+10;
   	//tooltips
-	var clickState = 0;
+	//var clickState = 0;  //clickstate needs to be a gobal variable to fix the handle bug. //David
 	var sidebarDiv = document.getElementById('sidebar');
 	var mapScreen = document.getElementById('mapScreen');
 	d3.select("#compareLineChart").classed("hidden", true);
@@ -283,7 +284,7 @@ function updateMapColors(){
       		var tradingBalance = countries[kod].tradingBalance[year];
 
       		//Generera färg beroende på co2-utsläpp	
-      		var color = d3.scale.linear().domain([-20,0,20]).range(["#7860B9", "#EAE8E6", "#5AA9EC"]); 
+      		var color = d3.scale.linear().domain([-30,0,30]).range(["#5AA9EC", "#EAE8E6", "#F3C14B"]); 
           	return color(tradingBalance); 
         });
 }
