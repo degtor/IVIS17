@@ -33,6 +33,17 @@ var svg = d3.select( "#chart")
             .attr( "margin", "auto");
 
 
+
+//Kolla om musknappen är nedtryckt (för att dra i slidern)
+var mouseDown = 0;
+document.body.onmousedown = function() { 
+  ++mouseDown;
+}
+document.body.onmouseup = function() {
+  --mouseDown;
+}
+
+
 function drawBarChart(){
 
   console.log("in chart");
@@ -49,11 +60,18 @@ function drawBarChart(){
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return d.value.name + "</br>Co2: " + Math.round(d.value.co2[year] * 100) / 100;
+    if(co2val == 'capita'){
+      return d.value.name + "</br>" + Math.round(d.value.co2[year] * 10) / 10 + " tons CO<sub>2</sub> per caipta";
+    }
+
+    else{
+      return d.value.name + "</br>" + Math.round(d.value.co2total[year]/1000 * 10) / 10 + " million tons CO<sub>2</sub>";
+    }
   })
 
   xScale.domain(data.map(function(d) { return d.value.name; }));
   yScale.domain([0.001, d3.max(data, function(d) { return d.value.co2[year]; })]);
+
 
 
   //Make selection and connect to data              
@@ -62,8 +80,14 @@ function drawBarChart(){
                      .data(data);
 
 
+//ev.onödig
+selection.exit()
+.remove();
+
+
   svg.call(tip);
   
+
     //Create new bars
     selection.enter()
       .append( "rect" )
@@ -77,13 +101,35 @@ function drawBarChart(){
 
     //Set bar heights based on data
     selection
-      .attr( "height", function(d) { return height - yScale(d.value.co2[year]); })
+      .attr( "height", function(d){
+        if (co2val =="capita"){
+          return height - yScale(d.value.co2[year]);
+        }
+
+        else if(co2val = "total"){
+          return height - yScale(d.value.co2total[year]/50000);
+          // return 40;
+        }
+
+      })
 
       //Set y position to get bars in right orientation
-      .attr( "y", function(d) { return yScale(d.value.co2[year]*0.2); })
+      .attr( "y", function(d){
+        if (co2val =="capita"){
+          return yScale(d.value.co2[year]*0.2);
+        }
 
-      //Show tooltip on hover
-      .on('mouseover', tip.show)
+        else if(co2val == "total"){
+          return yScale(d.value.co2total[year]/50000*0.2);
+          // return 220-40;
+        }
+      })
+
+
+      //Show tooltip on hover if neither mousekey is pressed nor play-funtion active
+      .on('mouseover', function(d){
+        if(play == false && mouseDown == false){tip.show(d)} 
+      })
       .on('mouseout', tip.hide);
 
       // remove any unused bars

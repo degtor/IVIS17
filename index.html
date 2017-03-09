@@ -35,6 +35,8 @@
 <!--                 <div id="slider"></div>
                 <h2><span id="slider4text">1960</span></h2> -->
                 <div class="chroniton" id="slider2"></div>
+                <button type="button" class="btn btn-primary" onclick="co2val='total', drawBarChart()">CO2 total</button>
+                <button type="button" class="btn btn-primary" onclick="co2val='capita', drawBarChart()">CO2 per capita</button>
             </div>
         </div>
     </div>
@@ -66,29 +68,22 @@
    
             <div class="charts-view">
                 <div class="row">
-                    <div id="line-chart-container" class="col-lg-6 col-md-6">Line chart here</div>
-                    <div id="pie-chart-container" class="col-lg-6 col-md-6"></div>
+                    <div class="col-lg-6 col-md-6">
+						<div class="row text-center"><h4>Trade Balance over the years</h4></div>
+						<div class="row text-center"><p>(% of GDP)</p></div>
+						<div class="row" id="line-chart-container"></div>
+					</div>
+                    <div class="col-lg-6 col-md-6">
+						<div class="row"><h4>Energy distribution</h4></div>
+						<div id="pie-chart-container" class="row"></div>
+					</div>
                 </div>
                 <div class="row" id="impExp">
                     <div id="top-export-container" class="col-lg-6 col-md-6">
-                        <h4>TOP 5 EXPORT</h4>
-                        <ol>
-                            <li>Country 1</li>
-                            <li>Country 2</li>
-                            <li>Country 3</li>
-                            <li>Country 4</li>
-                            <li>Country 5</li>
-                        </ol>
+                        <ol id="top-5-export"></ol>
                     </div>
                     <div id="top-import-container" class="col-lg-6 col-md-6">
-                        <h4>TOP 5 IMPORT</h4>
-                        <ol>
-                            <li>Country 1</li>
-                            <li>Country 2</li>
-                            <li>Country 3</li>
-                            <li>Country 4</li>
-                            <li>Country 5</li>
-                        </ol>
+                        <ol id="top-5-import"></ol>
                     </div>
                 </div>
             </div>
@@ -127,6 +122,7 @@
     <script type="text/javascript" src="js/draw_chart.js"></script>
     <script type="text/javascript" src="js/loading.js"></script>
     <script type="text/javascript" src="js/linechart.js"></script>
+    <script type="text/javascript" src="js/linechart-tradingbalance.js"></script>
 <!--     <script type="text/javascript" src="js/slider.js" ></script> -->  
     <script type="text/javascript" src="js/Worldmap.js" ></script>
     <script type="text/javascript" src="js/fetch_data.js" ></script>
