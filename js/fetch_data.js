@@ -336,7 +336,6 @@ function addRenewables(){
 
 //Returns country code for country name. i.e. Sweden->SWE
 function name2code(name){
-
 	if(codeList[name]==undefined){
 		// console.log(name + " stämmer ej med namn i land/kod-lista")
 	}

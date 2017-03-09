@@ -218,21 +218,18 @@ function countryInteraction(){
 		console.log("selectedCountries:", selectedCountries);
 
 		var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
-
-		var width = document.getElementById('compareContainer').offsetWidth/2;
-		var height = width / 1.9;
 			
 		//Call multiple line chart 
 		//drawLine(countries[kod1].co2, countries[kod2].co2);
 
+	    var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 
-      var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
-
-      tooltip.classed("hidden", false)
-             .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-             .html(d.properties.name);
+	    tooltip.classed("hidden", false)
+            .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+            .html(d.properties.name);
 	  });
 }
+
 
 function redraw() {
   width = document.getElementById('container').offsetWidth;
@@ -329,13 +326,13 @@ multipleCountriesCheckbox.change(function(){
 	}
 
 	if (multipleCountriesCheckbox.val() == "true") {
-		// Display sidebar for one country
+
 		createSideBarSelected();
 		d3.select("#sidebarOneCountry").classed("hidden", true);
 		d3.select("#sidebarNoCountry").classed("hidden", true);
 
-		d3.select("#sideBarChart").classed("hidden", false);
 		d3.select("#multipleCountries").classed("hidden", false);
+		d3.select("#sidebarCompareCountries").classed("hidden", false);
 	} else {
 
 		d3.selectAll(".bar")
@@ -343,13 +340,16 @@ multipleCountriesCheckbox.change(function(){
 
 		d3.select("#sidebarNoCountry").classed("hidden", false);
 
-		d3.select("#sideBarChart").classed("hidden", true);
+		d3.select("#sidebarCompareCountries").classed("hidden", true);
 		d3.select("#multipleCountries").classed("hidden", true);
 	}
 });
 
+
+// DEN HÄR BORDE KALLA PÅ COMPARE-LINE-CHARTET
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
+		drawLine(selectedCountries)
 		sidebar.attr("out", "true");
 		$(".streck1").addClass("rotate rotate_transition");
 		sidebar
@@ -362,6 +362,7 @@ $('.leftTriangle').click(function() {
 				right: "50%"
 			}, 600 );
 	} else {
+		clearLineChart();
 		$(".streck1").removeClass("rotate rotate_transition");
 		sidebar.attr("out", "false");
 		sidebar
@@ -369,7 +370,6 @@ $('.leftTriangle').click(function() {
 				right: 0
 			}, 600 );
 	}
-
 
 });
 

@@ -68,15 +68,3 @@ updateSideBarSelected = function(){
     	.append('li')
     	.text(function(d) { return d.properties.name });	
 }
-
-
-
-/*	selectedlist = d3.select("#selectedCountriesDiv")
-		.selectAll('li')
-		.data(selectedCountries)
-
-	selectedlist	
-		.enter()
-    	.append('li')
-    	.text(function(d) { return d.properties.name });*/
-
