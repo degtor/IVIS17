@@ -65,7 +65,7 @@
             
             <h3> Annual CO2 per capita: <span class="infoText" id="co2-label"></span></h3>
             <h3> Trade balance: <span class="infoText" id="trade-label"></span> </h3>
-   
+
             <div class="charts-view">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -114,17 +114,16 @@
         </div>
 
         <div id="sideBarChart">
-            <div id="sideBarChartContainer">Insert pretty barchart here</div>
+            <!-- Displayed if several countries are selected -->
+            <div id="sidebarMultipleCountries" class="hidden">
+                <div id="compareContainer"></div>
+                <div class="charts-view" id="multiples">
+                    <div id="compare-line-chart"></div>
+                </div>
+            </div>
             <div id="sideLineChartContainer">Insert pretty TIMELINE here</div>
         </div>
 
-         <!-- Displayed if several countries are selected --> 
-        <div id="sidebarMultipleCountries" class="hidden">
-            <div id="compareContainer"></div>
-            <div class="charts-view" id="multiples">
-                <div id="compare-line-chart"></div>
-            </div>
-        </div>
     </div>
 </div><!-- End of row --> 
 </div>
