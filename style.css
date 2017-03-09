@@ -262,6 +262,10 @@ p {
     shape-rendering: crispEdges;
 }
 
+#line-chart-container path {
+	fill: none;
+	stroke: teal;
+}
 
 #country-name p{
   font-size: 38px;
@@ -382,6 +386,10 @@ p {
     left:100%;
     top:0;
     background-color: rgba(238,238,238,1);
+}
+
+#pie-chart g{
+  font-size: 10px;
 }
 
 

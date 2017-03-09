@@ -8,6 +8,17 @@ var svg = d3.select( "#chart")
             .attr( "margin", "auto");
 
 
+
+//Kolla om musknappen är nedtryckt (för att dra i slidern)
+var mouseDown = 0;
+document.body.onmousedown = function() { 
+  ++mouseDown;
+}
+document.body.onmouseup = function() {
+  --mouseDown;
+}
+
+
 function drawBarChart(){
 
   console.log("in chart");
@@ -20,7 +31,6 @@ function drawBarChart(){
   .html(function(d) {
     return d.value.name + "</br>Co2: " + Math.round(d.value.co2[year] * 100) / 100;
   })
-
 
 
   //Make selection and connect to data              
@@ -60,8 +70,10 @@ function drawBarChart(){
         return 220 - d.value.co2[year]*5;
       })
 
-      //Show tooltip on hover
-      .on('mouseover', tip.show)
+      //Show tooltip on hover if neither mousekey is pressed nor play-funtion active
+      .on('mouseover', function(d){
+        if(play == false && mouseDown == false){tip.show(d)} 
+      })
       .on('mouseout', tip.hide);
 
       // remove any unused bars
