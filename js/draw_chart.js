@@ -72,7 +72,7 @@ function drawBarChart(){
     selection
       .attr( "height", function(d){
         if (co2val =="capita"){
-          return d.value.co2[year]*5;
+          return d.value.co2[year]*2;
         }
 
         else if(co2val = "total"){
@@ -85,7 +85,7 @@ function drawBarChart(){
       //Set y position to get bars in right orientation
       .attr( "y", function(d){
         if (co2val =="capita"){
-          return 220 - d.value.co2[year]*5;
+          return 220 - d.value.co2[year]*2;
         }
 
         else if(co2val == "total"){
