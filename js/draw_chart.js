@@ -29,7 +29,13 @@ function drawBarChart(){
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return d.value.name + "</br>Co2: " + Math.round(d.value.co2[year] * 100) / 100;
+    if(co2val == 'capita'){
+      return d.value.name + "</br>" + Math.round(d.value.co2[year] * 10) / 10 + " tons CO<sub>2</sub> per caipta";
+    }
+
+    else{
+      return d.value.name + "</br>" + Math.round(d.value.co2total[year]/1000 * 10) / 10 + " million tons CO<sub>2</sub>";
+    }
   })
 
 
@@ -45,6 +51,9 @@ function drawBarChart(){
                      );
 
   svg.call(tip);
+
+        selection.exit()
+        .remove();
 
     //Create new bars
     selection.enter()
@@ -62,12 +71,27 @@ function drawBarChart(){
     //Set bar heights based on data
     selection
       .attr( "height", function(d){
-        return d.value.co2[year]*5
+        if (co2val =="capita"){
+          return d.value.co2[year]*5;
+        }
+
+        else if(co2val = "total"){
+          return d.value.co2total[year]/50000;
+          // return 40;
+        }
+
       })
 
       //Set y position to get bars in right orientation
       .attr( "y", function(d){
-        return 220 - d.value.co2[year]*5;
+        if (co2val =="capita"){
+          return 220 - d.value.co2[year]*5;
+        }
+
+        else if(co2val == "total"){
+          return 220 - d.value.co2total[year]/50000;
+          // return 220-40;
+        }
       })
 
       //Show tooltip on hover if neither mousekey is pressed nor play-funtion active
