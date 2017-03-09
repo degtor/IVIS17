@@ -103,7 +103,7 @@ selection.exit()
     selection
       .attr( "height", function(d){
         if (co2val =="capita"){
-          return height - yScale(d.value.co2[year]);
+          return height - yScale(d.value.co2[year]/50000);
         }
 
         else if(co2val = "total"){
@@ -116,7 +116,7 @@ selection.exit()
       //Set y position to get bars in right orientation
       .attr( "y", function(d){
         if (co2val =="capita"){
-          return yScale(d.value.co2[year]*0.2);
+          return yScale(d.value.co2[year]/50000*0.2);
         }
 
         else if(co2val == "total"){
@@ -138,36 +138,50 @@ selection.exit()
 
 }
 
-document.addEventListener("DOMContentLoaded", resizeBar);
-d3.select(window).on('resize', resizeBar); 
+// document.addEventListener("DOMContentLoaded", resizeBar);
+// d3.select(window).on('resize', resizeBar); 
 
-function resizeBar() {
-  console.log('----resize function----');
-  // update width
-  width = parseInt(d3.select('#barChart').style('width'), 10);
-  width = width - margin.left - margin.right;
+// function resizeBar() {
+//   console.log('----resize function----');
+//   // update width
+//   width = parseInt(d3.select('#barChart').style('width'), 10);
+//   width = width - margin.left - margin.right;
 
-  height = parseInt(d3.select("#barChart").style("height"));
-  height = height - margin.top - margin.bottom;
-  console.log('----resiz width----'+width);
-  console.log('----resiz height----'+height);
-  // resize the chart
+//   height = parseInt(d3.select("#barChart").style("height"));
+//   height = height - margin.top - margin.bottom;
+//   console.log('----resiz width----'+width);
+//   console.log('----resiz height----'+height);
+//   // resize the chart
   
-    xScale.range([0, width]);
-    xScale.rangeRoundBands([0, width], .03);
-    yScale.range([height, 0]);
-    yScale.rangeRoundBands([0, height], .03);
+//     xScale.range([0, width]);
+//     xScale.rangeRoundBands([0, width], .03);
+//     yScale.range([height, 0]);
+//     yScale.rangeRoundBands([0, height], .03);
 
+//     svg.selectAll('.bar')
+//       .attr("x", function(d) { return xScale(d.value.name); })
+//       .attr("width", xScale.rangeBand())
+//       .attr("y", function(d){
+//         if (co2val =="capita"){
+//           return yScale(d.value.co2[year]*0.2);
+//         }
 
-    d3.select(svgContainer.node().parentNode)
-        .style('width', (width + margin.left + margin.right) + 'px')
-        .style('height',((height + margin.top + margin.bottom) + "px"));
+//         else if(co2val == "total"){
+//           return yScale(d.value.co2total[year]/50000*0.2);
+//           // return 220-40;
+//         }
+//       })
+//       .attr("height", function(d){
+//         if (co2val =="capita"){
+//           return height - yScale(d.value.co2[year]);
+//         }
 
-    svgContainer.selectAll('.bar')
-      .attr("x", function(d) { return xScale(d.value.name); })
-      .attr("width", xScale.rangeBand())
-      .attr("y", function(d) { return yScale(d.value.co2[year]); })
-      .attr("height", yScale.rangeBand());
+//         else if(co2val = "total"){
+//           return height - yScale(d.value.co2total[year]/50000);
+//           // return 40;
+//         }
+
+//       });
                      
    
-}
+// }
