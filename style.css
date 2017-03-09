@@ -45,6 +45,9 @@ canvas {
 #barChart{
     display: block; 
     margin: auto;
+    overflow: auto;
+    min-width: 70%;
+    max-width: 90%;
 }
 
 #chart {    
@@ -53,13 +56,13 @@ canvas {
 }
 
 #belowChart{
-  padding-left: 16%;
+/*  margin-left: 10%;
+*/ /* margin-right: 10%;*/
 }
 
-/*#mapScreen{
-  text-align: right;
-  margin-left: 20px;
-}*/
+#mapScreen{
+  margin: 0;
+}
 
 .brush .extent {
     fill-opacity: .3;
@@ -215,6 +218,7 @@ p {
     height: 100%;
     padding-left: 40px;
     padding-right: 40px;
+
 }
 
 .row{
