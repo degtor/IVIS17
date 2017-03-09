@@ -38,7 +38,7 @@ Sort Order,Common Name,Formal Name,Type,Sub Type,Sovereignty,Capital,ISO 4217 Cu
 38,Comoros,Union of Comoros,Independent State,,,Moroni,KMF,Franc,269,KM,COM,174,.km
 40,Congo,Republic of the Congo,Independent State,,,Brazzaville,XAF,Franc,242,CG,COG,178,.cg
 41,Costa Rica,Republic of Costa Rica,Independent State,,,San Jose,CRC,Colon,506,CR,CRI,188,.cr
-42,Cote d'Ivoire (Ivory Coast),Republic of Cote d'Ivoire,Independent State,,,Yamoussoukro,XOF,Franc,225,CI,CIV,384,.ci
+42,Cote d'Ivoire,Republic of Cote d'Ivoire,Independent State,,,Yamoussoukro,XOF,Franc,225,CI,CIV,384,.ci
 43,Croatia,Republic of Croatia,Independent State,,,Zagreb,HRK,Kuna,385,HR,HRV,191,.hr
 44,Cuba,Republic of Cuba,Independent State,,,Havana,CUP,Peso,53,CU,CUB,192,.cu
 45,Cyprus,Republic of Cyprus,Independent State,,,Nicosia,CYP,Pound,357,CY,CYP,196,.cy
@@ -106,7 +106,7 @@ Sort Order,Common Name,Formal Name,Type,Sub Type,Sovereignty,Capital,ISO 4217 Cu
 116,Mongolia,,Independent State,,,Ulaanbaatar,MNT,Tugrik,976,MN,MNG,496,.mn
 118,Morocco,Kingdom of Morocco,Independent State,,,Rabat,MAD,Dirham,212,MA,MAR,504,.ma
 119,Mozambique,Republic of Mozambique,Independent State,,,Maputo,MZM,Meticail,258,MZ,MOZ,508,.mz
-120,Myanmar (Burma),Union of Myanmar,Independent State,,,Naypyidaw,MMK,Kyat,95,MM,MMR,104,.mm
+120,Myanmar,Union of Myanmar,Independent State,,,Naypyidaw,MMK,Kyat,95,MM,MMR,104,.mm
 121,Namibia,Republic of Namibia,Independent State,,,Windhoek,NAD,Dollar,264,NA,NAM,516,.na
 123,Nepal,,Independent State,,,Kathmandu,NPR,Rupee,977,NP,NPL,524,.np
 124,Netherlands,Kingdom of the Netherlands,Independent State,,,Amsterdam (administrative) and The Hague (legislative/judical),EUR,Euro,31,NL,NLD,528,.nl
@@ -126,7 +126,7 @@ Sort Order,Common Name,Formal Name,Type,Sub Type,Sovereignty,Capital,ISO 4217 Cu
 138,Poland,Republic of Poland,Independent State,,,Warsaw,PLN,Zloty,48,PL,POL,616,.pl
 139,Portugal,Portuguese Republic,Independent State,,,Lisbon,EUR,Euro,351,PT,PRT,620,.pt
 140,Qatar,State of Qatar,Independent State,,,Doha,QAR,Rial,974,QA,QAT,634,.qa
-142,Russian Federation,Russian Federation,Independent State,,,Moscow,RUB,Ruble,7,RU,RUS,643,.ru and .su
+142,Russia,Russian Federation,Independent State,,,Moscow,RUB,Ruble,7,RU,RUS,643,.ru and .su
 143,Rwanda,Republic of Rwanda,Independent State,,,Kigali,RWF,Franc,250,RW,RWA,646,.rw
 144,Saint Kitts and Nevis,Federation of Saint Kitts and Nevis,Independent State,,,Basseterre,XCD,Dollar,-868,KN,KNA,659,.kn
 145,Saint Lucia,,Independent State,,,Castries,XCD,Dollar,-757,LC,LCA,662,.lc
@@ -213,7 +213,7 @@ Sort Order,Common Name,Formal Name,Type,Sub Type,Sovereignty,Capital,ISO 4217 Cu
 ,Haiti,,,,,,,,,,HTI,,
 ,Iraq,,,,,,,,,,IRQ,,
 ,Isle of Man,,,,,,,,,,IMY,,
-,"Korea, Republic of",,,,,,,,,,PRK,,
+,"North Korea",,,,,,,,,,PRK,,
 ,Kosovo,,,,,,,,,,KSV,,
 ,Lao People's Democratic Republic,,,,,,,,,,LAO,,
 ,Liberia,,,,,,,,,,LBR,,
