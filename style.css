@@ -270,6 +270,11 @@ p {
 	stroke: teal;
 }
 
+#lineChart-tradeBalance path.domain {
+	stroke-width: 1;
+	stroke: black;
+}
+
 #country-name p{
   font-size: 38px;
 }
