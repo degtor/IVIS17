@@ -143,11 +143,26 @@ function countryInteraction(){
 
       //Clicking a country
 	  .on("click", function(d, i) {
+		  var clicked = d3.select(this);
+
+		  if (clicked.classed("selected")) {
+			  d3.selectAll(".country").classed("unfocus", false);
+			  clicked.classed("unfocus", true);
+			  clicked.classed("selected", false);
+		  } else {
+			  d3.selectAll(".country").classed("unfocus", true);
+			  clicked.classed("unfocus", false);
+			  clicked.classed("selected", true);
+		  }
+
+
+
+
 		  if (multipleCountriesCheckbox.val() == "true") {
 			  d3.select("#sidebarOneCountry").classed("hidden", true);
 			  multipleCountries.push[d]; //FRIDA detta är knasboll och funkar inte. Vet ej varför du kanske vill göra om från början.
 		  }
-		  console.log(multipleCountries);
+		  console.log(multipleCountries); // Av någon kul anledning så skickar detta ut ett DOM-element.
 	  	//If first country to be clicked
 		  if (clickState == 0 && multipleCountriesCheckbox.val() != "true") {
 		  	d3.select("#sidebarNoCountry").classed("hidden", true);
@@ -330,11 +345,6 @@ $('.leftTriangle').click(function() {
 		sidebar.attr("out", "true");
 		$(".streck1").addClass("rotate rotate_transition");
 		sidebar
-			.css({
-				position: "absolute",
-				marginLeft: 0, marginTop: 0,
-				right:0
-			})
 			.animate({
 				right: "50%"
 			}, 600 );
@@ -350,4 +360,6 @@ $('.leftTriangle').click(function() {
 
 });
 
-
+$('#deselectCountries').click(function() {
+	multipleCountries = [];
+});
