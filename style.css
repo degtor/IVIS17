@@ -142,9 +142,9 @@ p {
   fill: orange ;
 }
 
-.x.axis path {
+/*.x.axis path {
   display: none;
-}
+}*/
 
 .d3-tip {
   line-height: 1;
@@ -239,7 +239,6 @@ p {
 }
 
 #compare-line-chart {
-    border:solid 1px #000;
     overflow: auto;
     margin-left: 10px;
     margin-right: 10px;
@@ -249,7 +248,7 @@ p {
 #compare-line-chart { font: 12px;}
 
 #compare-line-chart path { 
-    stroke: steelblue;
+    stroke: black;
     stroke-width: 2;
     fill: none;
 }
@@ -296,6 +295,10 @@ p {
 
 #sidebar p{
   float: center;
+}
+
+.anchor{
+  font-size: 16px;
 }
 
 #multipleCountries {
@@ -391,7 +394,6 @@ p {
 #pie-chart g{
   font-size: 10px;
 }
-
 
 /* ny slider */
 .chroniton {
