@@ -1,4 +1,3 @@
-
 updateSideBar = function(){
 	d3.select("#sidebarOneCountry").selectAll(".value").remove()
 
@@ -10,6 +9,7 @@ updateSideBar = function(){
 	d3.select("#co2-label").insert("h3").attr("class", "value").html(Math.round(countries[code].co2[year]*100)/100)
 	d3.select("#trade-label").insert("h3").attr("class", "value").html(Math.round(countries[code].tradingBalance[year]*100)/100)
 	d3.select('#additional-countries-hint').insert("p").attr("class", "value").html("Select two countries to compare them");
+
 	if (countries[code].exports[year] == undefined || isEmpty(countries[code].exports[year])) {
 		d3.select('#top-export-container').insert("p").attr("class", "value").html("No export data for "+landETT.properties.name+" in "+year);
 	} else {
@@ -40,3 +40,43 @@ function isEmpty(obj) {
     }
     return true;
 }
+
+var selectedlist;
+
+
+createSideBarSelected = function(){
+	console.log("HALLÅ")
+	selectedlist = d3.select("#selectedCountriesDiv")
+		.selectAll('li')
+		.data(selectedCountries)
+
+	selectedlist	
+		.enter()
+    	.append('li')
+    	.text(function(d) { return d.properties.name });	
+}
+
+updateSideBarSelected = function(){
+	d3.select("#selectedCountriesDiv").selectAll("li").remove()
+
+	selectedlist = d3.select("#selectedCountriesDiv")
+		.selectAll('li')
+		.data(selectedCountries)
+
+	selectedlist	
+		.enter()
+    	.append('li')
+    	.text(function(d) { return d.properties.name });	
+}
+
+
+
+/*	selectedlist = d3.select("#selectedCountriesDiv")
+		.selectAll('li')
+		.data(selectedCountries)
+
+	selectedlist	
+		.enter()
+    	.append('li')
+    	.text(function(d) { return d.properties.name });*/
+

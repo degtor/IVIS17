@@ -17,6 +17,7 @@ var landETT;
 var landTwo; 
 var clickState = 0;
 var mapDone = false;
+var selectedCountries = [];
 
 //Calling setup-function to start setting up map
 setup(width, height, "#container");
@@ -64,11 +65,11 @@ function draw(topo) {
 	 //     .attr("class", "graticule")
 	 //     .attr("d", worldPath);
 
-	   worldG.append("path")
-	    .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
-	    .attr("class", "equator")
-	    .attr("d", worldPath);
-	country = worldG.selectAll(".country").data(topo);
+	worldG.append("path")
+	   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
+	   .attr("class", "equator")
+	   .attr("d", worldPath);
+	   country = worldG.selectAll(".country").data(topo);
 
 	//check id attrubite here (d.properties.name for large, d.id for small???)
 	//With d.properties.name for both the info-box shows up on hover for both
@@ -142,75 +143,87 @@ function countryInteraction(){
       })
 
       //Clicking a country
-	  .on("click", function(d, i) {
-		  if (multipleCountriesCheckbox.val() == "true") {
-			  d3.select("#sidebarOneCountry").classed("hidden", true);
-			  multipleCountries.push[d]; //FRIDA detta är knasboll och funkar inte. Vet ej varför du kanske vill göra om från början.
-		  }
-		  console.log(multipleCountries);
-	  	//If first country to be clicked
-		  if (clickState == 0 && multipleCountriesCheckbox.val() != "true") {
-		  	d3.select("#sidebarNoCountry").classed("hidden", true);
-		  	d3.select("#sidebarOneCountry").classed("hidden", false);
-		  	d3.select("#sidebarMultipleCountries").classed("hidden", true);
+	.on("click", function(d, i) {
+		var code = name2code(d.properties.name);
+		if(multipleCountriesCheckbox.val() == "true"){
+			if(!(deselectCountry() == true)){
+				selectedCountries.push(d);
+			 	d3.select(".bar#" + code)
+	  				.attr('fill', 'orange');
+			}
+			updateSideBarSelected();				
+		}else{
+			if(selectedCountries.length == 0){
+				landETT = d;
+				selectedCountries[0] = d;		
 
-			  landETT = d;
+			 	d3.selectAll(".bar")
+	  				.attr('fill', 'black');
 
-			//Clear multiple lineChart if we have one
-			clearLineChart();
-			clearTradeLineChart();
+			  	//Highlighta ny stapel i bar chart
+		 	 	d3.select(".bar#" + code)
+	  				.attr('fill', 'orange');
 
-			//Create code for country
-			var kod = name2code(landETT.properties.name);
+			  	d3.select("#sidebarNoCountry").classed("hidden", true);
+			  		
+ 		  		d3.select("#sidebarOneCountry").classed("hidden", false);
+	
+				clearLineChart();	
+				clearTradeLineChart();
+ 			    updateSideBar();
+  				drawPieChart();
+				drawLineTradeBalance(countries[code].tradingBalance);
+
+			}else{
+				if(deselectCountry() == true){
+					landETT = "";
+			  		d3.select("#sidebarNoCountry").classed("hidden", false);
+
+ 		  			d3.select("#sidebarOneCountry").classed("hidden", true);
+				}else{
+				selectedCountries[0] = d;	
+				landETT = d;
+			 	
+			 	d3.selectAll(".bar")
+	  				.attr('fill', 'black');
+
+			  	//Highlighta ny stapel i bar chart
+		 	 	d3.select(".bar#" + code)
+	  				.attr('fill', 'orange');
+
+				clearLineChart();
+				clearTradeLineChart();
+		        updateSideBar();
+  				drawPieChart();
+				drawLineTradeBalance(countries[code].tradingBalance);						
+				}
+		
+			}
+		}
+
+		function deselectCountry(){
+			if(selectedCountries[0] != undefined){
+				for(j in selectedCountries){
+					if(selectedCountries[j].id == i){
+						selectedCountries.splice(j, 1);
+					  	d3.select(".bar#" + code)
+	  						.attr('fill', 'black');
+						return true;
+					}		
+				}			
+			}
+		}
+		
+
+		console.log("selectedCountries:", selectedCountries);
+
+		var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
+
+		var width = document.getElementById('compareContainer').offsetWidth/2;
+		var height = width / 1.9;
 			
-			// Update sidebar values and draw pie chart and line chart
-	        updateSideBar();
-  			drawPieChart();
-			drawLineTradeBalance(countries[kod].tradingBalance);
-
-			//clickState++; OBS! FRIDA DU KANSKE VILL ANVÄNDA DET HÄR SEN?
-        
-		} 
-		//If second country to be clicked
-		else if (clickState == 1) {
-			d3.selectAll(".compareWorld").remove();
-			d3.select("#sidebarOneCountry").classed("hidden", true);
-			d3.select("#sidebarMultipleCountries").classed("hidden", false);
-
-			landTwo = d;
-
-			//var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
-
-			var width = document.getElementById('compareContainer').offsetWidth/2;
-			var height = width / 1.9;
-
-			//Kan eventuell kolla hur man väljer fler länder här.
-			//setup(width,height, "#compareContainer", "compareWorld");
-			//draw([landETT]);
-			//setup(width,height, "#compareContainer", "compareWorld");
-			//draw([landTwo]);
-			
-			//Create code for each country
-			var kod1 = name2code(landETT.properties.name);
-			var kod2 = name2code(landTwo.properties.name);
-
-			//Call multiple line chart 
-			drawLine(countries[kod1].co2, countries[kod2].co2);
-			clickState = 0;
-		  }
-
-
-	  //Nollställ eventuell  highlightad stapel
-	  d3.selectAll(".bar")
-	  	.attr('fill', 'black');
-
-
-	  //Hämtar landskod så kan fylla i rätt land 
-	  var code = name2code(d.properties.name);
-
-	  //Highlighta ny stapel i bar chart
-	  d3.select(".bar#" + code)
-	  	.attr('fill', 'orange');
+		//Call multiple line chart 
+		//drawLine(countries[kod1].co2, countries[kod2].co2);
 
 
       var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
@@ -219,9 +232,7 @@ function countryInteraction(){
              .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
              .html(d.properties.name);
 	  });
-
 }
-
 
 function redraw() {
   width = document.getElementById('container').offsetWidth;
@@ -310,17 +321,29 @@ multipleCountriesCheckbox.change(function(){
 	cb = $(this);
 	cb.val(cb.prop('checked'));
 
-	multipleCountries = [];
 	//Object for storing selected countries RESET on toggle
+	if(landETT!= undefined){
+		selectedCountries = [landETT]
+	}else{
+		selectedCountries = [];
+	}
 
 	if (multipleCountriesCheckbox.val() == "true") {
-		d3.select("#sideBarChart").classed("hidden", false);
+		// Display sidebar for one country
+		createSideBarSelected();
 		d3.select("#sidebarOneCountry").classed("hidden", true);
-		d3.select("#multipleCountries").classed("hidden", false);
 		d3.select("#sidebarNoCountry").classed("hidden", true);
+
+		d3.select("#sideBarChart").classed("hidden", false);
+		d3.select("#multipleCountries").classed("hidden", false);
 	} else {
+
+		d3.selectAll(".bar")
+	  		.attr('fill', 'black');
+
 		d3.select("#sidebarNoCountry").classed("hidden", false);
-		d3.select("#sidebarOneCountry").classed("hidden", false);
+
+		d3.select("#sideBarChart").classed("hidden", true);
 		d3.select("#multipleCountries").classed("hidden", true);
 	}
 });
