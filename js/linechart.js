@@ -62,8 +62,8 @@ var mySVG = d3.select("#compare-line-chart")
         .attr("d", valueline(data));
 
     mySVG.append("text")
-// LABELS SKA IN HÄR MED PÅ NÅGE VIS
- //       .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")") 
+// LABELS - choosing the 50th value of the co2 to get aproximately right height placement
+        .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")") 
         .attr("dy", ".35em")
         .attr("text-anchor", "start")
         .style("fill", "black")
