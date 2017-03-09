@@ -223,7 +223,7 @@ function readTradingBalance(callback){
 			countryCode = data[i].Country_Code;
 
 			//Excludes empty rows in the csv
-			if (countryCode != "") {
+			if (countryCode != undefined) {
 				//For every year, add to the object countries
 				for(j=1960 ; j<2017; j++ ){
 					countries[countryCode].tradingBalance[j] = data[i][j];
@@ -350,4 +350,47 @@ function isEmpty(obj) {
             return false;
     }
     return true;
+}
+
+var removeMe = []; 
+function loopCountries(){
+	for(i in countries){
+		if(isEmpty(countries[i].co2)){
+			console.log(countries[i].co2);
+			removeMe.push(countries[i].name)
+		}
+		else{
+			console.log("HAR DATA");
+		}
+
+	}
+}
+
+var removeTrading = [];
+function checkTrading(){
+	for(i in countries){
+		
+		if(isEmpty(countries[i].tradingBalance)){
+			console.log(countries[i].tradingBalance);
+			removeMe.push(countries[i].name)
+
+		}
+		else{
+			console.log("HAR DATA");
+		}
+	}
+}
+
+function checkTotal(){
+	for(i in countries){
+		
+		if(isEmpty(countries[i].co2_capita)){
+			console.log(countries[i].tradingBalance);
+			removeMe.push(countries[i].name)
+
+		}
+		else{
+			console.log("HAR DATA");
+		}
+	}
 }

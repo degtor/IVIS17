@@ -215,6 +215,10 @@ p {
     height: 100%;
     padding-left: 40px;
     padding-right: 40px;
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 0px;
+    right: 0px;
 }
 
 .row{
@@ -380,6 +384,7 @@ p {
 
 .equator {
     stroke:#000000;
+    stroke-dasharray: 2;
 }
 
 #sidebarMultipleCountries {
@@ -451,3 +456,12 @@ p {
   font:bold 12px sans-serif;
 }
 /* ny slider end*/
+
+#deselectCountries {
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.unfocus {
+    opacity:0.3;
+}

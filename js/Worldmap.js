@@ -144,6 +144,19 @@ function countryInteraction(){
 
       //Clicking a country
 	.on("click", function(d, i) {
+    	/*var clicked = d3.select(this);
+
+		  if (clicked.classed("selected")) {
+			  d3.selectAll(".country").classed("unfocus", false);
+			  clicked.classed("unfocus", true);
+			  clicked.classed("selected", false);
+		  } else {
+			  d3.selectAll(".country").classed("unfocus", true);
+			  clicked.classed("unfocus", false);
+			  clicked.classed("selected", true);
+		  }*/
+    
+    
 		var code = name2code(d.properties.name);
 		if(multipleCountriesCheckbox.val() == "true"){
 			if(!(deselectCountry() == true)){
@@ -221,8 +234,6 @@ function countryInteraction(){
 			
 		//Call multiple line chart 
 		//drawLine(countries[kod1].co2, countries[kod2].co2);
-
-	    var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 
 	    tooltip.classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
@@ -353,11 +364,6 @@ $('.leftTriangle').click(function() {
 		sidebar.attr("out", "true");
 		$(".streck1").addClass("rotate rotate_transition");
 		sidebar
-			.css({
-				position: "absolute",
-				marginLeft: 0, marginTop: 0,
-				right:0
-			})
 			.animate({
 				right: "50%"
 			}, 600 );
@@ -373,4 +379,6 @@ $('.leftTriangle').click(function() {
 
 });
 
-
+$('#deselectCountries').click(function() {
+	multipleCountries = [];
+});
