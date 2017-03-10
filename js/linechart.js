@@ -64,7 +64,7 @@ var mySVG = d3.select(id)
       y.domain([0, 30]);
     }
     else{
-      y.domain([-100,100])
+      y.domain([-30,30])
     }
     // Add the valueline path.
     mySVG.append("path")
