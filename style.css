@@ -6,6 +6,7 @@ html,body
 }
 body {
     font-family: "Roboto";
+    background-color: #E8E8E8;
 }
 
 /* FONTS */
@@ -32,7 +33,7 @@ span{
 /* END OF FONTS */
 
 path {
-    stroke: black;
+    stroke: white;
     stroke-width: 0.5px;
     fill: black;
 }
@@ -59,23 +60,30 @@ canvas {
 
 }
 
+.logo {
+    display:inline-block;
+    font-family: 'Raleway', sans-serif;
+    font-weight:900;
+    font-size: 30px;
+    color: #FFFFFF ;
+    background: -webkit-linear-gradient(right, #FF5252 , #26A1ED );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
 #chart {    
   width: 100%;
   margin: auto;
 }
 
 #belowChart{
-  padding-left: 16%;
+  padding-left: 10%;
 }
 
 .charts-view{
   margin:0px;
 }
-
-/*#mapScreen{
-  text-align: right;
-  margin-left: 20px;
-}*/
 
 .brush .extent {
     fill-opacity: .3;
@@ -106,12 +114,6 @@ canvas {
     margin:10px 10%;
     height:100%;
     margin-top: 20px;
-}
-
-#sidebar{
-  height:100%;
-  margin:0px;
-  text-align:center;
 }
 
 .hidden {
@@ -228,16 +230,18 @@ div.tooltip {
 /*Slider area end*/
 
 #sidebar {
+    margin:0px;
+    text-align:center;
+    box-shadow: 0px 0px 10px #858585;
     background-color: white;
-    border: 1px solid grey;
     height: 100%;
     padding-left: 40px;
     padding-right: 40px;
     position: absolute;
-    margin-left: 0px;
-    margin-top: 0px;
     right: 0px;
 }
+
+
 
 .row{
     overflow: hidden;
@@ -293,6 +297,16 @@ div.tooltip {
 	stroke: black;
 }
 
+#maincontent {
+    background-color: #E8E8E8;
+}
+
+#mapScreen {
+    width:70%;
+    margin-left:45px;
+    background-color: white;
+    box-shadow: 0px 0px 10px #858585;
+}
 
 #multiples{
   height: 370px;
@@ -404,6 +418,10 @@ div.tooltip {
     left:100%;
     top:0;
     background-color: rgba(238,238,238,1);
+}
+
+input #multipleCountriesCheckbox {
+    float:right;
 }
 
 #pie-chart g{
