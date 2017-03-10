@@ -5,7 +5,23 @@ var svg = d3.select( "#chart")
             .attr( "width", 960 )
             .attr( "height", 260 )
             .attr( "display", "block")
-            .attr( "margin", "auto");
+            .attr( "margin", "auto")
+            //Möller! Det som är nedanför här till "///" är allt som är tillagt för att skala chartet!
+            .attr('viewBox', "0 0 960 260");
+
+
+var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återanvända detta
+    aspect = chart.width() / chart.height(),
+    container = chart.parent();
+
+$(window).on("resize", function() {
+    var targetWidth = container.width();
+    chart.attr("width", targetWidth/1.5);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
+    chart.attr("height", Math.round(targetWidth / aspect));
+}).trigger("resize");
+
+///////och här tar det slut :)
+
 
 var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
   
