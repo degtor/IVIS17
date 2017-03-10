@@ -37,7 +37,11 @@
 <div class="row">
     <div id="mapScreen" class="col-lg-9 col-md-9">
         <p class="logo">ENVIROMIND</p>
-        <div id="tradebalance-header"><h4>Trade balance</h4></div>
+        
+        <div id="tradebalance-header">
+            <h4>Trade balance<span id="tradebalance-info" class="glyphicon glyphicon-info-sign"></span></h4>
+        </div>
+        
         <label id="multipleCountriesCheckboxLabel"><input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false">Select multiple countries</label>
         <div id="container"></div>
         <div id="belowChart">
@@ -133,6 +137,8 @@
     <script type="text/javascript" src="js/fetch_data.js" ></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script type="text/javascript" src="js/slider.js" ></script>
+    <script type="text/javascript" src="js/info-buttons.js" ></script>
+
 
 
     <!--     <script src="js/name2code.js"></script> -->

@@ -254,8 +254,6 @@ div.tooltip {
     right: 0px;
 }
 
-
-
 .row{
     overflow: hidden;
     height: 100%;
@@ -273,11 +271,6 @@ div.tooltip {
     height:400px;
 }
 
-.compareWorld {
-}
-
-.countrySizePos {
-}
 
 .lineChart {
     overflow: auto;
@@ -421,21 +414,6 @@ div.tooltip {
     -o-transform:rotate(45deg);
  }
 
-.rotate {
-    transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg);
-    -moz-transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
-    -o-transform:rotate(-45deg);
-}
-
-.rotate_transition {
-    -webkit-transition: all 1s ease-out;  /* Chrome 1-25, Safari 3.2+ */
-    -moz-transition: all 1s ease-out;  /* Firefox 4-15 */
-    -o-transition: all 1s ease-out;  /* Opera 10.50–12.00 */
-    transition: all 1s ease-out;  /* Chrome 26, Firefox 16+, IE 10+, Opera 12.50+ */
-}
-
 .equator {
     stroke:#000000;
     stroke-dasharray: 2;
@@ -556,3 +534,23 @@ top: .5ex;
   margin: 10px;
 }
 /*End of continent labeling style*/
+
+/*Inforutor*/ 
+
+#tradebalance-info{
+  margin-left:10px;
+}
+
+div.info-box-tooltip{
+    text-align: center;
+    color: #222;
+    background: #fff;
+    padding: .5em;
+    text-shadow: #f5f5f5 0 1px 0;
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px 0px #a6a6a6;
+    opacity: 0.9;
+    position: absolute;
+    font-weight: 400;
+    width:200px;
+}
