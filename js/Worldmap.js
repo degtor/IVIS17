@@ -247,97 +247,92 @@ function countryInteraction(){
 
       //Clicking a country
 	.on("click", function(d, i) {
-    	/*var clicked = d3.select(this);
-
-		  if (clicked.classed("selected")) {
-			  d3.selectAll(".country").classed("unfocus", false);
-			  clicked.classed("unfocus", true);
-			  clicked.classed("selected", false);
-		  } else {
-			  d3.selectAll(".country").classed("unfocus", true);
-			  clicked.classed("unfocus", false);
-			  clicked.classed("selected", true);
-		  }*/
-    
-    
+    	// Plockar ut koden för klickat land 
 		var code = name2code(d.properties.name);
+    	
+    	// Om vi får välja flera länder på samma gång 
 		if(multipleCountriesCheckbox.val() == "true"){
+			// Testa om det är en deselect eller select
+			// OM det inte är en deselect så lägger vi till landet, highlightar dens bar och landet i kartan
 			if(!(deselectCountry() == true)){
 				selectedCountries.push(d);
-			 	d3.select(".bar#" + code)
-	  				.attr('fill', 'orange');
+				highlightBar();
+				highlightInMap();
 			}
-			updateSideBarSelected();				
+			// Update sidebar med selected country
+				updateSideBarSelected();
+			
+		// Om vi bara får välja ett land åt gången 				
 		}else{
-			if(selectedCountries.length == 0){
-				landETT = d;
-				selectedCountries[0] = d;		
-
-			 	d3.selectAll(".bar")
-	  				.attr('fill', 'black');
-
-			  	//Highlighta ny stapel i bar chart
-		 	 	d3.select(".bar#" + code)
-	  				.attr('fill', 'orange');
-
-			  	d3.select("#sidebarNoCountry").classed("hidden", true);
-			  		
- 		  		d3.select("#sidebarOneCountry").classed("hidden", false);
-	
-				clearLineChart();	
-				clearTradeLineChart();
- 			    updateSideBar();
-  				drawPieChart();
-				drawLineTradeBalance(countries[code].tradingBalance);
-
+			if(deselectCountry() == true){
+				landETT = "";
+				// göm div för one country och visa för no country
+		  		d3.select("#sidebarNoCountry").classed("hidden", false);
+ 		  		d3.select("#sidebarOneCountry").classed("hidden", true);
 			}else{
-				if(deselectCountry() == true){
-					landETT = "";
-			  		d3.select("#sidebarNoCountry").classed("hidden", false);
-
- 		  			d3.select("#sidebarOneCountry").classed("hidden", true);
-				}else{
 				selectedCountries[0] = d;	
 				landETT = d;
 			 	
-			 	d3.selectAll(".bar")
-	  				.attr('fill', 'black');
-
-			  	//Highlighta ny stapel i bar chart
-		 	 	d3.select(".bar#" + code)
-	  				.attr('fill', 'orange');
-
+			 	lowlightBarAll();
+		 	 	highlightBar();
 				clearLineChart();
 				clearTradeLineChart();
 		        updateSideBar();
   				drawPieChart();
-				drawLineTradeBalance(countries[code].tradingBalance);						
-				}
-		
+				drawLineTradeBalance(countries[code].tradingBalance);	
+				
+				// Visa div för one country och göm för no country		 
+			  	d3.select("#sidebarNoCountry").classed("hidden", true); 		
+ 		  		d3.select("#sidebarOneCountry").classed("hidden", false);
 			}
 		}
 
 		function deselectCountry(){
-			if(selectedCountries[0] != undefined){
+			if(selectedCountries[0] != undefined || selectedCountries.length == 0){
 				for(j in selectedCountries){
 					if(selectedCountries[j].id == i){
 						selectedCountries.splice(j, 1);
-					  	d3.select(".bar#" + code)
-	  						.attr('fill', 'black');
+					  	lowlightBar();
 						return true;
 					}		
 				}			
 			}
 		}
 		
+		highlightInMap();
+
+		function highlightInMap(){
+			if(selectedCountries[0] != undefined){
+				d3.selectAll(".country").classed("unfocus", true);
+				for(i in selectedCountries){
+					var clicked = d3.select("#" + name2code(selectedCountries[i].properties.name))
+					clicked.classed("unfocus", false);
+					clicked.classed("selected", true);				
+				}
+			}else{
+				d3.selectAll(".country").classed("unfocus", false);
+			}
+		}
+				
+		function highlightBar(){
+			d3.select(".bar#" + code)
+	  			.attr('fill', 'orange');			
+		}
+
+		function lowlightBar(){
+			d3.select(".bar#" + code)
+	  			.attr('fill', 'black');	
+	  	}
+
+		function lowlightBarAll(){
+			d3.selectAll(".bar")
+	  			.attr('fill', 'black');			
+		}
 
 		console.log("selectedCountries:", selectedCountries);
 
 		var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 			
-		//Call multiple line chart 
-		//drawLine(countries[kod1].co2, countries[kod2].co2);
-
 	    tooltip.classed("hidden", false)
             .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
             .html(d.properties.name);
@@ -437,6 +432,7 @@ multipleCountriesCheckbox.change(function(){
 		selectedCountries = [landETT]
 	}else{
 		selectedCountries = [];
+		d3.selectAll(".country").classed("unfocus", false);
 	}
 
 	if (multipleCountriesCheckbox.val() == "true") {
@@ -460,7 +456,6 @@ multipleCountriesCheckbox.change(function(){
 });
 
 
-// DEN HÄR BORDE KALLA PÅ COMPARE-LINE-CHARTET
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
 		drawLine(selectedCountries)
@@ -479,8 +474,8 @@ $('.leftTriangle').click(function() {
 				right: 0
 			}, 600 );
 	}
-
 });
+
 
 $('#deselectCountries').click(function() {
 	multipleCountries = [];
