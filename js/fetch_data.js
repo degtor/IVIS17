@@ -47,6 +47,7 @@ var year = 1960;
 var topo;
 var imports = [];
 var exports = [];
+var co2val = "capita"  //vs. "total" för att kunna switcha mellan
 
 // These countries are missing for export and import data
 var exceptCountries = [	'AGO', 'ASM', 'VGB', 'CHI', 'ZAR', 'CUW', 'GNQ', 'GUM', 'GIB', 
@@ -72,7 +73,7 @@ function readCountries(callback){
 		for(i in data){
 			console.log('i loop')
 			// Adding country object to list object
-			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'exports': {}, 'imports': {}, 'co2':{}, 'tradingBalance': {}, 'twoLetterCode': data[i]['ISO 3166-1 2 Letter Code'], 'continent': {}, 'continentID': {}, 'renewables': {} }
+			countries[data[i]['ISO 3166-1 3 Letter Code']] = {'code': data[i]['ISO 3166-1 3 Letter Code'], 'name': data[i]['Common Name'], 'exports': {}, 'imports': {}, 'co2':{}, 'co2total':{}, 'tradingBalance': {}, 'twoLetterCode': data[i]['ISO 3166-1 2 Letter Code'], 'continent': {}, 'continentID': {}, 'renewables': {} }
 			
 			for (y=1988;y<2016;y++){
 				countries[data[i]['ISO 3166-1 3 Letter Code']].exports[y] = {};
@@ -93,8 +94,10 @@ function readData(){
 	d3.queue()
 		//reads all export and import data and sorting it (this takes time) 
 		.defer(readImportExport)
-		//Adds CO2
+		//Adds CO2 per capita
 		.defer(readCo2)
+		//Add Total CO2 per country
+		.defer(readCo2Total)
 		//Continues with adding continents
 		.defer(addContinent)
 		//Adding renewable data
@@ -236,18 +239,36 @@ function readTradingBalance(callback){
 	})
 }
 
-//Add co2 to countries
+//Add co2 per capita to countries
 function readCo2(){
-	// Create dictionary of co2 emissions where key = year (1960-2010) and  value = co2 per capita
-		d3.csv('data/co2_capita.csv', function(data){
+	// Create dictionary of co2 emissions where key = year (1960-2015) and value = co2 per capita
+		d3.csv('data/API_co2_capita.csv', function(data){
 			
 			for(i in data){
-				var countryCode = name2code(data[i].country);
+				var countryCode = name2code(data[i]['Country Name']);
 
 				//Only if name is correct: 
 				if(countryCode != undefined){
-					for(j=0 ; j<=50; j++ ){
+					for(j=0 ; j<=55; j++ ){
 						countries[countryCode].co2[1960+j] = data[i][1960+j];
+					}	
+				}
+			}
+		})
+}
+
+//Add total co2 per country to countries
+function readCo2Total(){
+	// key = year (1960-2015) and  value = co2 per country in kt (kiloton?)
+		d3.csv('data/API_co2_total.csv', function(data){
+			
+			for(i in data){
+				var countryCode = name2code(data[i]['Country Name']);
+
+				//Only if name is correct: 
+				if(countryCode != undefined){
+					for(j=0 ; j<=55; j++ ){
+						countries[countryCode].co2total[1960+j] = data[i][1960+j];
 					}	
 				}
 			}
