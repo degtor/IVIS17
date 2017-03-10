@@ -21,7 +21,7 @@ var landTwo;
 var clickState = 0;
 var mapDone = false;
 var selectedCountries = [];
-var colorScale = ["#5AA9EC", "#EAE8E6", "#F3C14B"];
+var colorScale = ["#FF5252", "#EEEEEE", "#0091EA"]; 
 
 // add the legend now
 var legendFullHeight = height;
