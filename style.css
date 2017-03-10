@@ -256,23 +256,22 @@ div.tooltip {
 .countrySizePos {
 }
 
-#compare-line-chart {
+.lineChart {
     overflow: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-right: 20px;
+    margin-left: 10%;
+    padding-left: 10%;
 }
 
-#compare-line-chart { font: 12px;}
+#sidebarMultipleCountries { font: 12px;}
 
-#compare-line-chart path { 
+#sidebarMultipleCountries path { 
     stroke: black;
     stroke-width: 2;
     fill: none;
 }
 
-#compare-line-chart .axis path,
-#compare-line-chart .axis line {
+#sidebarMultipleCountries .axis path,
+#sidebarMultipleCountries .axis line {
     fill: none;
     stroke: grey;
     stroke-width: 1;

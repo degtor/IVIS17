@@ -461,7 +461,8 @@ multipleCountriesCheckbox.change(function(){
 
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
-		drawLine(selectedCountries)
+		drawLine(selectedCountries,"#compare-line-chart", "co2");
+		drawLine(selectedCountries, "#sideLineChartContainer", "trading");
 		sidebar.attr("out", "true");
 		$(".streck1").addClass("rotate rotate_transition");
 		sidebar
@@ -469,7 +470,8 @@ $('.leftTriangle').click(function() {
 				right: "50%"
 			}, 600 );
 	} else {
-		clearLineChart();
+		clearLineChart("#compare-line-chart");
+		clearLineChart("#sideLineChartContainer");
 		$(".streck1").removeClass("rotate rotate_transition");
 		sidebar.attr("out", "false");
 		sidebar
