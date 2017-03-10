@@ -36,9 +36,11 @@ d3.select("#slider2").call(chroniton()
           updateMapColors();
   	      
   	      //Only update detailview if avaliable   
-          if(landETT != ""){      //Ska vi ha något dynamiskt i multiple-viewn får vi lägga till nåt condition i if-satsen tror jag. Kan hända att det funkar ändå. tidigare: multipleCountriesCheckbox.val() == "false"
-	          drawPieChart();
-	          updateSideBar();
+          if(landETT != undefined){        //tidigare var det en enkel if-sats med if(multipleCountriesCheckbox.val() == "false" men då hänger det sig när details-viewn inte är igång /David
+	          if(landETT != ""){
+		          drawPieChart();
+		          updateSideBar();
+	         }
           }
       })
     );
