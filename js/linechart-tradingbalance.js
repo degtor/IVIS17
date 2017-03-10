@@ -69,6 +69,13 @@ function drawLineTradeBalance(data){
 		mySVG.append("g")
 			.attr("class", "y axis")
 			.call(yAxis);
+			
+		mySVG.append("svg:line")
+			.attr("x1", 0)
+			.attr("x2", width)
+			.attr("y1", height/2)
+			.attr("y2", height/2)
+			.style("stroke", "rgb(189, 189, 189)");
 
 }
 
