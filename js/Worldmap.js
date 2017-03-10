@@ -17,8 +17,8 @@ var height = width / 1.9;
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
-var landETT = "";
-var landTwo; 
+var landETT;
+var landTwo;
 var clickState = 0;
 var mapDone = false;
 var selectedCountries = [];
@@ -430,30 +430,36 @@ multipleCountriesCheckbox.change(function(){
 	cb = $(this);
 	cb.val(cb.prop('checked'));
 
-	//Object for storing selected countries RESET on toggle
-	if(landETT!= undefined){
-		selectedCountries = [landETT]
-	}else{
-		selectedCountries = [];
-		d3.selectAll(".country").classed("unfocus", false);
-	}
-
 	if (multipleCountriesCheckbox.val() == "true") {
+	// Om multiple countries är valt.
+	// Rensa sidebar ifall selected countries är tom eller ifall den är undefined
+	// Här hamnar man också om man kommer hit efter att ha klickat i och klickat av multiple countries utan att ha valt något imellan
+		if(selectedCountries[0] == "" || selectedCountries[0] == undefined){
+			clearSideBarSelected();
+		}else{
+	// Annars uppdatera selectedCountries-listan så att landEtt verkligen ligger där och uppdatera sidebar så att det visas
+			selectedCountries = [landETT]	
+			updateSideBarSelected();
+		}
 
-		createSideBarSelected();
+	// Visa divar relaterade till multiple countries och göm övriga
 		d3.select("#sidebarOneCountry").classed("hidden", true);
 		d3.select("#sidebarNoCountry").classed("hidden", true);
 
 		d3.select("#multipleCountries").classed("hidden", false);
-		d3.select("#sidebarCompareCountries").classed("hidden", false);
 	} else {
+		// Om multiple countries är av-valt
+		// Rensa valda länder och ta bort fokus från länder och bars
+		selectedCountries = [];
 
+		d3.selectAll(".country").classed("unfocus", false);
 		d3.selectAll(".bar")
 	  		.attr('fill', 'black');
 
+	  	// Visa att inget land är valt och göm alla divar relaterade till flera länder
 		d3.select("#sidebarNoCountry").classed("hidden", false);
 
-		d3.select("#sidebarCompareCountries").classed("hidden", true);
+		d3.select("#sidebarMultipleCountries").classed("hidden", true);
 		d3.select("#multipleCountries").classed("hidden", true);
 	}
 });
@@ -461,8 +467,12 @@ multipleCountriesCheckbox.change(function(){
 
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
+
 		drawLine(selectedCountries,"#compare-line-chart", "co2");
 		drawLine(selectedCountries, "#sideLineChartContainer", "trading");
+
+		d3.select("#sidebarMultipleCountries").classed("hidden", false);
+
 		sidebar.attr("out", "true");
 		$(".streck1").addClass("rotate rotate_transition");
 		sidebar
@@ -470,18 +480,28 @@ $('.leftTriangle').click(function() {
 				right: "50%"
 			}, 600 );
 	} else {
-		clearLineChart("#compare-line-chart");
-		clearLineChart("#sideLineChartContainer");
+
 		$(".streck1").removeClass("rotate rotate_transition");
 		sidebar.attr("out", "false");
 		sidebar
-			.animate({
-				right: 0
-			}, 600 );
-	}
+			.animate(
+			{right: 0}, 
+			600, function(){
+				d3.select("#sidebarMultipleCountries").classed("hidden", true);
+				clearLineChart("#compare-line-chart");
+		  clearLineChart("#sideLineChartContainer");
+				
+			})
+		}
 });
 
 
 $('#deselectCountries').click(function() {
-	multipleCountries = [];
+	selectedCountries = [];
+	clearSideBarSelected();
+	
+	d3.selectAll(".country").classed("unfocus", false);
+	d3.selectAll(".bar")
+	  	.attr('fill', 'black');
 });
+
