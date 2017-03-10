@@ -6,20 +6,34 @@ var svg = d3.select( "#chart")
             .attr( "height", 260 )
             .attr( "display", "block")
             .attr( "margin", "auto");
+
 var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
   
   var x = d3.scale.ordinal()
     .domain(labels)
     .rangePoints([30, 1180]);
 
+
+
   var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom");
+
 
   svg.append("g")
     .attr("class", "myaxis")
     .attr("transform","translate(0,240)")
     .call(xAxis);
+
+
+// text label for the axis
+  svg.append("text")
+  .attr("class","anchor")
+      .attr("y", 0)
+      .attr("x", -20 )
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("CO2");   
 
 
 //Kolla om musknappen är nedtryckt (för att dra i slidern)
@@ -64,7 +78,18 @@ var data = d3.entries(countries).sort(
                      .data(data);
 
 
+var y = d3.scale.linear().domain([0,100])
+    .range([220, 10]);
 
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .ticks(2)
+    .orient("right");
+
+
+svg.append("g")
+      .attr("class", "myaxis")
+      .call(yAxis);
   // var nestedData=d3.nest()
   // .key(function(d) {return d.value.continentID;})
   // .sortKeys(d3.ascending)

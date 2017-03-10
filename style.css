@@ -45,6 +45,9 @@ canvas {
 #barChart{
     display: block; 
     margin: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
 }
 
 #chart {    
@@ -500,7 +503,7 @@ top: .5ex;
 
 .myaxis path,
 .myaxis line {
-  fill: black;
+  fill: grey;
   stroke: #000;
   shape-rendering: crispEdges;
   margin: 10px;
