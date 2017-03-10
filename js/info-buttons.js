@@ -29,3 +29,19 @@ d3.select('#barchart-info').on('mouseover', function(d){
 d3.select('#barchart-info').on('mouseout', function(d){
     tooltip.classed("hidden", true)
 })
+
+d3.select('#renewable-info').on('mouseover', function(d){
+    tooltipSide.classed("hidden", false)
+        .attr("style", "left:"+(event.pageX-100)+"px;top:"+(event.pageY+10)+"px;"+"width:150px;")
+        .attr("class", "info-box-tooltip")
+        .html(" <h4>Renewable Energy</h4>"+
+                "<p>The percentage of the country’s energy consumption that doesn’t derive from fossil energy sources. "+
+                "</br></br>The data is collected from The World Bank’s database.");
+})
+
+
+d3.select('#renewable-info').on('mouseout', function(d){
+    tooltipSide.classed("hidden", true)
+})
+
+
