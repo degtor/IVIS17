@@ -430,33 +430,36 @@ multipleCountriesCheckbox.change(function(){
 	cb = $(this);
 	cb.val(cb.prop('checked'));
 
-	//Object for storing selected countries RESET on toggle
-	if(landETT != ""){
-		selectedCountries = [landETT]
-	}else{
-		selectedCountries = [];
-		d3.selectAll(".country").classed("unfocus", false);
-	}
-
 	if (multipleCountriesCheckbox.val() == "true") {
-
-		if(selectedCountries[0] != ""){
+	// Om multiple countries är valt.
+	// Rensa sidebar ifall selected countries är tom eller ifall den är undefined
+	// Här hamnar man också om man kommer hit efter att ha klickat i och klickat av multiple countries utan att ha valt något imellan
+		if(selectedCountries[0] == "" || selectedCountries[0] == undefined){
+			clearSideBarSelected();
+		}else{
+	// Annars uppdatera selectedCountries-listan så att landEtt verkligen ligger där och uppdatera sidebar så att det visas
+			selectedCountries = [landETT]	
 			updateSideBarSelected();
 		}
 
+	// Visa divar relaterade till multiple countries och göm övriga
 		d3.select("#sidebarOneCountry").classed("hidden", true);
 		d3.select("#sidebarNoCountry").classed("hidden", true);
 
 		d3.select("#multipleCountries").classed("hidden", false);
-		d3.select("#sidebarCompareCountries").classed("hidden", false);
 	} else {
+		// Om multiple countries är av-valt
+		// Rensa valda länder och ta bort fokus från länder och bars
+		selectedCountries = [];
 
+		d3.selectAll(".country").classed("unfocus", false);
 		d3.selectAll(".bar")
 	  		.attr('fill', 'black');
 
+	  	// Visa att inget land är valt och göm alla divar relaterade till flera länder
 		d3.select("#sidebarNoCountry").classed("hidden", false);
 
-		d3.select("#sidebarCompareCountries").classed("hidden", true);
+		d3.select("#sidebarMultipleCountries").classed("hidden", true);
 		d3.select("#multipleCountries").classed("hidden", true);
 	}
 });
@@ -465,6 +468,9 @@ multipleCountriesCheckbox.change(function(){
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
 		drawLine(selectedCountries)
+
+		d3.select("#sidebarMultipleCountries").classed("hidden", false);
+
 		sidebar.attr("out", "true");
 		$(".streck1").addClass("rotate rotate_transition");
 		sidebar
@@ -472,17 +478,28 @@ $('.leftTriangle').click(function() {
 				right: "50%"
 			}, 600 );
 	} else {
-		clearLineChart();
 		$(".streck1").removeClass("rotate rotate_transition");
 		sidebar.attr("out", "false");
 		sidebar
-			.animate({
-				right: 0
-			}, 600 );
-	}
+			.animate(
+			{right: 0}, 
+			600, function(){
+				d3.select("#sidebarMultipleCountries").classed("hidden", true);
+				clearLineChart();
+				// Såhär ska det stå, istället för raden över
+				// clearLineChart(#compare-line-chart);
+				// clearLineChart(#sideLineChartContainer);
+			})
+		}
 });
 
 
 $('#deselectCountries').click(function() {
-	multipleCountries = [];
+	selectedCountries = [];
+	clearSideBarSelected();
+	
+	d3.selectAll(".country").classed("unfocus", false);
+	d3.selectAll(".bar")
+	  	.attr('fill', 'black');
 });
+
