@@ -84,16 +84,18 @@ function drawBarChart(){
 
       //Set y position to get bars in right orientation
       .attr( "y", function(d){
-        if (isNaN(d.value.co2[year])){
-          return 0;
-        }
-        else if (co2val =="capita"){
-          return 220 - d.value.co2[year]*2;
-        }
+        return 0  //Quickfix för flipped barchart. Ta bort och lägg till bortkommenterar nedan om vi vill ändra tillbaka 
+        
+        // if (isNaN(d.value.co2[year])){
+        //   return 0;
+        // }
+        // else if (co2val =="capita"){
+        //   return 220 - d.value.co2[year]*2;
+        // }
 
-        else if(co2val == "total"){
-          return 220 - d.value.co2total[year]/50000;
-        }
+        // else if(co2val == "total"){
+        //   return 220 - d.value.co2total[year]/50000;
+        // }
       })
 
       //Show tooltip on hover if neither mousekey is pressed nor play-funtion active
