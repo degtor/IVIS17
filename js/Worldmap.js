@@ -281,11 +281,12 @@ function countryInteraction(){
 				clearTradeLineChart();
 		        updateSideBar();
   				drawPieChart();
-				drawLineTradeBalance(countries[code].tradingBalance);	
 				
 				// Visa div för one country och göm för no country		 
 			  	d3.select("#sidebarNoCountry").classed("hidden", true); 		
  		  		d3.select("#sidebarOneCountry").classed("hidden", false);
+				
+				drawLineTradeBalance(countries[code].tradingBalance);	
 			}
 		}
 
