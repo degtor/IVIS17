@@ -51,6 +51,12 @@ canvas {
 #barChart{
     display: block; 
     margin: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 5%;
+
+    /*padding: 20px;*/
+
 }
 
 #chart {    
@@ -482,7 +488,6 @@ sub {
 top: .5ex;
 }
 /*Nedsänkt 2a end*/
-=======
 #deselectCountries {
     text-decoration: underline;
     cursor:pointer;
@@ -491,4 +496,19 @@ top: .5ex;
 .unfocus {
     opacity:0.3;
 }
->>>>>>> master
+
+
+/*Bar chart continent labeling */
+
+.myaxis text {
+  font: 10px sans-serif;
+}
+
+.myaxis path,
+.myaxis line {
+  fill: grey;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  margin: 10px;
+}
+/*End of continent labeling style*/
