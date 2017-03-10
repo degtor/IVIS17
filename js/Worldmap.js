@@ -478,17 +478,28 @@ $('.leftTriangle').click(function() {
 				right: "50%"
 			}, 600 );
 	} else {
-		clearLineChart();
 		$(".streck1").removeClass("rotate rotate_transition");
 		sidebar.attr("out", "false");
 		sidebar
-			.animate({
-				right: 0
-			}, 600 );
-	}
+			.animate(
+			{right: 0}, 
+			600, function(){
+				d3.select("#sidebarMultipleCountries").classed("hidden", true);
+				clearLineChart();
+				// Såhär ska det stå, istället för raden över
+				// clearLineChart(#compare-line-chart);
+				// clearLineChart(#sideLineChartContainer);
+			})
+		}
 });
 
 
 $('#deselectCountries').click(function() {
-	multipleCountries = [];
+	selectedCountries = [];
+	clearSideBarSelected();
+	
+	d3.selectAll(".country").classed("unfocus", false);
+	d3.selectAll(".bar")
+	  	.attr('fill', 'black');
 });
+
