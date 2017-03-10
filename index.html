@@ -42,11 +42,27 @@
         <div id="belowChart">
             <div class="slider">
                 <div class="chroniton" id="slider2"></div>
-                <button type="button" class="btn btn-primary" onclick="co2val='capita', drawBarChart()">CO<sub>2</sub> per capita</button>
-                <button type="button" class="btn btn-primary" onclick="co2val='total', drawBarChart()">CO<sub>2</sub> total</button>
             </div>
-            <div id="barchartLabel"></div>
-            <div id="chart"></div>
+            <div class="row" id="barchartHeadings">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <h4>Annual CO2-emissions per country</h4>
+                </div>
+                <div class="col-md-3">
+                    <form>
+                        <input type="radio" name="co2val" value="capita" onclick="co2val='capita', drawBarChart()" checked> CO2/capita
+                        <input type="radio" name="co2val" value="total" onclick="co2val='total', drawBarChart()">Total CO2
+                    </form>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"><div id="barchartLabel"></div></div>
+                <div class="col-md-10">
+                    <div id="chart"></div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
         </div>
     </div>
 

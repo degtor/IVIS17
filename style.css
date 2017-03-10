@@ -8,7 +8,6 @@ body {
     font-family: "Roboto";
     background-color: #E8E8E8;
 }
-
 /* FONTS */
 
 body, p, h1, h2, h3, h4{
@@ -52,9 +51,7 @@ canvas {
 #barChart{
     display: block; 
     margin: auto;
-
-
-    /*padding: 20px;*/
+    padding: 20px;
 
 }
 #loading{
@@ -69,7 +66,7 @@ canvas {
     font-family: 'Raleway', sans-serif;
     font-weight:900;
     font-size: 30px;
-    color: #FFFFFF ;
+    color: #FFFFFF;
     background: -webkit-linear-gradient(right, #FF5252 , #26A1ED );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -81,12 +78,15 @@ canvas {
   margin: auto;
 }
 
-#belowChart{
-
-  text-align: center;
-/*  padding-left: 16%;
-*/}
-
+#barchartHeadings{
+  padding-top: 20px;
+  margin-bottom: -20px;
+  text-align: right;
+}
+#barchartLabel{
+  padding-top: 50px;
+ text-align: right;
+}
 .charts-view{
   margin:0px;
 }
@@ -146,30 +146,16 @@ div.tooltip {
     opacity: 0.9;
     position: absolute;
 }
-/*.graticule {
-    fill: none;
-    stroke: #bbb;
-    stroke-width: .5px;
-    stroke-opacity: .5;
-}
-.equator {
-    stroke: #ccc;
-    stroke-width: 1px;
-}*/
+
 
 .world {
     top:600px;
 }
 
-
 /* Tooltips barchart */
 .bar:hover {
   fill: orange ;
 }
-
-/*.x.axis path {
-  display: none;
-}*/
 
 .d3-tip {
   line-height: 1;
@@ -267,12 +253,6 @@ div.tooltip {
     height:400px;
 }
 
-.compareWorld {
-}
-
-.countrySizePos {
-}
-
 .lineChart {
     overflow: auto;
     margin-left: 10%;
@@ -340,17 +320,6 @@ div.tooltip {
 #multipleCountries {
     height:100%;
 }
-
-
-/*!*Sätter höjden på alla kolumner likadan i varje row i bootstrap*!*/
-/*.row{*/
-    /*overflow: hidden;*/
-/*}*/
-
-/*[class*="col-"]{*/
-    /*margin-bottom: -99999px;*/
-    /*padding-bottom: 99999px;*/
-/*}*/
 
 .leftTriangle {
     cursor:pointer;
@@ -526,6 +495,9 @@ top: .5ex;
   font: 10px sans-serif;
 }
 
+.myaxis .tick line{
+  visibility: hidden;
+}
 .myaxis path,
 .myaxis line {
   fill: b;
