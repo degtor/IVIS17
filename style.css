@@ -108,12 +108,6 @@ canvas {
     margin-top: 20px;
 }
 
-#sidebar{
-  height:100%;
-  margin:0px;
-  text-align:center;
-}
-
 .hidden {
     display: none;
 }
@@ -230,6 +224,8 @@ div.tooltip {
 #sidebar {
     background-color: white;
     border: 1px solid grey;
+	margin:0px;
+	text-align:center;
     height: 100%;
     padding-left: 40px;
     padding-right: 40px;
