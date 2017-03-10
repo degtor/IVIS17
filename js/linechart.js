@@ -64,7 +64,7 @@ var mySVG = d3.select(id)
       y.domain([0, 30]);
     }
     else{
-      y.domain([-30,30])
+      y.domain([-100,100])
     }
     // Add the valueline path.
     mySVG.append("path")
@@ -72,14 +72,15 @@ var mySVG = d3.select(id)
         .attr('id', code)
         .attr("d", valueline(data));
 
-    mySVG.append("text")
 // LABELS - choosing the 50th value of the co2 to get aproximately right height placement
-        .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")") 
-        .attr("dy", ".35em")
-        .attr("text-anchor", "start")
-        .style("fill", "black")
-        .text(selectedCountries[i].properties.name);  
-
+        if(data[52].value != "" || data[52].value != ".."){
+          mySVG.append("text")
+          .attr("transform", "translate(" + (width+3) + "," + y(data[52].value) + ")") 
+          .attr("dy", ".35em")
+          .attr("text-anchor", "start")
+          .style("fill", "black")
+          .text(selectedCountries[i].properties.name);  
+        }
   } 
 
     // Add the valueline path.
