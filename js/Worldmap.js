@@ -439,8 +439,7 @@ multipleCountriesCheckbox.change(function(){
 	}
 
 	if (multipleCountriesCheckbox.val() == "true") {
-		console.log(selectedCountries, selectedCountries.length)
-		
+
 		if(selectedCountries[0] != ""){
 			updateSideBarSelected();
 		}
