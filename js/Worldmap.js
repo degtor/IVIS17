@@ -16,7 +16,10 @@ var width = d3.select("#container").node().getBoundingClientRect().width-legendF
 var height = width / 1.9;
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
+
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
+var tooltipSide = d3.select("#maincontent").append("div").attr("class", "tooltip hidden");
+
 var landETT;
 var landTwo;
 var clickState = 0;
@@ -207,44 +210,17 @@ function countryInteraction(){
 	//Hover a country
     .on("mousemove", function(d,i) {
 		f = 0;
-
-		//Nollställfärgen på alla bars //Funkar inte riktigt eftersom alla förflyttningar verkar räknas som en ny mouse-over
-		// d3.selectAll(".bar")
-		//   	.attr('fill', 'blue');
-
-		//Hämtar export-/importinfo från data
-		var code = name2code(d.properties.name);
-		var exportInfo = "";
-		var importInfo = "";
-//		var countryExports = countries[code].exports[2015]
-//		var countryImports = countries[code].imports[2015]
-
-//		for(var key in countryExports) {
-//		    exportInfo += "</br>" + countryExports[key].partner;
-//		}
-
-//		for(var key in countryImports) {
-//		    importInfo += "</br>" + countryImports[key].partner;
-//		}
-
-      var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
+      	var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 
 
-      tooltip.classed("hidden", false)
+      	tooltip.classed("hidden", false)
              .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-             .html(d.properties.name + "</br></br>  Top  exports: " + exportInfo + "</br></br>  Top  imports: " + importInfo);
-
+             .html(d.properties.name);
       })
 
 	//Stop hovering a country
   	.on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true);
-
-       //ta bort eventuell highlight på bar chart 
-     //   var code = name2code(d.properties.name);
-
-     //   d3.select(".bar#" + code)
-		  	// .attr('fill', 'black');
       })
 
       //Clicking a country

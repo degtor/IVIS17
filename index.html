@@ -37,17 +37,37 @@
 <div class="row">
     <div id="mapScreen" class="col-lg-9 col-md-9">
         <p class="logo">ENVIROMIND</p>
-        <div id="tradebalance-header"><h4>Trade balance</h4></div>
+        
+        <div id="tradebalance-header">
+            <h4>Trade balance<span id="tradebalance-info" class="glyphicon glyphicon-info-sign"></span></h4>
+        </div>
+        
         <label id="multipleCountriesCheckboxLabel"><input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false">Select multiple countries</label>
         <div id="container"></div>
         <div id="belowChart">
             <div class="slider">
                 <div class="chroniton" id="slider2"></div>
-                <button type="button" class="btn btn-primary" onclick="co2val='capita', drawBarChart()">CO<sub>2</sub> per capita</button>
-                <button type="button" class="btn btn-primary" onclick="co2val='total', drawBarChart()">CO<sub>2</sub> total</button>
             </div>
-            <div id="barchartLabel"></div>
-            <div id="chart"></div>
+            <div class="row" id="barchartHeadings">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <h4>Annual CO2-emissions per country</h4>
+                </div>
+                <div class="col-md-3">
+                    <form>
+                        <input type="radio" name="co2val" value="capita" onclick="co2val='capita', drawBarChart()" checked> CO2/capita
+                        <input type="radio" name="co2val" value="total" onclick="co2val='total', drawBarChart()">Total CO2
+                    </form>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"><div id="barchartLabel"></div></div>
+                <div class="col-md-10">
+                    <div id="chart"></div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
         </div>
     </div>
 
@@ -77,8 +97,10 @@
             </div>
 			<div class="row">
 				<div class="charts-view">
-					<h4>Energy sources</h4>
-					<div id="pie-chart-container"></div>
+                    <h4>Energy sources
+                        <span id="renewable-info" class="glyphicon glyphicon-info-sign"></span>
+                    </h4>				
+                    <div id="pie-chart-container"></div>
 					<h4>Trade Balance</h4>
 					<div id="line-chart-container"></div>
 				</div>
@@ -133,6 +155,8 @@
     <script type="text/javascript" src="js/fetch_data.js" ></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script type="text/javascript" src="js/slider.js" ></script>
+    <script type="text/javascript" src="js/info-buttons.js" ></script>
+
 
 
     <!--     <script src="js/name2code.js"></script> -->

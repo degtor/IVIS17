@@ -30,7 +30,6 @@ var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
     .rangePoints([0, 960]);
 
 
-
   var xAxis = d3.svg.axis()
     .scale(x)
     .orient("top");
@@ -40,16 +39,6 @@ var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
     .attr("class", "myaxis")
     .attr("transform","translate(0,50)")
     .call(xAxis);
-
-
-// // text label for the axis
-//   svg.append("text")
-//   .attr("class","anchor")
-//       .attr("y", 0)
-//       .attr("x", -20 )
-//       .attr("dy", "1em")
-//       .style("text-anchor", "middle")
-//       .text("CO2");   
 
 
 //Kolla om musknappen är nedtryckt (för att dra i slidern)
@@ -65,14 +54,13 @@ document.body.onmouseup = function() {
 function drawBarChart(){
 
   console.log("in chart");
-  //Year to display is now set in fetch_data.js
 
   //Create tooltip
   var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    if(co2val == 'capita'){
+    if($('input[name="co2val"]:checked').val() == "capita"){
       return d.value.name + "</br>" + Math.round(d.value.co2[year] * 10) / 10 + " tons CO<sub>2</sub> per capita";
     }
 
@@ -82,15 +70,7 @@ function drawBarChart(){
   })
 
 //Setting label for CO2
-if(co2val == "capita"){
-  //write c02 label
-  d3.select("#barchartLabel").html("<h3>ton CO2/capita</h3>")
-}
-else{
-  //write total label
-  d3.select("#barchartLabel").html("<h3>million ton CO2</h3>")
-
-}
+setLabel();
 
 //Creating data
 var data = d3.entries(countries).sort(
@@ -140,12 +120,12 @@ var data = d3.entries(countries).sort(
         if (isNaN(d.value.co2[year])){
           return 0;
         }
-        else if (co2val =="capita"){
+        else if ($('input[name="co2val"]:checked').val() == "capita"){
           return d.value.co2[year]*10;
         }
 
-        else if(co2val = "total"){
-          return d.value.co2total[year]/100;
+        else if($('input[name="co2val"]:checked').val() == "total"){
+          return d.value.co2total[year]/2000;
         }
 
       })
@@ -177,6 +157,19 @@ var data = d3.entries(countries).sort(
       // remove any unused bars
       selection.exit()
         .remove();
+}
 
 
+function setLabel(){
+  //Setting label for CO2
+
+if($('input[name="co2val"]:checked').val() == "capita"){
+  //write c02 label
+  d3.select("#barchartLabel").html("<h4>ton CO2/capita</h4>")
+}
+else{
+  //write total label
+  d3.select("#barchartLabel").html("<h4>million ton CO2</h4>")
+
+}
 }
