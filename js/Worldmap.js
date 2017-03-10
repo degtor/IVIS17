@@ -7,8 +7,11 @@ var zoom = d3.behavior.zoom()
     .scaleExtent([1, 9])
     .on("zoom", move);
 
+var legendFullWidth = 50;
+var legendMargin = { top: 20, bottom: 20, left: 5, right: 35 };
+var legendWidth = legendFullWidth - legendMargin.left - legendMargin.right;
 
-var width = document.getElementById('container').offsetWidth;
+var width = document.getElementById('container').offsetWidth-legendFullWidth-10;
 var height = width / 1.9;
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
@@ -18,6 +21,105 @@ var landTwo;
 var clickState = 0;
 var mapDone = false;
 var selectedCountries = [];
+var colorScale = ["#5AA9EC", "#EAE8E6", "#F3C14B"];
+
+// add the legend now
+var legendFullHeight = height;
+
+// use same margins as main plot
+var legendHeight = legendFullHeight - legendMargin.top - legendMargin.bottom;
+
+
+var legendSvg = d3.select('#container')
+	.append('svg')
+	.attr('id', 'map-legend')
+	.attr('width', legendFullWidth)
+	.attr('height', legendFullHeight)
+	.append('g')
+	.attr('transform', 'translate(' + legendMargin.left + ',' +
+	legendMargin.top + ')');
+
+updateColourScale(colorScale);
+
+// update the colour scale, restyle the plot points and legend
+function updateColourScale(scale) {
+	// create colour scale
+	var colorScale = d3.scale.linear()
+		.domain(linspace(-3, 3, scale.length))
+		.range(scale);
+
+	// style points
+	d3.selectAll('circle')
+		.attr('fill', function(d) {
+			return colorScale(d.z);
+		});
+
+	// clear current legend
+	legendSvg.selectAll('*').remove();
+
+	// append gradient bar
+	var gradient = legendSvg.append('defs')
+		.append('linearGradient')
+		.attr('id', 'gradient')
+		.attr('x1', '0%') // bottom
+		.attr('y1', '100%')
+		.attr('x2', '0%') // to top
+		.attr('y2', '0%')
+		.attr('spreadMethod', 'pad');
+
+	// programatically generate the gradient for the legend
+	// this creates an array of [pct, colour] pairs as stop
+	// values for legend
+	var pct = linspace(0, 100, scale.length).map(function(d) {
+		return Math.round(d) + '%';
+	});
+
+	var colourPct = d3.zip(pct, scale);
+
+	colourPct.forEach(function(d) {
+		gradient.append('stop')
+			.attr('offset', d[0])
+			.attr('stop-color', d[1])
+			.attr('stop-opacity', 1);
+	});
+
+	legendSvg.append('rect')
+		.attr('x1', 0)
+		.attr('y1', 0)
+		.attr('width', legendWidth)
+		.attr('height', legendHeight)
+		.style('fill', 'url(#gradient)');
+
+	// create a scale and axis for the legend
+	var legendScale = d3.scale.linear()
+		.domain([-30, 30])
+		.range([legendHeight, 0]);
+
+	var legendAxis = d3.svg.axis()
+		.scale(legendScale)
+		.orient("right")
+		//.tickValues(d3.range(-30, 31))
+		.tickFormat(function(d) { return d + "%"; });
+
+	legendSvg.append("g")
+		.attr("class", "legend axis")
+		.attr("transform", "translate(" + legendWidth + ", 0)")
+		.call(legendAxis);
+}
+
+function linspace(start, end, n) {
+	var out = [];
+	var delta = (end - start) / (n - 1);
+
+	var i = 0;
+	while(i < (n - 1)) {
+		out.push(start + (i * delta));
+		i++;
+	}
+
+	out.push(end);
+	return out;
+}
 
 //Calling setup-function to start setting up map
 setup(width, height, "#container");
@@ -26,7 +128,8 @@ setup(width, height, "#container");
 //variables 'container' and 'theclass' changes depending on large or small map-view
 function setup(width, height, container){
   projection = d3.geo.robinson()
-    .translate([(width/2), (height/2)])
+  //OBS!! Note to self. fullösning. Försök ta bort hårdkodningen på 50 px här sedan //Spansk
+    .translate([(width/2), (height/2)-50])
     .scale( width / 2 / Math.PI)
     .center( [ 0 , 20] );
 
@@ -308,7 +411,7 @@ function updateMapColors(){
       		var tradingBalance = countries[kod].tradingBalance[year];
 
       		//Fixa färgskala 
-      		var color = d3.scale.linear().domain([-30,0,30]).range(["#5AA9EC", "#EAE8E6", "#F3C14B"]); 
+      		var color = d3.scale.linear().domain([-30,0,30]).range(colorScale); 
 
           //Returnera svart om data saknas
             if (tradingBalance == ".." || tradingBalance == undefined){
