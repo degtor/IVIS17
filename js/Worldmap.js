@@ -1,4 +1,4 @@
-d3.select(window).on("resize", throttle);
+//d3.select(window).on("resize", throttle);
 
 //Declaring initial variables
 var country; 
