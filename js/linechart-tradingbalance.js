@@ -10,7 +10,7 @@ function drawLineTradeBalance(data){
 	console.log(divDims);
 
 	// Set the dimensions of the canvas / graph
-	var margin = {top: 5, right: 5, bottom: 5, left: 5},
+	var margin = {top: 30, right: 30, bottom: 30, left: 30},
 		width = divDims.width - margin.left - margin.right,
 		height = 200 - margin.top - margin.bottom;
 

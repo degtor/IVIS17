@@ -52,9 +52,7 @@ canvas {
 #barChart{
     display: block; 
     margin: auto;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: 5%;
+
 
     /*padding: 20px;*/
 
@@ -72,14 +70,16 @@ canvas {
 }
 
 
-#chart {    
+#chart {
   width: 100%;
   margin: auto;
 }
 
 #belowChart{
-  padding-left: 10%;
-}
+
+  text-align: center;
+/*  padding-left: 16%;
+*/}
 
 .charts-view{
   margin:0px;
@@ -234,6 +234,9 @@ div.tooltip {
     text-align:center;
     box-shadow: 0px 0px 10px #858585;
     background-color: white;
+    border: 1px solid grey;
+	margin:0px;
+	text-align:center;
     height: 100%;
     padding-left: 40px;
     padding-right: 40px;
@@ -420,10 +423,6 @@ div.tooltip {
     background-color: rgba(238,238,238,1);
 }
 
-input #multipleCountriesCheckbox {
-    float:right;
-}
-
 #pie-chart g{
   font-size: 10px;
 }
@@ -432,6 +431,7 @@ input #multipleCountriesCheckbox {
 .chroniton {
   font: 10px sans-serif;
   outline:none;
+  text-align: center;
 }
 .chroniton .play-button {
   fill:#444;
@@ -523,7 +523,7 @@ top: .5ex;
 
 .myaxis path,
 .myaxis line {
-  fill: grey;
+  fill: b;
   stroke: #000;
   shape-rendering: crispEdges;
   margin: 10px;
