@@ -37,7 +37,12 @@
 <div class="row">
     <div id="mapScreen" class="col-lg-9 col-md-9">
         <p class="logo">ENVIROMIND</p>
-        <input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false">Select multiple countries<br>
+        
+        <div id="tradebalance-header">
+            <h4>Trade balance<span id="tradebalance-info" class="glyphicon glyphicon-info-sign"></span></h4>
+        </div>
+        
+        <label id="multipleCountriesCheckboxLabel"><input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false">Select multiple countries</label>
         <div id="container"></div>
         <div id="belowChart">
             <div class="slider">
@@ -98,22 +103,13 @@
 					<div id="line-chart-container"></div>
 				</div>
 			</div>
-				
-            <!-- On view 2 append text 'Select two countries to compare them' -->
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <span id="additional-countries-hint"></span>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
-
         </div>
 
         <div id="multipleCountries" class="hidden">
-            <div class="leftTriangle">
-                <p class="streck1">-</p>
-                <p class="streck2">-</p>
+            <div class="leftTriangleContainer">
+                <div class="leftTriangle">
+                    <span id="openclose" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </div>
             </div>
             <h2>SELECTED COUNTRIES:</h2>
             <ul id="selectedCountriesDiv">
@@ -157,6 +153,8 @@
     <script type="text/javascript" src="js/fetch_data.js" ></script>
     <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script type="text/javascript" src="js/slider.js" ></script>
+    <script type="text/javascript" src="js/info-buttons.js" ></script>
+
 
 
     <!--     <script src="js/name2code.js"></script> -->

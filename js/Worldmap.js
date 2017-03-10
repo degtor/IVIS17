@@ -207,44 +207,17 @@ function countryInteraction(){
 	//Hover a country
     .on("mousemove", function(d,i) {
 		f = 0;
-
-		//Nollställfärgen på alla bars //Funkar inte riktigt eftersom alla förflyttningar verkar räknas som en ny mouse-over
-		// d3.selectAll(".bar")
-		//   	.attr('fill', 'blue');
-
-		//Hämtar export-/importinfo från data
-		var code = name2code(d.properties.name);
-		var exportInfo = "";
-		var importInfo = "";
-//		var countryExports = countries[code].exports[2015]
-//		var countryImports = countries[code].imports[2015]
-
-//		for(var key in countryExports) {
-//		    exportInfo += "</br>" + countryExports[key].partner;
-//		}
-
-//		for(var key in countryImports) {
-//		    importInfo += "</br>" + countryImports[key].partner;
-//		}
-
-      var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
+      	var mouse = d3.mouse(worldSvg.node()).map( function(d) { return parseInt(d); } );
 
 
-      tooltip.classed("hidden", false)
+      	tooltip.classed("hidden", false)
              .attr("style", "left:"+(mouse[0]+ offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-             .html(d.properties.name + "</br></br>  Top  exports: " + exportInfo + "</br></br>  Top  imports: " + importInfo);
-
+             .html(d.properties.name);
       })
 
 	//Stop hovering a country
   	.on("mouseout",  function(d,i) {
         tooltip.classed("hidden", true);
-
-       //ta bort eventuell highlight på bar chart 
-     //   var code = name2code(d.properties.name);
-
-     //   d3.select(".bar#" + code)
-		  	// .attr('fill', 'black');
       })
 
       //Clicking a country
@@ -465,6 +438,21 @@ multipleCountriesCheckbox.change(function(){
 });
 
 
+// From http://stackoverflow.com/questions/15191058/css-rotation-cross-browser-with-jquery-animate 
+$.fn.animateRotate = function(angle, duration, easing, complete) {
+  var args = $.speed(duration, easing, complete);
+  var step = args.step;
+  return this.each(function(i, e) {
+    args.complete = $.proxy(args.complete, e);
+    args.step = function(now) {
+      $.style(e, 'transform', 'rotate(' + now + 'deg)');
+      if (step) return step.apply(e, arguments);
+    };
+
+    $({deg: 0}).animate({deg: angle}, args);
+  });
+};
+
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
 
@@ -474,14 +462,26 @@ $('.leftTriangle').click(function() {
 		d3.select("#sidebarMultipleCountries").classed("hidden", false);
 
 		sidebar.attr("out", "true");
-		$(".streck1").addClass("rotate rotate_transition");
+
+		$("#openclose").animateRotate(0, {
+  			duration: 600,
+  			easing: 'linear',
+  			complete: function () {},
+  			step: function () {}
+		});
+
 		sidebar
 			.animate({
 				right: "50%"
 			}, 600 );
 	} else {
 
-		$(".streck1").removeClass("rotate rotate_transition");
+		$("#openclose").animateRotate(45, {
+  			duration: 600,
+  			easing: 'linear',
+  			complete: function () {},
+  			step: function () {}
+		});
 		sidebar.attr("out", "false");
 		sidebar
 			.animate(
@@ -489,7 +489,7 @@ $('.leftTriangle').click(function() {
 			600, function(){
 				d3.select("#sidebarMultipleCountries").classed("hidden", true);
 				clearLineChart("#compare-line-chart");
-		  clearLineChart("#sideLineChartContainer");
+		  		clearLineChart("#sideLineChartContainer");
 				
 			})
 		}
