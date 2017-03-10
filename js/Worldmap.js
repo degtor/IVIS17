@@ -401,7 +401,7 @@ function updateMapColors(){
 
       		//Om landet från kartan inte inte finns i iso-listan
       		if(kod==''){
-            return "black"
+            return "url(#lightstripe)"
 	      	}
 
 	      	//Hämta trading balance för rätt år och land
@@ -412,7 +412,7 @@ function updateMapColors(){
 
           //Returnera svart om data saknas
             if (tradingBalance == ".." || tradingBalance == undefined){
-              return "black";
+              return "url(#lightstripe)";
             }
 
             //Generera annars färg beroende på trading balance 

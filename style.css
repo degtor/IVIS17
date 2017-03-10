@@ -105,7 +105,6 @@ canvas {
 #container {
     margin:10px 10%;
     height:100%;
-    border:solid #000;
     margin-top: 20px;
 }
 
@@ -467,6 +466,7 @@ div.tooltip {
   font:bold 12px sans-serif;
 }
 /* ny slider end*/
+
 
 /*Nedsänkt 2a på CO2. alltså:  <p>This text contains <sub>subscript</sub> text.</p>*/
 #sup,
