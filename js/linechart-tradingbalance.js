@@ -25,7 +25,8 @@ function drawLineTradeBalance(data){
 		.tickFormat(d3.format('.0f'));
 
 	var yAxis = d3.svg.axis().scale(y)
-		.orient("left").ticks(7);
+		.orient("left").ticks(7)
+		.tickFormat(function(d) { return d + "%"; });
 
 	// Define the line
 	var valueline = d3.svg.line()
