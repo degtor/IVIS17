@@ -51,9 +51,7 @@ canvas {
 #barChart{
     display: block; 
     margin: auto;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: 5%;
+
 
     /*padding: 20px;*/
 
@@ -65,8 +63,10 @@ canvas {
 }
 
 #belowChart{
-  padding-left: 16%;
-}
+
+  text-align: center;
+/*  padding-left: 16%;
+*/}
 
 .charts-view{
   margin:0px;
@@ -410,6 +410,7 @@ div.tooltip {
 .chroniton {
   font: 10px sans-serif;
   outline:none;
+  text-align: center;
 }
 .chroniton .play-button {
   fill:#444;
@@ -501,7 +502,7 @@ top: .5ex;
 
 .myaxis path,
 .myaxis line {
-  fill: grey;
+  fill: b;
   stroke: #000;
   shape-rendering: crispEdges;
   margin: 10px;
