@@ -17,7 +17,7 @@ var height = width / 1.9;
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
-var landETT = "";
+var landETT;
 var landTwo; 
 var clickState = 0;
 var mapDone = false;
