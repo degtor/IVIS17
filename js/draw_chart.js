@@ -30,7 +30,7 @@ function drawBarChart(){
   .offset([-10, 0])
   .html(function(d) {
     if(co2val == 'capita'){
-      return d.value.name + "</br>" + Math.round(d.value.co2[year] * 10) / 10 + " tons CO<sub>2</sub> per caipta";
+      return d.value.name + "</br>" + Math.round(d.value.co2[year] * 10) / 10 + " tons CO<sub>2</sub> per capita";
     }
 
     else{
