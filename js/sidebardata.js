@@ -15,8 +15,6 @@ updateSideBar = function(){
 
 	d3.select("#trade-label").insert("p").attr("class", "value").html(Math.round(countries[code].tradingBalance[year]*100)/100)
 
-	d3.select('#additional-countries-hint').insert("p").attr("class", "value").html("Select two countries to compare them");
-
 	if (countries[code].exports[year] == undefined || isEmpty(countries[code].exports[year])) {
 		d3.select('#top-export-container').insert("p").attr("class", "value").html("No export data for "+landETT.properties.name+" in "+year);
 	} else {
@@ -25,9 +23,7 @@ updateSideBar = function(){
 			d3.select('#top-5-export').insert("li").attr("class", "value").html(countries[code].exports[year][i].partner+
 			  "<br/>("+countries[code].exports[year][i].mDollars+" m $)"
 			);
-
 			hoverExportCountries.push(countries[code].exports[year][i].partnerCode);
-
 		}
 	}
 	if (countries[code].imports[year] == undefined || isEmpty(countries[code].imports[year])) {
@@ -83,8 +79,6 @@ updateSideBar = function(){
 			hovered.classed("unfocus", true);
 		}
 	});
-
-
 }
 
 //Utility function to check if object is empty

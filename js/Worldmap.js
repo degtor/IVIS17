@@ -465,6 +465,21 @@ multipleCountriesCheckbox.change(function(){
 });
 
 
+// From http://stackoverflow.com/questions/15191058/css-rotation-cross-browser-with-jquery-animate 
+$.fn.animateRotate = function(angle, duration, easing, complete) {
+  var args = $.speed(duration, easing, complete);
+  var step = args.step;
+  return this.each(function(i, e) {
+    args.complete = $.proxy(args.complete, e);
+    args.step = function(now) {
+      $.style(e, 'transform', 'rotate(' + now + 'deg)');
+      if (step) return step.apply(e, arguments);
+    };
+
+    $({deg: 0}).animate({deg: angle}, args);
+  });
+};
+
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
 
@@ -474,14 +489,26 @@ $('.leftTriangle').click(function() {
 		d3.select("#sidebarMultipleCountries").classed("hidden", false);
 
 		sidebar.attr("out", "true");
-		$(".streck1").addClass("rotate rotate_transition");
+
+		$("#openclose").animateRotate(0, {
+  			duration: 600,
+  			easing: 'linear',
+  			complete: function () {},
+  			step: function () {}
+		});
+
 		sidebar
 			.animate({
 				right: "50%"
 			}, 600 );
 	} else {
 
-		$(".streck1").removeClass("rotate rotate_transition");
+		$("#openclose").animateRotate(45, {
+  			duration: 600,
+  			easing: 'linear',
+  			complete: function () {},
+  			step: function () {}
+		});
 		sidebar.attr("out", "false");
 		sidebar
 			.animate(
@@ -489,7 +516,7 @@ $('.leftTriangle').click(function() {
 			600, function(){
 				d3.select("#sidebarMultipleCountries").classed("hidden", true);
 				clearLineChart("#compare-line-chart");
-		  clearLineChart("#sideLineChartContainer");
+		  		clearLineChart("#sideLineChartContainer");
 				
 			})
 		}
