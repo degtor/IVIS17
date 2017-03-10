@@ -1,5 +1,7 @@
 updateSideBar = function(){
 	d3.select("#sidebarOneCountry").selectAll(".value").remove()
+	hoverExportCountries = [];
+	hoverImportCountries = [];
 	console.log("UPDATE SIDE")
 
 	var code = name2code(landETT.properties.name);
@@ -23,6 +25,9 @@ updateSideBar = function(){
 			d3.select('#top-5-export').insert("li").attr("class", "value").html(countries[code].exports[year][i].partner+
 			  "<br/>("+countries[code].exports[year][i].mDollars+" m $)"
 			);
+
+			hoverExportCountries.push(countries[code].exports[year][i].partnerCode);
+
 		}
 	}
 	if (countries[code].imports[year] == undefined || isEmpty(countries[code].imports[year])) {
@@ -33,8 +38,53 @@ updateSideBar = function(){
 			d3.select('#top-5-import').insert("li").attr("class", "value").html(countries[code].imports[year][i].partner+
 			  "<br/>("+countries[code].imports[year][i].mDollars+" m $)"
 			);
+
+			hoverImportCountries.push(countries[code].imports[year][i].partnerCode);
 		}
 	}
+
+	d3.select('#top-export-container').on('mouseover', function(d) {
+		highlightInMap();
+		function highlightInMap(){
+			if(hoverExportCountries[0] != undefined){
+				d3.selectAll(".country").classed("unfocus", true);
+				d3.select("#"+code).classed("unfocus", false);
+				for(i in hoverExportCountries){
+					var hovered = d3.select("#" + hoverExportCountries[i]);
+					hovered.classed("unfocus", false);
+				}
+			}
+		}
+	});
+	d3.select('#top-export-container').on('mouseout', function(d) {
+				for(i in hoverExportCountries){
+					var hovered = d3.select("#" + hoverExportCountries[i]);
+					hovered.classed("unfocus", true);
+				}
+	});
+
+
+	d3.select('#top-import-container').on('mouseover', function(d) {
+		highlightInMap();
+		function highlightInMap(){
+			if(hoverImportCountries[0] != undefined){
+				d3.selectAll(".country").classed("unfocus", true);
+				d3.select("#"+code).classed("unfocus", false);
+				for(i in hoverImportCountries){
+					var hovered = d3.select("#" + hoverImportCountries[i]);
+					hovered.classed("unfocus", false);
+				}
+			}
+		}
+	});
+	d3.select('#top-import-container').on('mouseout', function(d) {
+		for(i in hoverImportCountries){
+			var hovered = d3.select("#" + hoverImportCountries[i]);
+			hovered.classed("unfocus", true);
+		}
+	});
+
+
 }
 
 //Utility function to check if object is empty
