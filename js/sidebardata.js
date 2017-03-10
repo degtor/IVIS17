@@ -99,10 +99,8 @@ function isEmpty(obj) {
 var selectedlist;
 
 
-createSideBarSelected = function(){
-	selectedlist = d3.select("#selectedCountriesDiv")
-		.selectAll('li')
-		.data(selectedCountries)
+clearSideBarSelected = function(){
+		d3.select("#selectedCountriesDiv").selectAll("li").remove()
 }
 
 updateSideBarSelected = function(){
