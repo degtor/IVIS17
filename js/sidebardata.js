@@ -100,15 +100,9 @@ var selectedlist;
 
 
 createSideBarSelected = function(){
-	console.log("HALLÅ")
 	selectedlist = d3.select("#selectedCountriesDiv")
 		.selectAll('li')
 		.data(selectedCountries)
-
-	selectedlist	
-		.enter()
-    	.append('li')
-    	.text(function(d) { return d.properties.name });	
 }
 
 updateSideBarSelected = function(){
@@ -123,3 +117,6 @@ updateSideBarSelected = function(){
     	.append('li')
     	.text(function(d) { return d.properties.name });	
 }
+
+
+
