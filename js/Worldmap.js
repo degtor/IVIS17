@@ -431,7 +431,7 @@ multipleCountriesCheckbox.change(function(){
 	cb.val(cb.prop('checked'));
 
 	//Object for storing selected countries RESET on toggle
-	if(landETT!= undefined){
+	if(landETT != ""){
 		selectedCountries = [landETT]
 	}else{
 		selectedCountries = [];
@@ -439,8 +439,12 @@ multipleCountriesCheckbox.change(function(){
 	}
 
 	if (multipleCountriesCheckbox.val() == "true") {
+		console.log(selectedCountries, selectedCountries.length)
+		
+		if(selectedCountries[0] != ""){
+			updateSideBarSelected();
+		}
 
-		createSideBarSelected();
 		d3.select("#sidebarOneCountry").classed("hidden", true);
 		d3.select("#sidebarNoCountry").classed("hidden", true);
 
