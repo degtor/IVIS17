@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<svg height="5" width="5" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="lightstripe" patternUnits="userSpaceOnUse" width="5" height="5"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc1JyBoZWlnaHQ9JzUnPgogIDxyZWN0IHdpZHRoPSc1JyBoZWlnaHQ9JzUnIGZpbGw9J3doaXRlJy8+CiAgPHBhdGggZD0nTTAgNUw1IDBaTTYgNEw0IDZaTS0xIDFMMSAtMVonIHN0cm9rZT0nIzg4OCcgc3Ryb2tlLXdpZHRoPScxJy8+Cjwvc3ZnPg==" x="0" y="0" width="5" height="5"> </image> </pattern> </defs> </svg>
+
 <head>
     <meta charset="UTF-8">
     <title>Enviromind</title>
@@ -18,30 +20,37 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body>
 
 <div id="loading" style="text-align:center;">
-    <h1>Laddddddddddar</h1>
+    <h1 class="logo">ENVIROMIND</h1>
+    <div id="loadingSymbol">
+        <img src="spin.svg">
+    </div>
 </div>
 
 <div id="maincontent" class="vishidden">
 <div class="row">
     <div id="mapScreen" class="col-lg-9 col-md-9">
-        <input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false"> Select multiple countries<br>
+        <p class="logo">ENVIROMIND</p>
+        <div id="tradebalance-header"><h4>Trade balance</h4></div>
+        <label id="multipleCountriesCheckboxLabel"><input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false">Select multiple countries</label>
         <div id="container"></div>
         <div id="belowChart">
-            <div id="chart"></div>
             <div class="slider">
                 <div class="chroniton" id="slider2"></div>
                 <button type="button" class="btn btn-primary" onclick="co2val='capita', drawBarChart()">CO<sub>2</sub> per capita</button>
                 <button type="button" class="btn btn-primary" onclick="co2val='total', drawBarChart()">CO<sub>2</sub> total</button>
             </div>
+            <div id="barchartLabel"></div>
+            <div id="chart"></div>
         </div>
     </div>
-    
+
 <!--  Details on demand sidebar--> 
     <div id="sidebar" out="false" class="col-lg-3 col-md-3">
         <!-- Displayed if no country is selected -->
@@ -66,29 +75,21 @@
                     <ol id="top-5-import"></ol>
                 </div>
             </div>
-
-            <div class="charts-view">
-                <h4>Energy sources</h4>
-                    <div id="pie-chart-container"></div>
-				<h4>Trade Balance</h4>
-				    <div id="line-chart-container"></div>
-            </div>
-
-            <!-- On view 2 append text 'Select two countries to compare them' -->
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <span id="additional-countries-hint"></span>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
-
+			<div class="row">
+				<div class="charts-view">
+					<h4>Energy sources</h4>
+					<div id="pie-chart-container"></div>
+					<h4>Trade Balance</h4>
+					<div id="line-chart-container"></div>
+				</div>
+			</div>
         </div>
 
         <div id="multipleCountries" class="hidden">
-            <div class="leftTriangle">
-                <p class="streck1">-</p>
-                <p class="streck2">-</p>
+            <div class="leftTriangleContainer">
+                <div class="leftTriangle">
+                    <span id="openclose" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </div>
             </div>
             <h2>SELECTED COUNTRIES:</h2>
             <ul id="selectedCountriesDiv">
@@ -96,9 +97,9 @@
             <span id="deselectCountries">Deselect all</span>
         </div>
               
-        <div id="sidebarMultipleCountries">
+        <div id="sidebarMultipleCountries" class="hidden">
             <div id="compare-line-chart"></div>
-            <div id="sideLineChartContainer">Insert pretty TIMELINE here</div>
+            <div id="sideLineChartContainer"></div>
         </div>
 
          <!-- Displayed if several countries are selected --> 
@@ -110,7 +111,7 @@
         </div>
 
     </div>
-    </div><!-- End of row --> 
+    </div><!-- End of row -->
 </div>
 
 

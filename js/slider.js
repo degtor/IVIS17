@@ -25,7 +25,7 @@ var dateFormat = d3.time.format("%Y");
 d3.select("#slider2").call(chroniton()
       .domain([dateFormat.parse("1960"),dateFormat.parse("2015")])
       .labelFormat(d3.time.format('%Y'))
-      .width(1000)
+      .width(960)
       .height(50)
       .playButton(true) // can also be set to loop
       .on("change", function(d) {
@@ -36,9 +36,11 @@ d3.select("#slider2").call(chroniton()
           updateMapColors();
   	      
   	      //Only update detailview if avaliable   
-          if(multipleCountriesCheckbox.val() == "false"){
-	          drawPieChart();
-	          updateSideBar();
+          if(landETT != undefined){        //tidigare var det en enkel if-sats med if(multipleCountriesCheckbox.val() == "false" men då hänger det sig när details-viewn inte är igång /David
+	          if(landETT != ""){
+		          drawPieChart();
+		          updateSideBar();
+	         }
           }
       })
     );

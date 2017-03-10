@@ -2,38 +2,54 @@
 var svg = d3.select( "#chart")
             .append( "svg" )
             .attr('id', 'barChart')
-            .attr( "width", 1200 )
+            .attr( "width", 960 )
             .attr( "height", 260 )
             .attr( "display", "block")
-            .attr( "margin", "auto");
+            .attr( "margin", "auto")
+            //Möller! Det som är nedanför här till "///" är allt som är tillagt för att skala chartet!
+            .attr('viewBox', "0 0 960 260");
+
+
+var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återanvända detta
+    aspect = chart.width() / chart.height(),
+    container = chart.parent();
+
+$(window).on("resize", function() {
+    var targetWidth = container.width();
+    chart.attr("width", targetWidth/1.5);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
+    chart.attr("height", Math.round(targetWidth / aspect));
+}).trigger("resize");
+
+///////och här tar det slut :)
+
 
 var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
   
   var x = d3.scale.ordinal()
     .domain(labels)
-    .rangePoints([30, 1180]);
+    .rangePoints([0, 960]);
 
 
 
   var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top");
 
 
   svg.append("g")
     .attr("class", "myaxis")
-    .attr("transform","translate(0,240)")
+    .attr("transform","translate(0,50)")
     .call(xAxis);
 
 
-// text label for the axis
-  svg.append("text")
-  .attr("class","anchor")
-      .attr("y", 0)
-      .attr("x", -20 )
-      .attr("dy", "1em")
-      .style("text-anchor", "middle")
-      .text("CO2");   
+// // text label for the axis
+//   svg.append("text")
+//   .attr("class","anchor")
+//       .attr("y", 0)
+//       .attr("x", -20 )
+//       .attr("dy", "1em")
+//       .style("text-anchor", "middle")
+//       .text("CO2");   
 
 
 //Kolla om musknappen är nedtryckt (för att dra i slidern)
@@ -65,6 +81,17 @@ function drawBarChart(){
     }
   })
 
+//Setting label for CO2
+if(co2val == "capita"){
+  //write c02 label
+  d3.select("#barchartLabel").html("<h3>ton CO2/capita</h3>")
+}
+else{
+  //write total label
+  d3.select("#barchartLabel").html("<h3>million ton CO2</h3>")
+
+}
+
 //Creating data
 var data = d3.entries(countries).sort(
                                         function(a,b){
@@ -78,18 +105,6 @@ var data = d3.entries(countries).sort(
                      .data(data);
 
 
-var y = d3.scale.linear().domain([0,100])
-    .range([220, 10]);
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .ticks(2)
-    .orient("right");
-
-
-svg.append("g")
-      .attr("class", "myaxis")
-      .call(yAxis);
   // var nestedData=d3.nest()
   // .key(function(d) {return d.value.continentID;})
   // .sortKeys(d3.ascending)
@@ -126,29 +141,29 @@ svg.append("g")
           return 0;
         }
         else if (co2val =="capita"){
-          return d.value.co2[year]*2;
+          return d.value.co2[year]*10;
         }
 
         else if(co2val = "total"){
-          return d.value.co2total[year]/50000;
+          return d.value.co2total[year]/100;
         }
 
       })
 
       //Set y position to get bars in right orientation
       .attr( "y", function(d){
-        //return 0  //Quickfix för flipped barchart. Avvaktar
+        return 60;  //Quickfix för flipped barchart. Avvaktar
         
-        if (isNaN(d.value.co2[year])){
-          return 0;
-        }
-        else if (co2val =="capita"){
-          return 220 - d.value.co2[year]*2;
-        }
+        // if (isNaN(d.value.co2[year])){
+        //   return 0;
+        // }
+        // else if (co2val =="capita"){
+        //   return 220 - d.value.co2[year]*2;
+        // }
 
-        else if(co2val == "total"){
-          return 220 - d.value.co2total[year]/50000;
-        }
+        // else if(co2val == "total"){
+        //   return 220 - d.value.co2total[year]/50000;
+        // }
       })
 
       

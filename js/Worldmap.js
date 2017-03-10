@@ -18,7 +18,7 @@ var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
 var landETT;
-var landTwo; 
+var landTwo;
 var clickState = 0;
 var mapDone = false;
 var selectedCountries = [];
@@ -281,11 +281,12 @@ function countryInteraction(){
 				clearTradeLineChart();
 		        updateSideBar();
   				drawPieChart();
-				drawLineTradeBalance(countries[code].tradingBalance);	
 				
 				// Visa div för one country och göm för no country		 
 			  	d3.select("#sidebarNoCountry").classed("hidden", true); 		
  		  		d3.select("#sidebarOneCountry").classed("hidden", false);
+				
+				drawLineTradeBalance(countries[code].tradingBalance);	
 			}
 		}
 
@@ -373,7 +374,7 @@ function move() {
   worldG.attr("transform", "translate(" + t + ")scale(" + s + ")");
 
   //adjust the country hover stroke width based on zoom level
-  d3.selectAll(".country").style("stroke-width", 1.5 / s);
+  //d3.selectAll(".country").style("stroke-width", 1.5 / s);
 
 }
 
@@ -401,7 +402,7 @@ function updateMapColors(){
 
       		//Om landet från kartan inte inte finns i iso-listan
       		if(kod==''){
-            return "black"
+            return "url(#lightstripe)"
 	      	}
 
 	      	//Hämta trading balance för rätt år och land
@@ -412,7 +413,7 @@ function updateMapColors(){
 
           //Returnera svart om data saknas
             if (tradingBalance == ".." || tradingBalance == undefined){
-              return "black";
+              return "url(#lightstripe)";
             }
 
             //Generera annars färg beroende på trading balance 
@@ -429,56 +430,105 @@ multipleCountriesCheckbox.change(function(){
 	cb = $(this);
 	cb.val(cb.prop('checked'));
 
-	//Object for storing selected countries RESET on toggle
-	if(landETT!= undefined){
-		selectedCountries = [landETT]
-	}else{
-		selectedCountries = [];
-		d3.selectAll(".country").classed("unfocus", false);
-	}
-
 	if (multipleCountriesCheckbox.val() == "true") {
+	// Om multiple countries är valt.
+	// Rensa sidebar ifall selected countries är tom eller ifall den är undefined
+	// Här hamnar man också om man kommer hit efter att ha klickat i och klickat av multiple countries utan att ha valt något imellan
+		if(selectedCountries[0] == "" || selectedCountries[0] == undefined){
+			clearSideBarSelected();
+		}else{
+	// Annars uppdatera selectedCountries-listan så att landEtt verkligen ligger där och uppdatera sidebar så att det visas
+			selectedCountries = [landETT]	
+			updateSideBarSelected();
+		}
 
-		createSideBarSelected();
+	// Visa divar relaterade till multiple countries och göm övriga
 		d3.select("#sidebarOneCountry").classed("hidden", true);
 		d3.select("#sidebarNoCountry").classed("hidden", true);
 
 		d3.select("#multipleCountries").classed("hidden", false);
-		d3.select("#sidebarCompareCountries").classed("hidden", false);
 	} else {
+		// Om multiple countries är av-valt
+		// Rensa valda länder och ta bort fokus från länder och bars
+		selectedCountries = [];
 
+		d3.selectAll(".country").classed("unfocus", false);
 		d3.selectAll(".bar")
 	  		.attr('fill', 'black');
 
+	  	// Visa att inget land är valt och göm alla divar relaterade till flera länder
 		d3.select("#sidebarNoCountry").classed("hidden", false);
 
-		d3.select("#sidebarCompareCountries").classed("hidden", true);
+		d3.select("#sidebarMultipleCountries").classed("hidden", true);
 		d3.select("#multipleCountries").classed("hidden", true);
 	}
 });
 
 
+// From http://stackoverflow.com/questions/15191058/css-rotation-cross-browser-with-jquery-animate 
+$.fn.animateRotate = function(angle, duration, easing, complete) {
+  var args = $.speed(duration, easing, complete);
+  var step = args.step;
+  return this.each(function(i, e) {
+    args.complete = $.proxy(args.complete, e);
+    args.step = function(now) {
+      $.style(e, 'transform', 'rotate(' + now + 'deg)');
+      if (step) return step.apply(e, arguments);
+    };
+
+    $({deg: 0}).animate({deg: angle}, args);
+  });
+};
+
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
-		drawLine(selectedCountries)
+
+		drawLine(selectedCountries,"#compare-line-chart", "co2");
+		drawLine(selectedCountries, "#sideLineChartContainer", "trading");
+
+		d3.select("#sidebarMultipleCountries").classed("hidden", false);
+
 		sidebar.attr("out", "true");
-		$(".streck1").addClass("rotate rotate_transition");
+
+		$("#openclose").animateRotate(0, {
+  			duration: 600,
+  			easing: 'linear',
+  			complete: function () {},
+  			step: function () {}
+		});
+
 		sidebar
 			.animate({
 				right: "50%"
 			}, 600 );
 	} else {
-		clearLineChart();
-		$(".streck1").removeClass("rotate rotate_transition");
+
+		$("#openclose").animateRotate(45, {
+  			duration: 600,
+  			easing: 'linear',
+  			complete: function () {},
+  			step: function () {}
+		});
 		sidebar.attr("out", "false");
 		sidebar
-			.animate({
-				right: 0
-			}, 600 );
-	}
+			.animate(
+			{right: 0}, 
+			600, function(){
+				d3.select("#sidebarMultipleCountries").classed("hidden", true);
+				clearLineChart("#compare-line-chart");
+		  		clearLineChart("#sideLineChartContainer");
+				
+			})
+		}
 });
 
 
 $('#deselectCountries').click(function() {
-	multipleCountries = [];
+	selectedCountries = [];
+	clearSideBarSelected();
+	
+	d3.selectAll(".country").classed("unfocus", false);
+	d3.selectAll(".bar")
+	  	.attr('fill', 'black');
 });
+
