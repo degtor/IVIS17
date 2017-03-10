@@ -57,7 +57,13 @@ canvas {
     /*padding: 20px;*/
 
 }
+#loading{
+  padding-top: 15%;
+}
 
+#loadingSymbol{
+  text-align: center;
+}
 .logo {
     display:inline-block;
     font-family: 'Raleway', sans-serif;
