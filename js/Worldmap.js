@@ -467,7 +467,9 @@ multipleCountriesCheckbox.change(function(){
 
 $('.leftTriangle').click(function() {
 	if (sidebar.attr("out") == "false") {
-		drawLine(selectedCountries)
+
+		drawLine(selectedCountries,"#compare-line-chart", "co2");
+		drawLine(selectedCountries, "#sideLineChartContainer", "trading");
 
 		d3.select("#sidebarMultipleCountries").classed("hidden", false);
 
@@ -478,6 +480,7 @@ $('.leftTriangle').click(function() {
 				right: "50%"
 			}, 600 );
 	} else {
+
 		$(".streck1").removeClass("rotate rotate_transition");
 		sidebar.attr("out", "false");
 		sidebar
@@ -485,10 +488,9 @@ $('.leftTriangle').click(function() {
 			{right: 0}, 
 			600, function(){
 				d3.select("#sidebarMultipleCountries").classed("hidden", true);
-				clearLineChart();
-				// Såhär ska det stå, istället för raden över
-				// clearLineChart(#compare-line-chart);
-				// clearLineChart(#sideLineChartContainer);
+				clearLineChart("#compare-line-chart");
+		  clearLineChart("#sideLineChartContainer");
+				
 			})
 		}
 });
