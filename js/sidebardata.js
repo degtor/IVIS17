@@ -13,9 +13,17 @@ updateSideBar = function(){
 
 		d3.select("#year-label").insert("h2").attr("class", "value").html(year)
 
-		d3.select("#co2-label").insert("p").attr("class", "value").html(Math.round(countries[code].co2[year]*100)/100 + " ton")
+		if(countries[code].co2[year] == ""){
+			d3.select("#co2-label").insert("p").attr("class", "value").html('No data avaliable')						
+		}else{
+			d3.select("#co2-label").insert("p").attr("class", "value").html(Math.round(countries[code].co2[year]*100)/100 + " ton")
+		}
 
-		d3.select("#trade-label").insert("p").attr("class", "value").html(Math.round(countries[code].tradingBalance[year]*100)/100 + "%")
+		if(countries[code].tradingBalance[year] == ".."){
+			d3.select("#trade-label").insert("p").attr("class", "value").html('No data avaliable')						
+		}else{
+			d3.select("#trade-label").insert("p").attr("class", "value").html(Math.round(countries[code].tradingBalance[year]*100)/100 + "%")					
+		}
 
 		d3.select('#top-5-export').insert("h4").attr("class", "value").html("Exporting to");
 		if (countries[code].exports[year] == undefined || isEmpty(countries[code].exports[year])) {
