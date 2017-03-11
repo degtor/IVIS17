@@ -7,7 +7,8 @@ var svg = d3.select( "#chart")
             .attr( "display", "block")
             .attr( "margin", "auto")
             //Möller! Det som är nedanför här till "///" är allt som är tillagt för att skala chartet!
-            .attr('viewBox', "0 0 960 260");
+            .attr('viewBox', "0 0 960 260")
+            .attr("preserveAspectRatio","xMidYMid meet");
 
 
 var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återanvända detta
@@ -16,7 +17,7 @@ var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återa
 
 $(window).on("resize", function() {
     var targetWidth = container.width();
-    chart.attr("width", targetWidth/1.5);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
+    chart.attr("width", targetWidth);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
     chart.attr("height", Math.round(targetWidth / aspect));
 }).trigger("resize");
 
