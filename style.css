@@ -60,7 +60,7 @@ canvas {
 #barChart{
     display: block; 
     margin: auto;
-    padding-left: 3%;
+    padding-left: 4%;
     padding-right: 3%;
 
 }
@@ -506,7 +506,7 @@ top: .5ex;
 /*Bar chart continent labeling */
 
 .myaxis text {
-  font: 10px sans-serif;
+  font: 14px sans-serif;
 }
 
 .myaxis .tick line{
