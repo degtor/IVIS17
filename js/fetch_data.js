@@ -342,8 +342,8 @@ function addRenewables(){
 			var code = data[i].CountryCode;
 			if(countries[code]){
 				for(j=0; j<=22; j++){
-					countries[code].renewables[1990+j] = [	["renewable", Number(data[i][1990+j])],
-															["fossil", 100-data[i][1990+j]]
+					countries[code].renewables[1990+j] = [	["Fossil fuel", 100-data[i][1990+j]],
+															["Renewable", Number(data[i][1990+j])]
 														]
 				}
 			}
