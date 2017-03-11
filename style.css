@@ -6,6 +6,7 @@ html,body
 body {
     font-family: "Roboto";
     background-color: #E8E8E8;
+    color: #424242;
 }
 /* FONTS */
 
@@ -433,41 +434,35 @@ div.tooltip {
 
 /* ny slider */
 .chroniton {
-  font: 10px sans-serif;
+  font: 14px sans-serif;
   outline:none;
   text-align: center;
 }
 .chroniton .play-button {
   fill:#444;
 }
-.axis path,
-.axis line {
+#slider2 .axis path,
+#slider2 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-.x.axis, .slider text {
+#slider2 .x.axis, .slider text {
   -webkit-user-select:none;
   -moz-user-select:none;
   user-select:none;
+  color: #424242;
 }
-.x.axis path.domain {
-  stroke-width:10;
-  stroke-linecap:round;
-  stroke:#ddd;
+#slider2  .x.axis path.domain {
+  stroke-width:6;
+  stroke:#424242;
 }
-.x.axis path.halo {
-  stroke-width:12;
-  stroke-linecap:round;
-  stroke:#ccc;
-}
-.tick line {
-  stroke:#d0d0d0;
-  stroke-width:1;
-  transform:translate(0px, -5px);
+
+#slider2 .tick line {
+visibility: hidden;
 }
 .slider .handle {
-  fill: #fff;
+  fill: white;
   stroke-width:1;
   stroke:#333;
 }
@@ -486,6 +481,13 @@ div.tooltip {
 }
 .label {
   font:bold 12px sans-serif;
+}
+
+#slider2{
+  height: 60px;
+}
+.chroniton{
+  width: 100%;
 }
 /* ny slider end*/
 
@@ -530,7 +532,7 @@ top: .5ex;
 }
 .myaxis path,
 .myaxis line {
-  fill: b;
+  fill: #424242;
   stroke: #000;
   shape-rendering: crispEdges;
   margin: 10px;
