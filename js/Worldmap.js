@@ -1,5 +1,11 @@
 d3.select(window).on("resize", throttle);
 
+
+var hojd = $( document ).height();
+
+d3.select("#mapScreen").attr("height", hojd*1.5);
+d3.select("#sidebar").attr("height", hojd*1.5);
+
 //Declaring initial variables
 var country; 
 
@@ -18,6 +24,7 @@ var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
 
 var tooltip = d3.select("#container").append("div").attr("class", "tooltip hidden");
+
 var tooltipSide = d3.select("#maincontent").append("div").attr("class", "tooltip hidden");
 
 var landETT;
