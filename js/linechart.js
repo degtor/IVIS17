@@ -26,12 +26,6 @@ var valueline = d3.svg.line()
     .y(function(d) { return y(d.value); });
 
 
-// Define the line
-var valueline2 = d3.svg.line()
-    .x(function(d) { return x(d.key); })
-    .y(function(d) { return y(d.value); });
-
-
 // Adds the svg canvas
 var mySVG = d3.select(id)
     .append("svg")
@@ -44,8 +38,6 @@ var mySVG = d3.select(id)
 
 
 // Get the data
-
-
 
   for(i in selectedCountries){
     var code = name2code(selectedCountries[i].properties.name);
@@ -66,35 +58,34 @@ var mySVG = d3.select(id)
     else{
       y.domain([-30,30])
     }
+
+    //#FF5252",
+
+    //Setting color scale
+    var colorList = ["#EEEEEE", "#0091EA"];
+    var lineColor = d3.scale.linear().domain([0,10]).range(colorList)
+
     // Add the valueline path.
     mySVG.append("path")
         .attr("class", "line")
         .attr('id', code)
-        .attr("d", valueline(data));
+        .attr("d", valueline(data))
+        .attr("stroke", lineColor(i));
 
 // LABELS - choosing the 50th value of the co2 to get aproximately right height placement
        
        //DETTA BEHÖVER FIXAS - CRASHAR IBLAND NÄR DET INTE FINNS ETT VÄRDE FÖR data[52]
 
-        if(data[52].value != "" || data[52].value != ".." || data[52] != undefined){
-          mySVG.append("text")
-          .attr("transform", "translate(" + (width+3) + "," + y(data[52].value) + ")") 
-          .attr("dy", ".35em")
-          .attr("text-anchor", "start")
-          .style("fill", "black")
-          .text(selectedCountries[i].properties.name);  
-        }
+        // if(data[52].value != "" || data[52].value != ".." || data[52] != undefined){
+        //   mySVG.append("text")
+        //   .attr("transform", "translate(" + (width+3) + "," + y(data[52].value) + ")") 
+        //   .attr("dy", ".35em")
+        //   .attr("text-anchor", "start")
+        //   .style("fill", "black")
+        //   .text(selectedCountries[i].properties.name);  
+        // }
   } 
 
-    // Add the valueline path.
- /*   mySVG.append("path")
-        .attr("class", "line")
-        .attr("d", valueline(data));
-
-     mySVG.append("path")
-            .attr("class", "line")
-            .attr("d", valueline2(data2))
-            .style("stroke", "black"); */ 
 
     // Add the X Axis
     mySVG.append("g")
@@ -138,14 +129,6 @@ else{
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("YEAR"); 
-
-    //labels for each line
- //   mySVG.append("text")
-//        .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")")
- //       .attr("dy", ".35em")
-   //     .attr("text-anchor", "start")
-     //   .style("fill", "black")
-      //  .text(selectedCountries[0].properties.name);
 
 }
 
