@@ -106,9 +106,9 @@ function chroniton() {
       var axisNode = g.select('.x.axis').node();
       axisNode.insertBefore(domainNode, axisNode.childNodes[0]);
 
-      g.select('.domain')
-        .select(function() { return this.parentNode.insertBefore(this.cloneNode(true), this.parentNode.childNodes[0]); })
-          .attr('class', 'halo');
+      // g.select('.domain')
+      //   .select(function() { return this.parentNode.insertBefore(this.cloneNode(true), this.parentNode.childNodes[0]); })
+      //     .attr('class', 'halo');
 
       g.select('.x.axis .domain')
         .on('click', function() {

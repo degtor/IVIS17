@@ -425,31 +425,25 @@ div.tooltip {
 .chroniton .play-button {
   fill:#444;
 }
-.axis path,
-.axis line {
+#slider2 .axis path,
+#slider2 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-.x.axis, .slider text {
+#slider2 .x.axis, .slider text {
   -webkit-user-select:none;
   -moz-user-select:none;
   user-select:none;
 }
-.x.axis path.domain {
-  stroke-width:10;
+#slider2  .x.axis path.domain {
+  stroke-width:6;
   stroke-linecap:round;
-  stroke:#ddd;
+  stroke:black;
 }
-.x.axis path.halo {
-  stroke-width:12;
-  stroke-linecap:round;
-  stroke:#ccc;
-}
-.tick line {
-  stroke:#d0d0d0;
-  stroke-width:1;
-  transform:translate(0px, -5px);
+
+#slider2 .tick line {
+visibility: hidden;
 }
 .slider .handle {
   fill: #fff;
@@ -522,7 +516,7 @@ top: .5ex;
 }
 .myaxis path,
 .myaxis line {
-  fill: b;
+  fill: black;
   stroke: #000;
   shape-rendering: crispEdges;
   margin: 10px;
