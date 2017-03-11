@@ -53,7 +53,7 @@ var legend = svg2.selectAll('.legend')
   			return 'none'
   		}
   	});
-
+	
 legend.append('rect')
 	.attr('width', legendRectSize)
 	.attr('height', legendRectSize)
@@ -74,6 +74,10 @@ legend.append('text')
 drawPieChart = function(){
 	console.log(year)
 	code = name2code(landETT.properties.name);
+	
+	svg2.select("#piechart-nodatainfo")
+	  .remove();
+			
 	if(year < 1990 || year > 2012){
 		path.data(pie(nodataset))
 			.attr('d', arc)
@@ -82,6 +86,11 @@ drawPieChart = function(){
 		})	
 
 		pie.value(function(d) { return d[1]; })
+		
+		svg2.append("text")
+		  .attr('id', 'piechart-nodatainfo')
+		  .attr("text-anchor", "middle")
+		  .text("Data available 1990-2012");
 	}
 	else{
 		path.data(pie(countries[code].renewables[year]))
@@ -90,6 +99,7 @@ drawPieChart = function(){
     		return color(d.data[0]);
 		})		
 		pie.value(function(d) { return d[1]; })
+
 	}
 }
 
