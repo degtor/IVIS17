@@ -54,7 +54,7 @@ canvas {
 }
 
 #maincontent{
-  height:1000px;
+  height:1200px;
 }
 
 #barChart{
@@ -64,6 +64,7 @@ canvas {
     padding-right: 3%;
 
 }
+
 #loading{
   padding-top: 15%;
 }
@@ -292,7 +293,7 @@ div.tooltip {
 }
 
 #mapScreen {
-    height:1000px;
+    height:1200px;
     width:70%;
     margin-left:45px;
     background-color: white;
