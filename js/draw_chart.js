@@ -2,12 +2,11 @@
 var svg = d3.select( "#chart")
             .append( "svg" )
             .attr('id', 'barChart')
-            .attr( "width", 960 )
-            .attr( "height", 260 )
             .attr( "display", "block")
             .attr( "margin", "auto")
             //Möller! Det som är nedanför här till "///" är allt som är tillagt för att skala chartet!
-            .attr('viewBox', "0 0 960 260");
+            .attr('viewBox', "0 0 960 1000")
+            .attr("preserveAspectRatio","xMidYMid meet");
 
 
 var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återanvända detta
@@ -16,8 +15,9 @@ var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återa
 
 $(window).on("resize", function() {
     var targetWidth = container.width();
-    chart.attr("width", targetWidth/1.5);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
-    chart.attr("height", Math.round(targetWidth / aspect));
+    var targetHeight = container.height()
+    chart.attr("width", targetWidth);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
+    chart.attr("height", targetHeight);
 }).trigger("resize");
 
 ///////och här tar det slut :)
@@ -121,7 +121,7 @@ var data = d3.entries(countries).sort(
           return 0;
         }
         else if ($('input[name="co2val"]:checked').val() == "capita"){
-          return d.value.co2[year]*10;
+          return d.value.co2[year]*5;
         }
 
         else if($('input[name="co2val"]:checked').val() == "total"){
