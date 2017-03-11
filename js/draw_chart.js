@@ -5,7 +5,7 @@ var svg = d3.select( "#chart")
             .attr( "display", "block")
             .attr( "margin", "auto")
             //Möller! Det som är nedanför här till "///" är allt som är tillagt för att skala chartet!
-            .attr('viewBox', "0 0 960 1200")
+            .attr('viewBox', "0 0 960 1000")
             .attr("preserveAspectRatio","xMidYMid meet");
 
 
@@ -121,11 +121,11 @@ var data = d3.entries(countries).sort(
           return 0;
         }
         else if ($('input[name="co2val"]:checked').val() == "capita"){
-          return d.value.co2[year]*6;
+          return d.value.co2[year]*5;
         }
 
         else if($('input[name="co2val"]:checked').val() == "total"){
-          return d.value.co2total[year]/12000;
+          return d.value.co2total[year]/2000;
         }
 
       })
