@@ -112,6 +112,7 @@ function readData(){
 //Updates visualisations when manipulation 
 //of countries-list is finished
 function updateVis(){
+	$('input:radio[value=capita]').prop('checked', true);
 	console.log("here are our countries after manipulation", countries);
 // Draws map, barchart, updates mapcolor, hides loading message and displays it all! 
 	draw(topo);

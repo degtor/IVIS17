@@ -3,15 +3,21 @@ function drawLine(selectedCountries, id, type){
 
 //var data = d3.entries(countries[name2code(selectedCountries[0].properties.name)].co2);
 // var data2 = d3.entries(countries[name2code(selectedCountries[1].properties.name)].co2);
-
+var legendRectSize = 18;
+var legendSpacing = 4;
 // Set the dimensions of the canvas / graph
 var margin = {top: 30, right: 30, bottom: 30, left: 30},
     width = 450 - margin.left - margin.right,
     height = 320 - margin.top - margin.bottom;
 
+
+var radius = Math.min(width, height) / 2;
+
+
 // Set the ranges
 var x = d3.scale.linear().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
+
 
 // Define the axes
 var xAxis = d3.svg.axis().scale(x)
@@ -24,14 +30,11 @@ var yAxis = d3.svg.axis().scale(y)
 var valueline = d3.svg.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); })
-	.defined(function(d) {return d.value != "";});
-
-
-// Define the line
-var valueline2 = d3.svg.line()
-    .x(function(d) { return x(d.key); })
-    .y(function(d) { return y(d.value); });
-
+	  .defined(function(d) {return d.value != "";});
+ 
+ //Setting color scale
+    var colorList = ["#EEEEEE", "#0091EA"];
+    var lineColor = d3.scale.linear().domain([0,5]).range(colorList)
 
 // Adds the svg canvas
 var mySVG = d3.select(id)
@@ -44,9 +47,44 @@ var mySVG = d3.select(id)
               "translate(" + margin.left + "," + margin.top + ")");
 
 
+var legend = mySVG.selectAll('.legend')
+      .data(selectedCountries)
+      .enter()
+      .append('g')
+      .attr('class', 'line-legend')
+      .attr('transform', function(d, i) {
+    var height = -legendRectSize - legendSpacing;
+    var offset =  height * selectedCountries.length;
+    var horz = -2 * legendRectSize;
+    var vert = i * height - offset;
+    return 'translate(' + horz + ',' + vert + ')';
+  });
+
+
+
+    legend.append('rect')
+        .attr('width', legendRectSize)
+  .attr('height', legendRectSize)
+      .style('fill', function(d,i){ return lineColor(i);})
+      .style('stroke', function(d,i){ return lineColor(i);})
+      .attr('rx', 10)
+      .attr('ry', 10)
+      .attr("x", 450)
+
+
+
+    legend.append('text')
+      .attr('x', 470)
+      .attr("y", legendRectSize - legendSpacing)
+      .attr("class", function(d,i){return "textis-"+name2code(selectedCountries[i].properties.name)})
+
+      .text(function(d){ return d.properties.name;})
+        .attr('text-transform', 'capitalize')
+        .attr('font-size', '12px')
+        .attr('opacity', 0.5)
+
+
 // Get the data
-
-
 
   for(i in selectedCountries){
     var code = name2code(selectedCountries[i].properties.name);
@@ -67,35 +105,28 @@ var mySVG = d3.select(id)
     else{
       y.domain([-30,30])
     }
+
+ 
     // Add the valueline path.
     mySVG.append("path")
         .attr("class", "line")
         .attr('id', code)
-        .attr("d", valueline(data));
+        .attr("d", valueline(data))
+        .attr("stroke", lineColor(i))
+        .on("mouseover", function (d) {    
+          d3.select(this)                          //on mouseover of each line, give it a nice thick stroke
+          .style("stroke-width",'4px');
+          d3.selectAll(".textis-"+this.id).style("opacity", 1)
 
-// LABELS - choosing the 50th value of the co2 to get aproximately right height placement
-       
-       //DETTA BEHÖVER FIXAS - CRASHAR IBLAND NÄR DET INTE FINNS ETT VÄRDE FÖR data[52]
-
-        if(data[52].value != "" || data[52].value != ".." || data[52] != undefined){
-          mySVG.append("text")
-          .attr("transform", "translate(" + (width+3) + "," + y(data[52].value) + ")") 
-          .attr("dy", ".35em")
-          .attr("text-anchor", "start")
-          .style("fill", "black")
-          .text(selectedCountries[i].properties.name);  
-        }
+        })
+        .on("mouseout", function(d) {        //undo everything on the mouseout
+            d3.select(this)
+              .style("stroke-width",'2px'); 
+              d3.selectAll(".textis-"+this.id).style("opacity", 0.5)     
+        })
+ 
   } 
 
-    // Add the valueline path.
- /*   mySVG.append("path")
-        .attr("class", "line")
-        .attr("d", valueline(data));
-
-     mySVG.append("path")
-            .attr("class", "line")
-            .attr("d", valueline2(data2))
-            .style("stroke", "black"); */ 
 
     // Add the X Axis
     mySVG.append("g")
@@ -140,15 +171,8 @@ else{
       .style("text-anchor", "middle")
       .text("YEAR"); 
 
-    //labels for each line
- //   mySVG.append("text")
-//        .attr("transform", "translate(" + (width+3) + "," + y(data[50].value) + ")")
- //       .attr("dy", ".35em")
-   //     .attr("text-anchor", "start")
-     //   .style("fill", "black")
-      //  .text(selectedCountries[0].properties.name);
-
 }
+
 
 function clearLineChart(id){
     var mySVG = d3.select(id).html("");

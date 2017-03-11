@@ -37,12 +37,10 @@ span{
 
 /* END OF FONTS */
 
-path {
+#container path {
     stroke: white;
-    stroke-width: 0.5px;
-    fill: black;
+    stroke-width: 1px;
 }
-
 
 svg {
     font: 10px sans-serif;
@@ -111,7 +109,7 @@ canvas {
 
 .axis line, .axis path {
     fill: none;
-    stroke: #000;
+    /*stroke: #000;*/
     shape-rendering: crispEdges;
 }
 
@@ -266,7 +264,6 @@ div.tooltip {
 #sidebarMultipleCountries { font: 12px;}
 
 #sidebarMultipleCountries path { 
-    stroke: black;
     stroke-width: 2;
     fill: none;
 }
