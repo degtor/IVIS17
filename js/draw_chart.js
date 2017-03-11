@@ -121,7 +121,7 @@ var data = d3.entries(countries).sort(
           return 0;
         }
         else if ($('input[name="co2val"]:checked').val() == "capita"){
-          return d.value.co2[year]*10;
+          return d.value.co2[year]*6;
         }
 
         else if($('input[name="co2val"]:checked').val() == "total"){
