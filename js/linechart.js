@@ -13,6 +13,7 @@ var margin = {top: 30, right: 30, bottom: 30, left: 30},
 var x = d3.scale.linear().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
 
+
 // Define the axes
 var xAxis = d3.svg.axis().scale(x)
     .orient("bottom").ticks(4).tickFormat(d3.format("d"));
@@ -70,8 +71,20 @@ var mySVG = d3.select(id)
         .attr("class", "line")
         .attr('id', code)
         .attr("d", valueline(data))
-        .attr("stroke", lineColor(i));
+        .attr("stroke", lineColor(i))
+        .on("mouseover", function (d) {    
+          d3.select(this)                          //on mouseover of each line, give it a nice thick stroke
+          .style("stroke-width",'4px');
+          
+        })
+        .on("mouseout", function(d) {        //undo everything on the mouseout
+            d3.select(this)
+              .style("stroke-width",'2px');      
+        })
 
+        //then append some 'nearly' invisible circles at each data point  
+  
+      
 // LABELS - choosing the 50th value of the co2 to get aproximately right height placement
        
        //DETTA BEHÖVER FIXAS - CRASHAR IBLAND NÄR DET INTE FINNS ETT VÄRDE FÖR data[52]
@@ -84,6 +97,19 @@ var mySVG = d3.select(id)
         //   .style("fill", "black")
         //   .text(selectedCountries[i].properties.name);  
         // }
+
+
+//     mySVG.on('mouseover', function(d){
+//       tooltip.classed("hidden", false)
+//         .attr("style", "left:"+(this)+"px;top:"+(this)+"px")
+//         .attr("class", "tooltip")
+//         .html(selectedCountries[i].properties.name);
+//     })
+//     mySVG.on('mouseout', function(d){
+//       tooltip.classed("hidden", true)
+//             .classed("tooltip", true)
+// })
+
   } 
 
 
