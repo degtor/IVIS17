@@ -112,7 +112,7 @@ var data = d3.entries(countries).sort(
         return i*5;
       })
       .attr( "width", 4 )
-      .attr( "fill", "black" )
+      .attr( "fill", "#424242" )
 
     //Set bar heights based on data
     selection

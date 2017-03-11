@@ -73,6 +73,9 @@ var mySVG = d3.select(id)
         .attr("d", valueline(data));
 
 // LABELS - choosing the 50th value of the co2 to get aproximately right height placement
+       
+       //DETTA BEHÖVER FIXAS - CRASHAR IBLAND NÄR DET INTE FINNS ETT VÄRDE FÖR data[52]
+
         if(data[52].value != "" || data[52].value != ".." || data[52] != undefined){
           mySVG.append("text")
           .attr("transform", "translate(" + (width+3) + "," + y(data[52].value) + ")") 

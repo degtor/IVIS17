@@ -1,7 +1,7 @@
-
-var handleRadius = 6,
+// Code from https://github.com/xaranke/chroniton 
+var handleRadius = 4,
   handleHeight = 8,
-  caretHeight = 5,
+  caretHeight = 0,
   play = false,
   handleD = 'M' + [
     -handleRadius, -handleHeight,

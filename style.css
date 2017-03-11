@@ -6,6 +6,7 @@ html,body
 body {
     font-family: "Roboto";
     background-color: #E8E8E8;
+    color: #424242;
 }
 /* FONTS */
 
@@ -435,18 +436,19 @@ div.tooltip {
   -webkit-user-select:none;
   -moz-user-select:none;
   user-select:none;
+  color: #424242;
 }
 #slider2  .x.axis path.domain {
   stroke-width:6;
   stroke-linecap:round;
-  stroke:black;
+  stroke:#424242;
 }
 
 #slider2 .tick line {
 visibility: hidden;
 }
 .slider .handle {
-  fill: #fff;
+  fill: white;
   stroke-width:1;
   stroke:#333;
 }
@@ -516,7 +518,7 @@ top: .5ex;
 }
 .myaxis path,
 .myaxis line {
-  fill: black;
+  fill: #424242;
   stroke: #000;
   shape-rendering: crispEdges;
   margin: 10px;
