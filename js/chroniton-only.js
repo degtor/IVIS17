@@ -10,7 +10,7 @@ var handleRadius = 4,
     0, handleHeight,
     -handleRadius, handleHeight - caretHeight,
     -handleRadius, -handleHeight].join(','),
-  playWidth = 10,
+  playWidth = 21,
   playD = 'M' + [
     0, 0,
     playWidth/1.2, playWidth/2,
@@ -61,7 +61,7 @@ function chroniton() {
     if (selection instanceof HTMLElement) selection = d3.select(selection);
 
     selection.each(function() {
-      if (playButton) { margin.left = 30; }
+      if (playButton) { margin.left = 55; }
       if (noLabel) { margin.top = 0; }
 
       xScale
@@ -122,15 +122,28 @@ function chroniton() {
           .attr('transform', 'translate(2, 2)')
           .attr('d', playD)
           .attr('class', 'play-button');
+        var playRect = playButtonG.append('circle')
+          .attr('fill', 'none')
+          .attr('pointer-events', 'visible')
+          .attr('cx', 10)
+          .attr('cy', 12)
+          .attr("r", 17)
+          .attr("stroke", "#424242")
+          .attr("stroke-width", "2")
         var playRect = playButtonG.append('rect')
           .attr('fill', 'none')
           .attr('pointer-events', 'visible')
-          .attr('width', 15)
-          .attr('height', 15)
+          .attr('width', 22)
+          .attr('height', 22)
+          .style("padding-left","10px")
           .on('click', function() {
             chart.playPause();
             playIcon.attr('d', chart.playing() ? pauseD : playD);
           });
+
+
+
+
       }
 
       var slider = g.append('g')
