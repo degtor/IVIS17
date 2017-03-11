@@ -3,7 +3,7 @@ d3.select('#tradebalance-info').on('mouseover', function(d){
         .attr("style", "left:"+(event.pageX)+"px;top:"+(event.pageY)+"px")
         .attr("class", "info-box-tooltip")
         .html("	<h4>Trade balance</h4>"+
-        		"<p>Trade balance as percentage of GDP (Gross Domestic Product)"+ 
+        		"<p>Trade balance as percentage of GDP (Gross Domestic Product) "+ 
         		"is the difference between a country’s exports and imports for "+ 
         		"goods and services standardized to its GDP for the given year."+ "</br></br>"+ 
         		"A positive trade balance means that the country exports more than "+ 
@@ -14,12 +14,13 @@ d3.select('#tradebalance-info').on('mouseover', function(d){
 
 d3.select('#tradebalance-info').on('mouseout', function(d){
     tooltip.classed("hidden", true)
+            .classed("info-box-tooltip", false)
+            .classed("tooltip", true)
 })
-
 
 d3.select('#barchart-info').on('mouseover', function(d){
     tooltip.classed("hidden", false)
-        .attr("style", "left:"+(event.pageX)+"px;top:"+(event.pageY)+"px")
+        .attr("style", "left:"+(event.pageX-10)+"px;top:"+(event.pageY-100)+"px;"+"width:150px;")
         .attr("class", "info-box-tooltip")
         .html("	<h4>Co2-emissions</h4>"+
         		"<p>Each country’s annual CO2-emissions per capita and in total."+
@@ -28,6 +29,8 @@ d3.select('#barchart-info').on('mouseover', function(d){
 
 d3.select('#barchart-info').on('mouseout', function(d){
     tooltip.classed("hidden", true)
+            .classed("info-box-tooltip", false)
+            .classed("tooltip", true)
 })
 
 d3.select('#renewable-info').on('mouseover', function(d){
@@ -42,6 +45,7 @@ d3.select('#renewable-info').on('mouseover', function(d){
 
 d3.select('#renewable-info').on('mouseout', function(d){
     tooltipSide.classed("hidden", true)
+            .classed("info-box-tooltip", false)
+            .classed("tooltip", true)
 })
-
 
