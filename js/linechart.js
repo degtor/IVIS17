@@ -29,12 +29,12 @@ var yAxis = d3.svg.axis().scale(y)
 // Define the line
 var valueline = d3.svg.line()
     .x(function(d) { return x(d.key); })
-    .y(function(d) { return y(d.value); });
+    .y(function(d) { return y(d.value); })
+	  .defined(function(d) {return d.value != "";});
  
  //Setting color scale
     var colorList = ["#EEEEEE", "#0091EA"];
     var lineColor = d3.scale.linear().domain([0,5]).range(colorList)
-
 
 // Adds the svg canvas
 var mySVG = d3.select(id)
@@ -106,10 +106,7 @@ var legend = mySVG.selectAll('.legend')
       y.domain([-30,30])
     }
 
-    //#FF5252",
-
-    
-  
+ 
     // Add the valueline path.
     mySVG.append("path")
         .attr("class", "line")
@@ -127,35 +124,7 @@ var legend = mySVG.selectAll('.legend')
               .style("stroke-width",'2px'); 
               d3.selectAll(".textis-"+this.id).style("opacity", 0.5)     
         })
-
-        //then append some 'nearly' invisible circles at each data point  
-  
-      
-// LABELS - choosing the 50th value of the co2 to get aproximately right height placement
-       
-       //DETTA BEHÖVER FIXAS - CRASHAR IBLAND NÄR DET INTE FINNS ETT VÄRDE FÖR data[52]
-
-        // if(data[52].value != "" || data[52].value != ".." || data[52] != undefined){
-        //   mySVG.append("text")
-        //   .attr("transform", "translate(" + (width+3) + "," + y(data[52].value) + ")") 
-        //   .attr("dy", ".35em")
-        //   .attr("text-anchor", "start")
-        //   .style("fill", "black")
-        //   .text(selectedCountries[i].properties.name);  
-        // }
-
-
-//     mySVG.on('mouseover', function(d){
-//       tooltip.classed("hidden", false)
-//         .attr("style", "left:"+(this)+"px;top:"+(this)+"px")
-//         .attr("class", "tooltip")
-//         .html(selectedCountries[i].properties.name);
-//     })
-//     mySVG.on('mouseout', function(d){
-//       tooltip.classed("hidden", true)
-//             .classed("tooltip", true)
-// })
-
+ 
   } 
 
 
