@@ -418,7 +418,7 @@ div.tooltip {
 
 /* ny slider */
 .chroniton {
-  font: 10px sans-serif;
+  font: 14px sans-serif;
   outline:none;
   text-align: center;
 }
@@ -474,7 +474,7 @@ div.tooltip {
 }
 
 #slider2{
-  
+  height: 60px;
 }
 .chroniton{
   width: 100%;
