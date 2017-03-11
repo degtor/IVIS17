@@ -64,7 +64,7 @@ var mySVG = d3.select(id)
 
     //Setting color scale
     var colorList = ["#EEEEEE", "#0091EA"];
-    var lineColor = d3.scale.linear().domain([0,10]).range(colorList)
+    var lineColor = d3.scale.linear().domain([0,5]).range(colorList)
 
     // Add the valueline path.
     mySVG.append("path")
