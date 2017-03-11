@@ -39,7 +39,12 @@
         <p class="logo">ENVIROMIND</p>
         
         <div id="tradebalance-header">
-            <h4>Trade balance<span id="tradebalance-info" class="glyphicon glyphicon-info-sign"></span></h4>
+            <h4>Trade balance <span id="tradebalance-info">
+                    <svg id="info-icon" height="15" width="15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:-2px;">
+                        <image x="0" y="0" height="15" width="15"  xlink:href="info-icon.svg" />
+                    </svg>
+                </span>
+            </h4>
         </div>
         
         <label id="multipleCountriesCheckboxLabel"><input type="checkbox" name="mc" id="multipleCountriesCheckbox" value="false">Select multiple countries</label>
@@ -51,7 +56,13 @@
             <div class="row" id="barchartHeadings">
                 <div class="col-md-1"></div>
                 <div class="col-md-5">
-                    <h4>Annual CO2-emissions per country<span id="barchart-info" class="glyphicon glyphicon-info-sign"></span></h4>
+                    <h4>Annual CO2-emissions per country
+                        <span id="barchart-info">
+                            <svg id="info-icon" height="15" width="15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:-2px;">
+                                <image x="0" y="0" height="15" width="15"  xlink:href="info-icon.svg" />
+                            </svg>
+                        </span>
+                    </h4>
                 </div>
                 <div class="col-md-3">
                     <form>
@@ -95,16 +106,20 @@
                     <ol id="top-5-import"></ol>
                 </div>
             </div>
-			<div class="row">
-				<div class="charts-view">
+            <div class="row">
+                <div class="charts-view">
                     <h4>Energy sources
-                        <span id="renewable-info" class="glyphicon glyphicon-info-sign"></span>
-                    </h4>				
+                        <span id="renewable-info">
+                            <svg id="info-icon" height="15" width="15" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:-2px;">
+                                <image x="0" y="0" height="15" width="15"  xlink:href="info-icon.svg" />
+                            </svg>
+                        </span>
+                    </h4>               
                     <div id="pie-chart-container"></div>
-					<h4>Trade Balance</h4>
-					<div id="line-chart-container"></div>
-				</div>
-			</div>
+                    <h4>Trade Balance</h4>
+                    <div id="line-chart-container"></div>
+                </div>
+            </div>
         </div>
 
         <div id="multipleCountries" class="hidden">
