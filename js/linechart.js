@@ -103,7 +103,7 @@ var legend = mySVG.selectAll('.legend')
       y.domain([0, 30]);
     }
     else{
-      y.domain([-30,30])
+      y.domain([-100,100])
     }
 
  
