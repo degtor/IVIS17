@@ -227,43 +227,48 @@ function countryInteraction(){
 	.on("click", function(d, i) {
     	// Plockar ut koden för klickat land 
 		var code = name2code(d.properties.name);
-    	
-    	// Om vi får välja flera länder på samma gång 
-		if(multipleCountriesCheckbox.val() == "true"){
-			// Testa om det är en deselect eller select
-			// OM det inte är en deselect så lägger vi till landet, highlightar dens bar och landet i kartan
-			if(!(deselectCountry() == true)){
-				selectedCountries.push(d);
-				highlightBar();
-				highlightInMap();
-			}
-			// Update sidebar med selected country
-				updateSideBarSelected();
-			
-		// Om vi bara får välja ett land åt gången 				
-		}else{
-			if(deselectCountry() == true){
-				landETT = "";
-				// göm div för one country och visa för no country
-		  		d3.select("#sidebarNoCountry").classed("hidden", false);
- 		  		d3.select("#sidebarOneCountry").classed("hidden", true);
+		//Only the countries that exist will be selectable
+    	if(countries[code] != undefined){
+	    	// Om vi får välja flera länder på samma gång 
+			if(multipleCountriesCheckbox.val() == "true"){
+				// Testa om det är en deselect eller select
+				// OM det inte är en deselect så lägger vi till landet, highlightar dens bar och landet i kartan
+				if(!(deselectCountry() == true)){
+					selectedCountries.push(d);
+					highlightBar();
+					highlightInMap();
+				}
+				// Update sidebar med selected country
+					updateSideBarSelected();
+				
+			// Om vi bara får välja ett land åt gången 				
 			}else{
-				selectedCountries[0] = d;	
-				landETT = d;
-			 	
-			 	lowlightBarAll();
-		 	 	highlightBar();
-				clearLineChart();
-				clearTradeLineChart();
-		        updateSideBar();
-  				drawPieChart();
-				
-				// Visa div för one country och göm för no country		 
-			  	d3.select("#sidebarNoCountry").classed("hidden", true); 		
- 		  		d3.select("#sidebarOneCountry").classed("hidden", false);
-				
-				drawLineTradeBalance(countries[code].tradingBalance);	
+				if(deselectCountry() == true){
+					landETT = "";
+					// göm div för one country och visa för no country
+			  		d3.select("#sidebarNoCountry").classed("hidden", false);
+	 		  		d3.select("#sidebarOneCountry").classed("hidden", true);
+				}else{
+					selectedCountries[0] = d;	
+					landETT = d;
+				 	
+				 	lowlightBarAll();
+			 	 	highlightBar();
+					clearLineChart();
+					clearTradeLineChart();
+			        updateSideBar();
+	  				drawPieChart();
+					
+					// Visa div för one country och göm för no country		 
+				  	d3.select("#sidebarNoCountry").classed("hidden", true); 		
+	 		  		d3.select("#sidebarOneCountry").classed("hidden", false);
+					
+					drawLineTradeBalance(countries[code].tradingBalance);	
+				}
 			}
+		}
+		else{
+			console.log("country undefined")
 		}
 
 		function deselectCountry(){
