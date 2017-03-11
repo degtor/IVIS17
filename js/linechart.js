@@ -23,7 +23,8 @@ var yAxis = d3.svg.axis().scale(y)
 // Define the line
 var valueline = d3.svg.line()
     .x(function(d) { return x(d.key); })
-    .y(function(d) { return y(d.value); });
+    .y(function(d) { return y(d.value); })
+	.defined(function(d) {return d.value != "";});
 
 
 // Define the line
