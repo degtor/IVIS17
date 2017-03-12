@@ -194,11 +194,6 @@ function setup(width, height, container){
 
 //Drawing map and/or small country depending on mapType
 function draw(topo) {
-	//if(mapType == "large"){
-		// worldSvg.append("path")
-	 //     .datum(graticule)
-	 //     .attr("class", "graticule")
-	 //     .attr("d", worldPath);
 
 	worldG.append("path")
 	   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
