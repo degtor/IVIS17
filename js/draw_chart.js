@@ -52,20 +52,17 @@ document.body.onmouseup = function() {
 
 
 function drawBarChart(){
-
-  console.log("in chart");
-
   //Create tooltip
   var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
     if($('input[name="co2val"]:checked').val() == "capita"){
-      return d.value.name + "</br>" + Math.round(d.value.co2[year] * 10) / 10 + " tons CO<sub>2</sub> per capita";
+      return "<h4>"+d.value.name+ "</h4><p>" + Math.round(d.value.co2[year] * 10) / 10 + " tons<br/> CO<sub>2</sub> per capita</p>";
     }
 
     else{
-      return d.value.name + "</br>" + Math.round(d.value.co2total[year]/1000 * 10) / 10 + " million tons CO<sub>2</sub>";
+      return "<h4>" + d.value.name +"</h4><p>" + Math.round(d.value.co2total[year]/1000 * 10) / 10 + " million tons <br/> CO<sub>2</sub> in total</p>";
     }
   })
 
