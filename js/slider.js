@@ -31,7 +31,6 @@ d3.select("#slider2").call(chroniton()
       .on("change", function(d) {
           year = dateFormat(d3.time.year(d));
 
-          console.log("year", year);
           drawBarChart();
           updateMapColors();
   	      

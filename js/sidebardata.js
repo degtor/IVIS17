@@ -108,20 +108,21 @@ var selectedlist;
 
 
 clearSideBarSelected = function(){
-		d3.select("#selectedCountriesDiv").selectAll("li").remove()
+		d3.select("#selectedCountriesDiv").selectAll("p").remove()
 }
 
 updateSideBarSelected = function(){
-	d3.select("#selectedCountriesDiv").selectAll("li").remove()
+	d3.select("#selectedCountriesDiv").selectAll("p").remove()
 
 	selectedlist = d3.select("#selectedCountriesDiv")
-		.selectAll('li')
+		.selectAll('p')
 		.data(selectedCountries)
 
 	selectedlist	
 		.enter()
-    	.append('li')
-    	.text(function(d) { return d.properties.name });	
+    	.append('p')
+    	.text(function(d) { return d.properties.name})
+    	.append('br')	
 }
 
 

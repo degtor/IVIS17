@@ -533,8 +533,30 @@ $('#deselectCountries').click(function() {
 	selectedCountries = [];
 	clearSideBarSelected();
 	
+	d3.selectAll(".country").classed("selected", false);	
 	d3.selectAll(".country").classed("unfocus", false);
 	d3.selectAll(".bar")
 	  	.attr('fill', 'black');
+
+	if (sidebar.attr("out") == "true"){
+		$("#openclose").animateRotate(45, {
+  			duration: 600,
+  			easing: 'linear',
+  			complete: function () {},
+  			step: function () {}
+		});
+		sidebar.attr("out", "false");
+		sidebar
+			.animate(
+			{right: 0}, 
+			600, function(){
+				d3.select("#sidebarMultipleCountries").classed("hidden", true);
+				clearLineChart("#compare-line-chart");
+		  		clearLineChart("#sideLineChartContainer");
+				
+			})
+	}
+
+
 });
 
