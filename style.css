@@ -115,6 +115,7 @@ canvas {
 
 .axis text {
     text-shadow: 0 1px 0 #fff;
+    color: #424242;
 }
 
 .country:hover{
@@ -323,7 +324,8 @@ div.tooltip {
 }
 
 #sidebarMultipleCountries .anchor{
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 700;
   font-family: "Roboto";
   color:"#424242";
 }
@@ -331,12 +333,12 @@ div.tooltip {
 #sidebarMultipleCountries text{
   font-size: 12px;
   font-family: "Roboto";
-  color:"#424242";
+  color:#424242;
 }
 
 .line-legend text{
   font-family: "Roboto";
-  color:"#424242";
+  color:#424242;
 }
 
 #line-chart-container path {
@@ -350,9 +352,10 @@ div.tooltip {
   stroke-width: 2;
   stroke: #424242;
 }
-#line-chart-container text{
+#lineChart-tradeBalance text{
   font-size: 12px;
   font-family: "Roboto";
+  color: #424242;
 }
 
 #maincontent {
@@ -525,6 +528,7 @@ visibility: hidden;
   cursor: move;
   cursor: -webkit-grab;
   transition:fill 200ms ease-in-out;
+  color: #424242;
 }
 .handle:active, .slider text:active {
   cursor: move;
@@ -580,6 +584,8 @@ top: .5ex;
 
 .myaxis text {
   font: 14px sans-serif;
+  font-family: "Roboto";
+  color: #424242;
 }
 
 .myaxis .tick line{
