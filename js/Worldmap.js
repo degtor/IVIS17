@@ -30,6 +30,8 @@ var colorScale = ["#FF5252", "#EEEEEE", "#0091EA"];
 // add the legend now
 var legendFullHeight = height;
 
+
+function createLegend(){
 // use same margins as main plot
 var legendHeight = legendFullHeight - legendMargin.top - legendMargin.bottom;
 
@@ -39,14 +41,14 @@ var legendSvg = d3.select('#container')
 	.attr('id', 'map-legend')
 	.attr('width', legendFullWidth)
 	.attr('height', legendFullHeight)
+	.attr("x", 200)
 	.append('g')
 	.attr('transform', 'translate(' + legendMargin.left + ',' +
 	legendMargin.top + ')');
-
-updateColourScale(colorScale);
-
+	updateColourScale(colorScale, legendSvg, legendHeight);
+}
 // update the colour scale, restyle the plot points and legend
-function updateColourScale(scale) {
+function updateColourScale(scale, legendSvg, legendHeight) {
 	// create colour scale
 	var colorScale = d3.scale.linear()
 		.domain(linspace(-3, 3, scale.length))
@@ -103,7 +105,7 @@ function updateColourScale(scale) {
 		.scale(legendScale)
 		.orient("right")
 		//.tickValues(d3.range(-30, 31))
-		.tickFormat(function(d) { return d + "%"; });
+		.tickFormat(function(d) { return d + "%"; }).ticks(5);
 
 	legendSvg.append("g")
 		.attr("class", "legend axis")
@@ -156,6 +158,7 @@ function setup(width, height, container){
   		}
 
   worldG = worldSvg.append("g");
+  createLegend();
 }
 
 //Drawing large map
