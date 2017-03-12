@@ -341,12 +341,18 @@ div.tooltip {
 
 #line-chart-container path {
   fill: none;
-  stroke: teal;
+  stroke: #0091EA;
 }
-
+#lineChart-tradeBalance{
+  padding-left: 2%;
+}
 #lineChart-tradeBalance path.domain {
-  stroke-width: 1;
-  stroke: black;
+  stroke-width: 2;
+  stroke: #424242;
+}
+#line-chart-container text{
+  font-size: 12px;
+  font-family: "Roboto";
 }
 
 #maincontent {
