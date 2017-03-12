@@ -328,12 +328,12 @@ function countryInteraction(){
 
 		function lowlightBar(){
 			d3.select(".bar#" + code)
-	  			.attr('fill', 'black');	
+	  			.attr('fill', '#424242');	
 	  	}
 
 		function lowlightBarAll(){
 			d3.selectAll(".bar")
-	  			.attr('fill', 'black');			
+	  			.attr('fill', '#424242');			
 		}
 
 		console.log("selectedCountries:", selectedCountries);

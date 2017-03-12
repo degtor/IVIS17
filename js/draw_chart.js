@@ -4,7 +4,6 @@ var svg = d3.select( "#chart")
             .attr('id', 'barChart')
             .attr( "display", "block")
             .attr( "margin", "auto")
-            //Möller! Det som är nedanför här till "///" är allt som är tillagt för att skala chartet!
             .attr('viewBox', "0 0 960 1000")
             .attr("preserveAspectRatio","xMidYMid meet");
 
@@ -20,7 +19,6 @@ $(window).on("resize", function() {
     chart.attr("height", targetHeight);
 }).trigger("resize");
 
-///////och här tar det slut :)
 
 
 var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
@@ -103,11 +101,11 @@ var data = d3.entries(countries).sort(
         if (isNaN(d.value.co2[year])){
           return 0;
         }
-        else if ($('input[name="co2val"]:checked').val() == "capita"){
+        else if ($('input[name="co2value"]:checked').val() == "capita"){
           return d.value.co2[year]*5;
         }
 
-        else if($('input[name="co2val"]:checked').val() == "total"){
+        else if($('input[name="co2value"]:checked').val() == "total"){
           return d.value.co2total[year]/2000;
         }
 
@@ -131,7 +129,7 @@ var data = d3.entries(countries).sort(
 function setLabel(){
   //Setting label for CO2
 
-if($('input[name="co2val"]:checked').val() == "capita"){
+if($('input[name="co2value"]:checked').val() == "capita"){
   //write c02 label
   d3.select("#barchartLabel").html("<h4>ton CO2/capita</h4>")
 }
