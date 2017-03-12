@@ -55,7 +55,7 @@ function drawBarChart(){
   //Create tooltip
   var tip = d3.tip()
   .attr('class', 'd3-tip')
-  .offset([-10, 0])
+  .offset([30, 0])
   .html(function(d) {
     if($('input[name="co2val"]:checked').val() == "capita"){
       return "<h4>"+d.value.name+ "</h4><p>" + Math.round(d.value.co2[year] * 10) / 10 + " tons<br/> CO<sub>2</sub> per capita</p>";
