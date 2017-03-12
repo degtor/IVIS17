@@ -12,7 +12,7 @@ var legendMargin = { top: 20, bottom: 20, left: 40, right: 5 };
 var legendWidth = legendFullWidth - legendMargin.left - legendMargin.right;
 
 // var width = document.getElementById('container').offsetWidth-legendFullWidth-30;
-var width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-50;
+var width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-60;
 var height = width / 1.9;
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
@@ -180,7 +180,9 @@ function setup(width, height, container){
   worldG = worldSvg.append("g");
 
   //Create legend (so it will append after the map)
-  createLegend();
+   // clear current legend
+	d3.selectAll('#map-legend').remove();
+ 	createLegend();
 }
 
 //Drawing large map
