@@ -24,7 +24,7 @@ var yAxis = d3.svg.axis().scale(y)
 var valueline = d3.svg.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); })
-	  .defined(function(d) {return d.value != "";});
+	  .defined(function(d) {if(type == "trading"){return d.value != "..";}else{return d.value!=""}});
  
  //Setting color scale
     var colorList = ["#A6D2ED", "#0091EA"];
