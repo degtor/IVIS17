@@ -4,7 +4,6 @@ var svg = d3.select( "#chart")
             .attr('id', 'barChart')
             .attr( "display", "block")
             .attr( "margin", "auto")
-            //Möller! Det som är nedanför här till "///" är allt som är tillagt för att skala chartet!
             .attr('viewBox', "0 0 960 1000")
             .attr("preserveAspectRatio","xMidYMid meet");
 
@@ -20,7 +19,6 @@ $(window).on("resize", function() {
     chart.attr("height", targetHeight);
 }).trigger("resize");
 
-///////och här tar det slut :)
 
 
 var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
@@ -52,20 +50,17 @@ document.body.onmouseup = function() {
 
 
 function drawBarChart(){
-
-  console.log("in chart");
-
   //Create tooltip
   var tip = d3.tip()
   .attr('class', 'd3-tip')
-  .offset([-10, 0])
+  .offset([30, 0])
   .html(function(d) {
     if($('input[name="co2val"]:checked').val() == "capita"){
-      return d.value.name + "</br>" + Math.round(d.value.co2[year] * 10) / 10 + " tons CO<sub>2</sub> per capita";
+      return "<h4>"+d.value.name+ "</h4><p>" + Math.round(d.value.co2[year] * 10) / 10 + " tons<br/> CO<sub>2</sub> per capita</p>";
     }
 
     else{
-      return d.value.name + "</br>" + Math.round(d.value.co2total[year]/1000 * 10) / 10 + " million tons CO<sub>2</sub>";
+      return "<h4>" + d.value.name +"</h4><p>" + Math.round(d.value.co2total[year]/1000 * 10) / 10 + " million tons <br/> CO<sub>2</sub> in total</p>";
     }
   })
 
@@ -83,20 +78,6 @@ var data = d3.entries(countries).sort(
   //Make selection and connect to data              
   var selection = svg.selectAll( "rect" )
                      .data(data);
-
-
-  // var nestedData=d3.nest()
-  // .key(function(d) {return d.value.continentID;})
-  // .sortKeys(d3.ascending)
-  // .entries(data);
-
-  // var xScale = d3.scale.ordinal()
-  //           .domain(nestedData.map(function (d) { console.log(d.values);return d.value; }))
-  
-  // var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
-
-
-//ar xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 
   svg.call(tip);
 
@@ -120,33 +101,18 @@ var data = d3.entries(countries).sort(
         if (isNaN(d.value.co2[year])){
           return 0;
         }
-        else if ($('input[name="co2val"]:checked').val() == "capita"){
+        else if ($('input[name="co2value"]:checked').val() == "capita"){
           return d.value.co2[year]*5;
         }
 
-        else if($('input[name="co2val"]:checked').val() == "total"){
+        else if($('input[name="co2value"]:checked').val() == "total"){
           return d.value.co2total[year]/2000;
         }
 
       })
 
       //Set y position to get bars in right orientation
-      .attr( "y", function(d){
-        return 60;  //Quickfix för flipped barchart. Avvaktar
-        
-        // if (isNaN(d.value.co2[year])){
-        //   return 0;
-        // }
-        // else if (co2val =="capita"){
-        //   return 220 - d.value.co2[year]*2;
-        // }
-
-        // else if(co2val == "total"){
-        //   return 220 - d.value.co2total[year]/50000;
-        // }
-      })
-
-      
+      .attr( "y", 60)
 
       //Show tooltip on hover if neither mousekey is pressed nor play-funtion active
       .on('mouseover', function(d){
@@ -163,7 +129,7 @@ var data = d3.entries(countries).sort(
 function setLabel(){
   //Setting label for CO2
 
-if($('input[name="co2val"]:checked').val() == "capita"){
+if($('input[name="co2value"]:checked').val() == "capita"){
   //write c02 label
   d3.select("#barchartLabel").html("<h4>ton CO2/capita</h4>")
 }

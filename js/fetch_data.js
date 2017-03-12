@@ -112,7 +112,7 @@ function readData(){
 //Updates visualisations when manipulation 
 //of countries-list is finished
 function updateVis(){
-	$('input:radio[value=capita]').prop('checked', true);
+	$("#capita").prop("checked", true)
 	console.log("here are our countries after manipulation", countries);
 // Draws map, barchart, updates mapcolor, hides loading message and displays it all! 
 	draw(topo);
@@ -290,7 +290,6 @@ function addContinent(){
 					//We also want to give each country a continentID 
 					//so that we can sort by map position and not by continentName
 					addContinentID(countries[j], data[i].continent)
-
 				}
 			}
 		}
@@ -374,45 +373,4 @@ function isEmpty(obj) {
     return true;
 }
 
-var removeMe = []; 
-function loopCountries(){
-	for(i in countries){
-		if(isEmpty(countries[i].co2)){
-			console.log(countries[i].co2);
-			removeMe.push(countries[i].name)
-		}
-		else{
-			console.log("HAR DATA");
-		}
 
-	}
-}
-
-var removeTrading = [];
-function checkTrading(){
-	for(i in countries){
-		
-		if(isEmpty(countries[i].tradingBalance)){
-			console.log(countries[i].tradingBalance);
-			removeMe.push(countries[i].name)
-
-		}
-		else{
-			console.log("HAR DATA");
-		}
-	}
-}
-
-function checkTotal(){
-	for(i in countries){
-		
-		if(isEmpty(countries[i].co2_capita)){
-			console.log(countries[i].tradingBalance);
-			removeMe.push(countries[i].name)
-
-		}
-		else{
-			console.log("HAR DATA");
-		}
-	}
-}
