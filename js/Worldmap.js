@@ -7,12 +7,12 @@ var zoom = d3.behavior.zoom()
     .scaleExtent([1, 9])
     .on("zoom", move);
 
-var legendFullWidth = 50;
-var legendMargin = { top: 20, bottom: 20, left: 5, right: 35 };
+var legendFullWidth = 60;
+var legendMargin = { top: 20, bottom: 20, left: 40, right: 5 };
 var legendWidth = legendFullWidth - legendMargin.left - legendMargin.right;
 
 // var width = document.getElementById('container').offsetWidth-legendFullWidth-30;
-var width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-30;
+var width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-50;
 var height = width / 1.9;
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
@@ -30,6 +30,8 @@ var colorScale = ["#FF5252", "#EEEEEE", "#0091EA"];
 // add the legend now
 var legendFullHeight = height;
 
+
+function createLegend(){
 // use same margins as main plot
 var legendHeight = legendFullHeight - legendMargin.top - legendMargin.bottom;
 
@@ -37,16 +39,16 @@ var legendHeight = legendFullHeight - legendMargin.top - legendMargin.bottom;
 var legendSvg = d3.select('#container')
 	.append('svg')
 	.attr('id', 'map-legend')
-	.attr('width', legendFullWidth)
+	.attr('width', legendFullWidth+50)
 	.attr('height', legendFullHeight)
+	.attr("x", 200)
 	.append('g')
-	.attr('transform', 'translate(' + legendMargin.left + ',' +
+	.attr('transform', 'translate(' + legendMargin.left*2 + ',' +
 	legendMargin.top + ')');
-
-updateColourScale(colorScale);
-
+	updateColourScale(colorScale, legendSvg, legendHeight);
+}
 // update the colour scale, restyle the plot points and legend
-function updateColourScale(scale) {
+function updateColourScale(scale, legendSvg, legendHeight) {
 	// create colour scale
 	var colorScale = d3.scale.linear()
 		.domain(linspace(-3, 3, scale.length))
@@ -60,6 +62,7 @@ function updateColourScale(scale) {
 
 	// clear current legend
 	legendSvg.selectAll('*').remove();
+
 
 	// append gradient bar
 	var gradient = legendSvg.append('defs')
@@ -101,15 +104,34 @@ function updateColourScale(scale) {
 
 	var legendAxis = d3.svg.axis()
 		.scale(legendScale)
-		.orient("right")
-		//.tickValues(d3.range(-30, 31))
-		.tickFormat(function(d) { return d + "%"; });
+		.orient("left")
+		.tickFormat(function(d) { return d; }).ticks(0);
 
 	legendSvg.append("g")
 		.attr("class", "legend axis")
-		.attr("transform", "translate(" + legendWidth + ", 0)")
+		.attr("transform", "translate(0, 0)")
 		.call(legendAxis);
+
+	legendSvg.append("text")
+    .attr("class","anchor")
+    .attr("y", 12)
+    .attr("x", -40)
+    .style("text-anchor", "middle")
+    .text("Export heavy")
+    .style("font-size", "12px");
+
+    legendSvg.append("text")
+    .attr("class","anchor")
+    .attr("y", legendHeight-2)
+    .attr("x", -40)
+    .style("text-anchor", "middle")
+    .text("Import heavy")
+    .style("font-size", "12px");
+  
+
 }
+
+
 
 function linspace(start, end, n) {
 	var out = [];
@@ -156,6 +178,9 @@ function setup(width, height, container){
   		}
 
   worldG = worldSvg.append("g");
+
+  //Create legend (so it will append after the map)
+  createLegend();
 }
 
 //Drawing large map
