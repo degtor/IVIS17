@@ -8,7 +8,7 @@ var zoom = d3.behavior.zoom()
     .on("zoom", move);
 
 var legendFullWidth = 60;
-var legendMargin = { top: 0, bottom: 10, left: 40, right: 5 };
+var legendMargin = { top: 10, bottom: 10, left: 40, right: 5 };
 var legendWidth = legendFullWidth - legendMargin.left - legendMargin.right;
 
 // var width = document.getElementById('container').offsetWidth-legendFullWidth-30;
