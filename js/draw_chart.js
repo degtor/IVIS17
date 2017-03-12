@@ -55,7 +55,7 @@ function drawBarChart(){
   .attr('class', 'd3-tip')
   .offset([30, 0])
   .html(function(d) {
-    if($('input[name="co2val"]:checked').val() == "capita"){
+    if($('input[name="co2value"]:checked').val() == "capita"){
       return "<h4>"+d.value.name+ "</h4><p>" + Math.round(d.value.co2[year] * 10) / 10 + " tons<br/> CO<sub>2</sub> per capita</p>";
     }
 
