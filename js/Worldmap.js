@@ -172,7 +172,7 @@ function setup(width, height, container){
       if(container == "#container"){
       	worldSvg
       		.call(zoom)
-      		.on("click", click);
+      		.on("dblclick.zoom", null);
   		}
   		else{
   			worldSvg.attr("class", "countrySizePos");
