@@ -8,11 +8,11 @@ var zoom = d3.behavior.zoom()
     .on("zoom", move);
 
 var legendFullWidth = 60;
-var legendMargin = { top: 20, bottom: 20, left: 40, right: 5 };
+var legendMargin = { top: 10, bottom: 10, left: 40, right: 5 };
 var legendWidth = legendFullWidth - legendMargin.left - legendMargin.right;
 
 // var width = document.getElementById('container').offsetWidth-legendFullWidth-30;
-var width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-50;
+var width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-60;
 var height = width / 1.9;
 var topo,projection,worldPath,worldSvg,worldG;
 var graticule = d3.geo.graticule();
@@ -27,11 +27,12 @@ var mapDone = false;
 var selectedCountries = [];
 var colorScale = ["#FF5252", "#EEEEEE", "#0091EA"]; 
 
+
+
+
+function createLegend(width,height){
 // add the legend now
 var legendFullHeight = height;
-
-
-function createLegend(){
 // use same margins as main plot
 var legendHeight = legendFullHeight - legendMargin.top - legendMargin.bottom;
 
@@ -180,7 +181,9 @@ function setup(width, height, container){
   worldG = worldSvg.append("g");
 
   //Create legend (so it will append after the map)
-  createLegend();
+   // clear current legend
+	d3.selectAll('#map-legend').remove();
+ 	createLegend(width, height);
 }
 
 //Drawing large map
@@ -192,11 +195,6 @@ function setup(width, height, container){
 
 //Drawing map and/or small country depending on mapType
 function draw(topo) {
-	//if(mapType == "large"){
-		// worldSvg.append("path")
-	 //     .datum(graticule)
-	 //     .attr("class", "graticule")
-	 //     .attr("d", worldPath);
 
 	worldG.append("path")
 	   .datum({type: "LineString", coordinates: [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]]})
@@ -350,7 +348,8 @@ function countryInteraction(){
 
 
 function redraw() {
-  width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-30;
+
+  width = d3.select("#container").node().getBoundingClientRect().width-legendFullWidth-60;
   height = width / 2;
   d3.select('#world-map').remove();
   setup(width,height, "#container");
