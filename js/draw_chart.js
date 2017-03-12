@@ -84,20 +84,6 @@ var data = d3.entries(countries).sort(
   var selection = svg.selectAll( "rect" )
                      .data(data);
 
-
-  // var nestedData=d3.nest()
-  // .key(function(d) {return d.value.continentID;})
-  // .sortKeys(d3.ascending)
-  // .entries(data);
-
-  // var xScale = d3.scale.ordinal()
-  //           .domain(nestedData.map(function (d) { console.log(d.values);return d.value; }))
-  
-  // var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
-
-
-//ar xAxis = d3.svg.axis().scale(xScale).orient("bottom");
-
   svg.call(tip);
 
 
@@ -131,22 +117,7 @@ var data = d3.entries(countries).sort(
       })
 
       //Set y position to get bars in right orientation
-      .attr( "y", function(d){
-        return 60;  //Quickfix för flipped barchart. Avvaktar
-        
-        // if (isNaN(d.value.co2[year])){
-        //   return 0;
-        // }
-        // else if (co2val =="capita"){
-        //   return 220 - d.value.co2[year]*2;
-        // }
-
-        // else if(co2val == "total"){
-        //   return 220 - d.value.co2total[year]/50000;
-        // }
-      })
-
-      
+      .attr( "y", 60)
 
       //Show tooltip on hover if neither mousekey is pressed nor play-funtion active
       .on('mouseover', function(d){

@@ -290,7 +290,6 @@ function addContinent(){
 					//We also want to give each country a continentID 
 					//so that we can sort by map position and not by continentName
 					addContinentID(countries[j], data[i].continent)
-
 				}
 			}
 		}
@@ -414,5 +413,12 @@ function checkTotal(){
 		else{
 			console.log("HAR DATA");
 		}
+	}
+}
+
+function getTwoLetters(){
+	for(i in countries){
+		if(countries[i].twoLetterCode == "")
+			console.log(countries[i].name)
 	}
 }
