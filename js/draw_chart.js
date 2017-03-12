@@ -21,7 +21,7 @@ $(window).on("resize", function() {
 
 
 
-var labels = ["The Americas", "Europe", "Africa", "Asia", "Ociania"];
+var labels = ["The Americas", "Europe", "Africa", "Asia", "Oceania"];
   
   var x = d3.scale.ordinal()
     .domain(labels)
