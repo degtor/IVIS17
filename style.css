@@ -255,6 +255,39 @@ div.tooltip {
     margin-top:250px;
 }
 
+#selectedCountriesDiv{
+  margin-top:35px;
+  font-size: 15px;
+}
+
+#selectedCountriesDiv p{
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+#deselectCountries{
+  position:absolute;
+  top:550px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+/* customize boostrap button... */ 
+#deselectCountries button{
+    color: #FF5252;
+    border-radius: 30px;
+    border-color: #FF5252;
+    width: 50%;
+    background-color: #ffffff;
+}
+
+#deselectCountries .btn:focus, .btn:active, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+/* Slut på knapp */ 
+
 .lineChart {
     overflow: auto;
     margin-left: 10%;
