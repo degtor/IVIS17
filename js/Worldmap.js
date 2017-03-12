@@ -323,7 +323,7 @@ function countryInteraction(){
 				
 		function highlightBar(){
 			d3.select(".bar#" + code)
-	  			.attr('fill', 'orange');			
+	  			.attr('fill', "#7C4DFF");			
 		}
 
 		function lowlightBar(){

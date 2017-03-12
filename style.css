@@ -164,7 +164,7 @@ div.tooltip {
 
 /* Tooltips barchart */
 .bar:hover {
-  fill: orange ;
+  fill: #7C4DFF;
 }
 
 .d3-tip {
