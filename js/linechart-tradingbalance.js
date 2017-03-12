@@ -1,8 +1,6 @@
 
 function drawLineTradeBalance(data){
 
-	console.log("in linechar for trading balance");
-
 	var data = d3.entries(data);
 
 	//Get the dimensions of the div
@@ -11,12 +9,14 @@ function drawLineTradeBalance(data){
 
 	// Set the dimensions of the canvas / graph
 	var margin = {top: 30, right: 30, bottom: 30, left: 30},
-		width = divDims.width - margin.left - margin.right,
+		width = divDims.width - margin.left - margin.right-20,
 		height = 200 - margin.top - margin.bottom;
 
 	// Set the ranges
 	var x = d3.scale.linear().range([0, width]);
-	var y = d3.scale.linear().range([height, 0]);
+	var y = d3.scale.linear().range([height, 0])
+;
+
 
 	// Define the axes
 	var xAxis = d3.svg.axis().scale(x)
@@ -25,7 +25,7 @@ function drawLineTradeBalance(data){
 		.tickFormat(d3.format('.0f'));
 
 	var yAxis = d3.svg.axis().scale(y)
-		.orient("left").ticks(7)
+		.orient("left").ticks(3)
 		.tickFormat(function(d) { return d + "%"; });
 
 	// Define the line
@@ -51,14 +51,16 @@ function drawLineTradeBalance(data){
 		// Scale the range of the data
 		x.domain(d3.extent(data, function(d) {return parseInt(d.key); }));
 		
-		y.domain([-d3.max(data, function(d) { return Math.abs(parseFloat(d.value)); }),
-		  d3.max(data, function(d) { return Math.abs(parseFloat(d.value)); })
-		]);
+		y.domain([-30,30]);
 		
+		console.log(data)
 		// Add the valueline path.
 		mySVG.append("path")
+			.attr("id", "myLine")
 			.attr("class", "line")
 			.attr("d", valueline(data))
+
+
 		// Add the X Axis
 		mySVG.append("g")
 			.attr("class", "x axis")
