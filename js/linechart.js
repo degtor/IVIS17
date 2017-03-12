@@ -8,10 +8,6 @@ var margin = {top: 30, right: 30, bottom: 30, left: 30},
     width = 450 - margin.left - margin.right,
     height = 320 - margin.top - margin.bottom;
 
-
-var radius = Math.min(width, height) / 2;
-
-
 // Set the ranges
 var x = d3.scale.linear().range([0, width]);
 var y = d3.scale.linear().range([height, 0]);
@@ -22,7 +18,7 @@ var xAxis = d3.svg.axis().scale(x)
     .orient("bottom").ticks(4).tickFormat(d3.format("d"));
 
 var yAxis = d3.svg.axis().scale(y)
-    .orient("left").ticks(5).tickFormat(function(d) { return d + "%"; });
+    .orient("left").ticks(5).tickFormat(function(d) { if(type == "trading"){return d + "%"; }else{return d;}});
 
 // Define the line
 var valueline = d3.svg.line()
@@ -97,7 +93,7 @@ legend.append('rect')
     
     //Co2 from 0-30 and trading balance from -30 to 30
     if(type == "co2"){
-      y.domain([0, 30]);
+      y.domain([0, 50]);
     }
     else{
       y.domain([-100,100])
