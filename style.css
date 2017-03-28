@@ -61,9 +61,6 @@ canvas {
     left: 0;
 }
 
-#maincontent{
-  height:1200px;
-}
 
 #barChart{
     display: block; 
@@ -81,6 +78,7 @@ canvas {
   text-align: center;
 }
 .logo {
+    margin-top:9px;
     display:inline-block;
     font-family: 'Raleway', sans-serif;
     font-weight:900;
@@ -223,6 +221,7 @@ div.tooltip {
 .row{
     overflow: hidden;
     height: 100%;
+    padding:10px;
 }
 
 #selectCountry {
@@ -278,6 +277,7 @@ div.tooltip {
     top:0;
     background-color: rgba(255,255,255,1);
     padding-top:20px;
+    box-shadow: 10px 0px 10px #858585;
   }
 
 #sidebarMultipleCountries path { 
@@ -335,6 +335,7 @@ div.tooltip {
 
 #maincontent {
     background-color: #E8E8E8;
+    padding:10px;
 }
 
 #mapScreen {
