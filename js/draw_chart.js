@@ -21,14 +21,7 @@ $(window).on("resize", function() {
 }).trigger("resize");
 
 
- // var log = d3.scale.log();
- //  log.domain([1,10])(1000);  // 2.99999996
- //  log.domain([1,16])(4096);  // 3
- //  log.domain([1,2])(8);  //3
-
 var sqrt = d3.scale.pow().exponent(.5)
-
-  //log.domain([1,10])();
 
 var labels = ["The Americas", "Europe", "Africa", "Asia", "Oceania"];
   
@@ -111,19 +104,10 @@ var data = d3.entries(countries).sort(
           return 0;
         }
         else if ($('input[name="co2value"]:checked').val() == "capita"){
-          console.log('hej1');
           return d.value.co2[year]*5;
         }
 
         else if($('input[name="co2value"]:checked').val() == "total"){
-          // console.log('hej');
-          // // console.log('3 = ' + log.domain([1,10])(1000));
-          // console.log('co2 = ' + d.value.co2total[year]);
-          // var logHeight = log.domain([1,10])(d.value.co2total[year]);
-          // console.log('logHeight = ' + logHeight);
-          // if (logHeight == NaN){logHeight = 0};
-
-          //return d.value.co2total[year]/60000;
           return sqrt(d.value.co2total[year])/10;
         }
 
