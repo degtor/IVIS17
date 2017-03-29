@@ -4,7 +4,7 @@ var svg = d3.select( "#chart")
             .attr('id', 'barChart')
             .attr( "display", "block")
             .attr( "margin", "auto")
-            .attr('viewBox', "0 0 960 1000")
+            .attr('viewBox', "0 0 960 200")
             .attr("preserveAspectRatio","xMidYMid meet");
 
 
@@ -14,16 +14,17 @@ var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återa
 
 $(window).on("resize", function() {
     var targetWidth = container.width();
+    console.log(container);
     var targetHeight = container.height()
     chart.attr("width", targetWidth);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
     chart.attr("height", targetHeight);
 }).trigger("resize");
 
 
- var log = d3.scale.log();
-  log.domain([1,10])(1000);  // 2.99999996
-  log.domain([1,16])(4096);  // 3
-  log.domain([1,2])(8);  //3
+ // var log = d3.scale.log();
+ //  log.domain([1,10])(1000);  // 2.99999996
+ //  log.domain([1,16])(4096);  // 3
+ //  log.domain([1,2])(8);  //3
 
 var sqrt = d3.scale.pow().exponent(.5)
 
