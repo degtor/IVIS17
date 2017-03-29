@@ -14,9 +14,8 @@ var chart = $("#barChart"),   //barChart behöver konfigureras om man ska återa
 
 $(window).on("resize", function() {
     var targetWidth = container.width();
-    console.log(container);
     var targetHeight = container.height()
-    chart.attr("width", targetWidth);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
+    chart.attr("width", targetWidth/1.2);     //Här finns det säkert nån smidigare lösning men jag delat targetwidth för att få lämplig bredd!
     chart.attr("height", targetHeight);
 }).trigger("resize");
 
@@ -37,7 +36,7 @@ var labels = ["The Americas", "Europe", "Africa", "Asia", "Oceania"];
 
   svg.append("g")
     .attr("class", "myaxis")
-    .attr("transform","translate(0,50)")
+    .attr("transform","translate(0,0)")
     .call(xAxis);
 
 
@@ -55,7 +54,7 @@ function drawBarChart(){
   //Create tooltip
   var tip = d3.tip()
   .attr('class', 'd3-tip')
-  .offset([30, 0])
+  .offset([0, 0])
   .html(function(d) {
     if($('input[name="co2value"]:checked').val() == "capita"){
       return "<h4>"+d.value.name+ "</h4><p>" + Math.round(d.value.co2[year] * 10) / 10 + " tons<br/> CO<sub>2</sub> per capita</p>";
@@ -104,17 +103,17 @@ var data = d3.entries(countries).sort(
           return 0;
         }
         else if ($('input[name="co2value"]:checked').val() == "capita"){
-          return d.value.co2[year]*5;
+          return sqrt(d.value.co2[year])*15;
         }
 
         else if($('input[name="co2value"]:checked').val() == "total"){
-          return sqrt(d.value.co2total[year])/10;
+          return sqrt(d.value.co2total[year])/25;
         }
 
       })
 
       //Set y position to get bars in right orientation
-      .attr( "y", 60)
+      .attr( "y", 5)
 
       //Show tooltip on hover if neither mousekey is pressed nor play-funtion active
       .on('mouseover', function(d){
