@@ -27,8 +27,8 @@ var valueline = d3.svg.line()
 	  .defined(function(d) {if(type == "trading"){return d.value != "..";}else{return d.value!=""}});
  
  //Setting color scale
-    var colorList = ["#A6D2ED", "#0091EA"];
-    var lineColor = d3.scale.linear().domain([0,5]).range(colorList)
+    var colorList = ["#14073C", "#281859", "#635494", "#8A7EB1", "#FFFFAC", "#D7D76D", "#828217", "#575701"];
+    var lineColor = d3.scale.ordinal().range(colorList)
 
 // Adds the svg canvas
 var mySVG = d3.select(id)
