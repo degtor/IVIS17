@@ -74,6 +74,14 @@ legend.append('rect')
     .attr('text-transform', 'capitalize')
     .attr('font-size', '12px')
     .attr('opacity', 0.7)
+	.on("mouseover", function (d) {    
+          d3.select(this).style("opacity", 1)
+		  d3.select(this.id.substr(7,3)).style("stroke-width",'4px')
+	})
+	.on("mouseout", function(d) {
+          d3.select(this).style("opacity", 0.7)
+		  d3.select(this.id.substr(7,3)).style("stroke-width",'2px')
+	})
 
 
   //Loop through data
