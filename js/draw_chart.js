@@ -114,9 +114,14 @@ var data = d3.entries(countries).sort(
 
         else if($('input[name="co2value"]:checked').val() == "total"){
           console.log('hej');
-          console.log('3 = ' + log.domain([1,10])(1000));
+          // console.log('3 = ' + log.domain([1,10])(1000));
+          console.log('co2 = ' + d.value.co2total[year]);
+          var logHeight = log.domain([1,10])(d.value.co2total[year]);
+          console.log('logHeight = ' + logHeight);
+          if (logHeight == NaN){logHeight = 0};
+
           //return d.value.co2total[year]/60000;
-          return log.domain([1,10])(d.value.co2total[year])/5000;
+          return logHeight*20;
         }
 
       })
