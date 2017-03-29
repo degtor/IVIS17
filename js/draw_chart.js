@@ -83,7 +83,8 @@ var data = d3.entries(countries).sort(
 
 
     //Create new bars
-    selection.enter()
+    
+	selection.enter()
       .append( "rect" )
       .attr('class', 'bar')
       .attr('id', function(d){
@@ -93,7 +94,13 @@ var data = d3.entries(countries).sort(
         return i*5;
       })
       .attr( "width", 4 )
-      .attr( "fill", "#424242" )
+      .attr( "fill", function(d) {
+		  if (d.value.continentID%2 == 0) {
+			  return "#AAAAAA";
+		  } else {
+			  return "#424242";
+		  }
+	  })
 
     //Set bar heights based on data
     selection
