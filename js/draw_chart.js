@@ -96,7 +96,7 @@ var data = d3.entries(countries).sort(
       .attr( "width", 4 )
       .attr( "fill", function(d) {
 		  if (d.value.continentID%2 == 0) {
-			  return "#AAAAAA";
+			  return "#607B8D";
 		  } else {
 			  return "#424242";
 		  }
