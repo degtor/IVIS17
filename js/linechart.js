@@ -75,12 +75,14 @@ legend.append('rect')
     .attr('font-size', '12px')
     .attr('opacity', 0.7)
 	.on("mouseover", function (d) {    
-          d3.select(this).style("opacity", 1)
-		  d3.select(this.id.substr(7,3)).style("stroke-width",'4px')
+          d3.select(this).style("opacity", 1);
+		  console.log("#" + this.className.animVal.substr(7,3));
+		  //d3.select("#" + this.className.animVal.substr(7,3)).style("stroke-width",'4px')
+		  d3.select("#CHN").style("stroke-width",'4px');
 	})
 	.on("mouseout", function(d) {
-          d3.select(this).style("opacity", 0.7)
-		  d3.select(this.id.substr(7,3)).style("stroke-width",'2px')
+          d3.select(this).style("opacity", 0.7);
+		  d3.select("#" + this.className.animVal.substr(7,3)).style("stroke-width",'2px')
 	})
 
 
@@ -114,7 +116,8 @@ legend.append('rect')
         .attr('id', code)
         .attr("d", valueline(data))
         .attr("stroke", lineColor(i))
-        .on("mouseover", function (d) {    
+        .on("mouseover", function (d) { 
+		  //console.log(this);
           d3.select(this)                          //on mouseover of each line, give it a nice thick stroke
           .style("stroke-width",'4px');
           d3.selectAll(".textis-"+this.id).style("opacity", 1)
