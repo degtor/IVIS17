@@ -76,13 +76,11 @@ legend.append('rect')
     .attr('opacity', 0.7)
 	.on("mouseover", function (d) {    
           d3.select(this).style("opacity", 1);
-		  console.log("#" + this.className.animVal.substr(7,3));
-		  //d3.select("#" + this.className.animVal.substr(7,3)).style("stroke-width",'4px')
-		  d3.select("#CHN").style("stroke-width",'4px');
+		  d3.selectAll(".line" + this.className.animVal.substr(4,7)).style("stroke-width",'4px');
 	})
 	.on("mouseout", function(d) {
           d3.select(this).style("opacity", 0.7);
-		  d3.select("#" + this.className.animVal.substr(7,3)).style("stroke-width",'2px')
+		  d3.selectAll(".line" + this.className.animVal.substr(4,7)).style("stroke-width",'2px')
 	})
 
 
@@ -113,18 +111,18 @@ legend.append('rect')
     // Add the valueline path.
     mySVG.append("path")
         .attr("class", "line")
-        .attr('id', code)
+        .attr("class", "lineis-"+code)
+		.attr('id', code)
         .attr("d", valueline(data))
         .attr("stroke", lineColor(i))
-        .on("mouseover", function (d) { 
-		  //console.log(this);
-          d3.select(this)                          //on mouseover of each line, give it a nice thick stroke
+        .on("mouseover", function (d) {
+          d3.selectAll(".lineis-"+this.id)    //on mouseover of each line, give it a nice thick stroke
           .style("stroke-width",'4px');
           d3.selectAll(".textis-"+this.id).style("opacity", 1)
 
         })
         .on("mouseout", function(d) {        //undo everything on the mouseout
-            d3.select(this)
+            d3.selectAll(".lineis-"+this.id)
               .style("stroke-width",'2px'); 
               d3.selectAll(".textis-"+this.id).style("opacity", 0.7)     
         })
