@@ -5,7 +5,6 @@
     <title>Enviromind</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
-    <!--  <script src="http://d3js.org/topojson.v0.min.js"></script> -->
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -14,121 +13,51 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,900" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <!-- fullpage -->
+    <link rel="stylesheet" type="text/css" href="fullPage.js-master/jquery.fullPage.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
+    <script src="fullPage.js-master/vendors/jquery.easings.min.js"></script>
+
+    <!-- This following line is only necessary in the case of using the option `scrollOverflow:true` -->
+    <script type="text/javascript" src="fullPage.js-master/vendors/scrolloverflow.min.js"></script>
+    <script type="text/javascript" src="fullPage.js-master/jquery.fullPage.js"></script>
 
 </head>
 <body>
+    <ul id="menu">
+        <li data-menuanchor="secondPage"><a href="#secondPage">About</a></li>
+        <li data-menuanchor="3rdPage"><a href="#3rdPage">How it works</a></li>
+        <li data-menuanchor="4thpage"><a href="#4thpage">Team</a></li>
+    </ul>
 
-<!-- <div id="loading" style="text-align:center;">
-    <h1 class="logo">ENVIROMIND</h1>
-    <div id="loadingSymbol">
-        <img src="spin.svg">
-    </div>
-</div>
- -->
- <div id="container">
-    <div id="heading">
-        <p class="logo">ENVIROMIND</p>
-    </div>
-
-    <div id="menu">
-        <ul>
-            <li><a href="">About</a></li>
-            <li><a href="">Team</a></li>
-        </ul>
-    </div>
-    <div id="content">
-        <!-- Här lägger vi in content för About eller Team -->
-
-        <!-- About -->
-        <!-- <div class="info-content">
-            <h2>Dream team</h2>
-            <div class="infos">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="giraff.jpg">
-                        <h4>Josefine Möller</h4>
-                        <h5>Front End & Prototype</h5>
-                    </div>
-                    <div class="col-md-8">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate</p>
-                    </div>
-                </div>
-            </div>
-            <div class="infos">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="giraff.jpg">
-                        <h4>Josefine Möller</h4>
-                        <h5>Front End & Prototype</h5>
-                    </div>
-                    <div class="col-md-8">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate</p>
-                    </div>
-                </div>
-            </div>
-            <div class="infos"></div>
-            <div class="infos"></div>
-            <div class="infos"></div>
-            <div class="infos"></div>
-            <div class="infos"></div>
-            <div class="infos"></div>
-        </div> -->
-
-        <div class="info-content">
-            <h2>Dream team</h2>
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>David Samuelsson</h4>
-                    <h5>Front & Back End</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>Emma Klint</h4>
-                    <h5>Prototype & Graphical Design</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>Fredrik Spansk</h4>
-                    <h5>Front & Back End</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>Frida Eklund</h4>
-                    <h5>Front & Back End</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>Gustav Höglund</h4>
-                    <h5>Prototype & Presentation</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>Josefine Möller</h4>
-                    <h5>Front End & Prototype</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>Victor Gustafsson</h4>
-                    <h5>Prototype & Presentation</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-                <div class="col-md-3">
-                    <img src="giraff.jpg">
-                    <h4>Viktor Gustafsson</h4>
-                    <h5>Front End</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et</p>
-                </div>
-            </div>
+    <div id="fullpage">
+        <div class="section" id="section0" data-anchor="firstPage">
+            <h1 class="logo">ENVIROMIND</h1>
+            <h4>Brings the world together</h4>
         </div>
-    </div>
+    <div class="section" id="section1" data-anchor="secondPage">Some section</div>
+    <div class="section" id="section2" data-anchor="3rdPage">Some section</div>
+    <div class="section" id="section3" data-anchor="4thPage">Some section</div>
 </div>
+
+
+ 
 </body>
+
+<script>
+
+$('#fullpage').fullpage({
+    sectionsColor: ['#E8E8E8', '#FFFFFF', '#E8E8E8', '#FFFFFF'],
+    anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage'],
+    menu: '#menu',
+    scrollingSpeed: 1000
+});
+    
+
+</script>
 </html>
