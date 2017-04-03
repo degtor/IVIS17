@@ -132,3 +132,13 @@ a:hover{
     margin-left:30px;
     margin-right:30px;
 }
+
+.btn-custom{
+    margin-top:150px;
+    height:120%;
+    width:130px;
+    border-radius: 30px;
+    background-color: #FF5252;
+    color:white;
+}
+
