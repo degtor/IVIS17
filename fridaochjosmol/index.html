@@ -42,7 +42,125 @@
         </div>
     <div class="section" id="section1" data-anchor="secondPage">Some section</div>
     <div class="section" id="section2" data-anchor="3rdPage">Some section</div>
-    <div class="section" id="section3" data-anchor="4thPage">Some section</div>
+    <div class="section" id="section3" data-anchor="4thPage">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-3">
+            <div class="card effect__click">
+              <div class="card__front">
+                <span class="card__text">
+                    <div class="profile_image">
+                        <img src="GeorgeClooney.jpg"/>
+                    </div>
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <div class="profile_contact">
+                        <img src="mail.png"/>
+                        <img src="linkedin.png"/>
+                    </div>
+                </span>
+              </div>
+              <div class="card__back">
+                <span class="card__text">
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <br/>
+                    <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
+                    <br/><br/>
+                    Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                    </p>
+                </span>
+              </div>
+            </div><!-- /card -->
+       </div> <!-- col md 3 -->
+
+        <div class="col-md-3">
+            <div class="card effect__click">
+              <div class="card__front">
+                <span class="card__text">
+                    <div class="profile_image">
+                        <img src="GeorgeClooney.jpg"/>
+                    </div>
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <div class="profile_contact">
+                        <img src="mail.png"/>
+                        <img src="linkedin.png"/>
+                    </div>
+                </span>
+              </div>
+              <div class="card__back">
+                <span class="card__text">
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <br/>
+                    <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
+                    <br/><br/>
+                    Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                    </p>
+                </span>
+              </div>
+            </div><!-- /card -->
+       </div> <!-- col md 3 -->
+               <div class="col-md-3">
+            <div class="card effect__click">
+              <div class="card__front">
+                <span class="card__text">
+                    <div class="profile_image">
+                        <img src="GeorgeClooney.jpg"/>
+                    </div>
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <div class="profile_contact">
+                        <img src="mail.png"/>
+                        <img src="linkedin.png"/>
+                    </div>
+                </span>
+              </div>
+              <div class="card__back">
+                <span class="card__text">
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <br/>
+                    <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
+                    <br/><br/>
+                    Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                    </p>
+                </span>
+              </div>
+            </div><!-- /card -->
+       </div> <!-- col md 3 -->
+               <div class="col-md-3">
+            <div class="card effect__click">
+              <div class="card__front">
+                <span class="card__text">
+                    <div class="profile_image">
+                        <img src="GeorgeClooney.jpg"/>
+                    </div>
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <div class="profile_contact">
+                        <img src="mail.png"/>
+                        <img src="linkedin.png"/>
+                    </div>
+                </span>
+              </div>
+              <div class="card__back">
+                <span class="card__text">
+                    <h3>George Clooney</h3>
+                    <p>Project manager</p>
+                    <br/>
+                    <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
+                    <br/><br/>
+                    Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                    </p>
+                </span>
+              </div>
+            </div><!-- /card -->
+       </div> <!-- col md 3 -->
+    </div><!-- /row -->
+    </div> <!-- container-->
+    </div>
 </div>
 
 
@@ -57,6 +175,22 @@ $('#fullpage').fullpage({
     menu: '#menu',
     scrollingSpeed: 1000
 });
+
+
+    (function() {
+        var cards = document.querySelectorAll(".card.effect__click");
+        for ( var i  = 0, len = cards.length; i < len; i++ ) {
+            var card = cards[i];
+            clickListener( card );
+        }
+
+    function clickListener(card) {
+        card.addEventListener( "click", function() {
+        var c = this.classList;
+        c.contains("flipped") === true ? c.remove("flipped") : c.add("flipped");
+        });
+    }
+    })();   
     
 
 </script>
