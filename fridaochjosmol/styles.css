@@ -95,7 +95,9 @@ a:focus {
   text-decoration: none;
 
 }
-
+.section{
+  text-align: center;
+}
 #section0{
     text-align: center;
 }
@@ -104,13 +106,18 @@ a:focus {
     font-size: 52px;
 }
 
-/* PROFILE CARDS *// 
+#section1{
+  text-align: left;
+}
 
+/* PROFILE CARDS *// 
+#section4{
+  position: relative;
+}
 .card {
-  position:relative;
-  padding-bottom: 25%;
-  width: 100%;
-  height:100%;
+  margin-bottom: 10%;
+  width: 80%;
+  height:270px;
   text-align: center;
   float:left;
 }
@@ -124,10 +131,11 @@ a:focus {
   position:absolute;
   top: 0;
   left: 0;
-  width: 80%;
-  height: 330px;
+  width: 75%;
+  height: 270px;
   margin-left:10%;
   margin-right:10%;
+
 }
 
 .card__front,
@@ -245,7 +253,8 @@ a:focus {
 }
 
 #info-text-team{
-  width:80%;
-  padding-left:75px;
+  width:70%;
+  padding-left:25px;
+  margin-bottom: 40px;
+  text-align: left;
 }
-
