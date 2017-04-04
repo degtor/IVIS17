@@ -1,3 +1,25 @@
+body, p, h1, h2, h3, h4{
+  font-family: "Roboto";
+  color: #424242;
+}
+
+h2{
+  margin-top:10px;
+  font-weight:bold;
+  font-size: 35px;
+}
+
+h4{
+  text-align: center;
+  font-weight: bold;
+  font-size:15px;
+}
+
+p {
+    font-size:12px;
+    margin:0;
+}
+
 .logo {
     display:inline-block;
     font-family: 'Raleway', sans-serif;
@@ -15,7 +37,6 @@
     -webkit-border-radius: 10px;
             border-radius: 10px;
 }
-
 
 #menu{
     position:fixed;
@@ -49,10 +70,12 @@ a:hover{
 /* PROFILE CARDS *// 
 
 .card {
+  position:relative;
   padding-bottom: 25%;
   width: 100%;
   height:100%;
   text-align: center;
+  float:left;
 }
 
 .card p, .card h3{
@@ -61,7 +84,7 @@ a:hover{
 
 .card__front,
 .card__back {
-  position: absolute;
+  position:absolute;
   top: 0;
   left: 0;
   width: 80%;
@@ -142,3 +165,32 @@ a:hover{
     color:white;
 }
 
+.how_it_works{
+  padding-left:40px;
+  padding-right:40px;
+}
+
+.how_it_works p{
+  margin-left:20px;
+  margin-right:20px;
+}
+
+.how_it_works_img{
+  text-align: center;
+  margin:auto;
+  width:280px;
+  height:280px;
+  overflow:hidden;
+}
+
+.how_it_works_img img{
+  max-height:280px;
+}
+
+#section0{
+ background: url(map2.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
