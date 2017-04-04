@@ -14,8 +14,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,900" rel="stylesheet">
     
-    <link rel="stylesheet" type="text/css" href="styles.css">
-
     <!-- fullpage -->
     <link rel="stylesheet" type="text/css" href="fullPage.js-master/jquery.fullPage.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -27,12 +25,15 @@
     <script type="text/javascript" src="fullPage.js-master/vendors/scrolloverflow.min.js"></script>
     <script type="text/javascript" src="fullPage.js-master/jquery.fullPage.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
 </head>
 <body>
     <ul id="menu">
-        <li data-menuanchor="secondPage"><a href="#secondPage">About</a></li>
-        <li data-menuanchor="3rdPage"><a href="#3rdPage">How it works</a></li>
-        <li data-menuanchor="4thpage"><a href="#4thpage">Team</a></li>
+        <li class="menu-item" data-menuanchor="secondPage"><a id="about-menu" href="#secondPage">About</a></li>
+        <li class="menu-item" data-menuanchor="3rdPage"><a id="how-it-works-menu" href="#3rdPage">How it works</a></li>
+        <li class="menu-item" data-menuanchor="4thPage"><a id="demo-menu" href="#4thPage">Demo</a></li>
+        <li class="menu-item" data-menuanchor="5thPage"><a id="team-menu" href="#5thPage">Team</a></li>
     </ul>
 
     <div id="fullpage">
@@ -57,7 +58,8 @@
         </div>
     </div>
     <div class="section" id="section2" data-anchor="3rdPage">Some section</div>
-    <div class="section" id="section3" data-anchor="4thPage">
+    <div class="section" id="section3" data-anchor="4thPage">Demo</div>
+    <div class="section" id="section4" data-anchor="5thPage">
     <div class="container">
         <div class="row">
         <div class="col-md-3">
@@ -185,12 +187,12 @@
 <script>
 
 $('#fullpage').fullpage({
-    sectionsColor: ['#E8E8E8', '#FFFFFF', '#E8E8E8', '#FFFFFF'],
-    anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage'],
+    sectionsColor: ['#E8E8E8', '#FFFFFF', '#E8E8E8', '#FFFFFF','#E8E8E8',
+    '#FFFFFF'],
+    anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', 'lastPage'],
     menu: '#menu',
     scrollingSpeed: 1000
 });
-
 
     (function() {
         var cards = document.querySelectorAll(".card.effect__click");
