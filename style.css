@@ -205,7 +205,8 @@ div.tooltip {
 /*Slider area end*/
 
 #sidebar {
-    height: 1200px;
+/*    height: 1200px;*/
+    height: 92vh;
     margin:0px;
     text-align:center;
     box-shadow: 0px 0px 10px #858585;
@@ -339,7 +340,8 @@ div.tooltip {
 }
 
 #mapScreen {
-    height:1200px;
+/*    height:1200px;*/
+    height: 92vh;
     width:70%;
     margin-left:45px;
     background-color: white;
