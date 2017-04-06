@@ -217,7 +217,7 @@ div.tooltip {
     padding-right: 40px;
     position: absolute;
     right: 0px;
-    overflow-y: auto;
+/*    overflow-y: auto;*/
 }
 
 .row{
