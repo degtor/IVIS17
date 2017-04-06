@@ -217,6 +217,7 @@ div.tooltip {
     padding-right: 40px;
     position: absolute;
     right: 0px;
+    overflow-y: auto;
 }
 
 .row{
@@ -346,6 +347,7 @@ div.tooltip {
     margin-left:45px;
     background-color: white;
     box-shadow: 0px 0px 10px #858585;
+    overflow-y: auto;
 }
 
 #multiples{
