@@ -114,12 +114,23 @@ a:focus {
 #section4{
   position: relative;
 }
+#section4 .row{
+  height:100%;
+}
+#team{
+  padding-top:4%;
+}
+
+#team-members{
+  height: 100%;
+}
+.person{
+  height: 50%;
+}
 .card {
   margin-bottom: 10%;
-  width: 80%;
-  height:270px;
+  height:100%;
   text-align: center;
-  float:left;
 }
 
 .card p, .card h3{
@@ -129,13 +140,11 @@ a:focus {
 .card__front,
 .card__back {
   position:absolute;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 270px;
+  width: 90%;
+  height:90%;
   margin-left:10%;
   margin-right:10%;
-
+  top:0;
 }
 
 .card__front,
@@ -169,8 +178,7 @@ a:focus {
 }
 
 .profile_image{
-    width:130px;
-    height:130px;
+    width:100px;
     overflow: hidden;
     border-radius: 50%; 
     margin:auto;
@@ -179,10 +187,9 @@ a:focus {
 
 .profile_image img{
     display: block;
-    height: 130px;
+    height: 100px;
     width:auto;
 }
-
 .card h3{
     margin-bottom:0px;
 }
@@ -253,8 +260,9 @@ a:focus {
 }
 
 #info-text-team{
-  width:70%;
   padding-left:25px;
   margin-bottom: 40px;
   text-align: left;
 }
+
+
