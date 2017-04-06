@@ -217,6 +217,7 @@ div.tooltip {
     padding-right: 40px;
     position: absolute;
     right: 0px;
+    padding:10px;
 /*    overflow-y: auto;*/
 }
 
@@ -280,7 +281,13 @@ div.tooltip {
     background-color: rgba(255,255,255,1);
     padding-top:20px;
     box-shadow: 10px 0px 10px #858585;
+    overflow-y: auto;
   }
+
+#sidebarOneCountry{
+  height:100%;
+  overflow-y: auto;
+}
 
 #sidebarMultipleCountries path { 
     stroke-width: 2;
@@ -363,6 +370,8 @@ div.tooltip {
 
 #impExp{
   margin:auto;
+  min-height: 50px;
+  height:auto;
   margin-top: 20px;
   font-size:11px;
   line-height: 1.7;
@@ -382,7 +391,7 @@ div.tooltip {
 }
 
 #sidebar{
-  padding:10px;
+  /*padding:10px;*/
 }
 
 #sidebar p{
@@ -392,6 +401,7 @@ div.tooltip {
 
 #multipleCountries {
     height:100%;
+/*    overflow-y: auto;*/
 }
 
 
