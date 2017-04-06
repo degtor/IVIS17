@@ -24,6 +24,8 @@ p {
     margin:0;
 }
 
+
+
 .logo {
     display:inline-block;
     font-family: 'Raleway', sans-serif;
@@ -109,6 +111,27 @@ a:focus {
 #section1{
   text-align: left;
 }
+@media screen and (max-width: 480px){
+    #section4{
+      padding-left: 10px !important;
+      padding-right: 30px !important;
+      }
+    #section4 .row{
+      height:50% !important;
+    }
+    .person{
+      height: 100% !important;
+    }
+
+    .card p{
+      margin-left: 10px !important;
+      margin-right: 10px !important;
+      font-size: 1.3vmin !important;
+    }
+    #info-text-team{
+      padding-left:0 !important;
+    }
+  }
 
 /* PROFILE CARDS *// 
 #section4{
@@ -127,6 +150,7 @@ a:focus {
 .person{
   height: 50%;
 }
+
 .card {
   height:100%;
   text-align: center;
