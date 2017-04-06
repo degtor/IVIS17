@@ -111,7 +111,10 @@ a:focus {
 #section1{
   text-align: left;
 }
+
+/* Small devices */
 @media screen and (max-width: 480px){
+  /*Team section*/
     #section4{
       padding-left: 10px !important;
       padding-right: 30px !important;
@@ -130,6 +133,12 @@ a:focus {
     }
     #info-text-team{
       padding-left:0 !important;
+    }
+
+    /*Demo section*/
+    iframe{
+      width: 90% !important;
+      height: 30% !important;
     }
   }
 
