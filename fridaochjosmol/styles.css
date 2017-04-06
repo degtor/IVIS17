@@ -128,7 +128,6 @@ a:focus {
   height: 50%;
 }
 .card {
-  margin-bottom: 10%;
   height:100%;
   text-align: center;
 }
@@ -137,14 +136,19 @@ a:focus {
     text-align: center;
 }
 
+.card h3{
+  font-size: 2.0vmin; /* procent of viewport(whichever of height or width is lowest) */
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom:0px;
+  font-weight: bold;
+}
+
 .card__front,
 .card__back {
   position:absolute;
   width: 90%;
-  height:90%;
-  margin-left:10%;
-  margin-right:10%;
-  top:0;
+  height: 90%;
 }
 
 .card__front,
@@ -166,6 +170,16 @@ a:focus {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
+.card__back p{
+  font-size: 1.5vmin; /* procent of viewport(whichever of height or width is lowest) */
+  margin-left:30px;
+  margin-right:30px;
+}
+
+.card__front p{
+  font-size: 1.5vmin; /* vmin = viewport(whichever of height or width is lowest) */
+}
+
 
 .card.effect__click.flipped .card__front {
   -webkit-transform: rotateY(-180deg);
@@ -178,34 +192,26 @@ a:focus {
 }
 
 .profile_image{
-    width:100px;
+    width:20vmin; /*procent of viewport width*/
     overflow: hidden;
     border-radius: 50%; 
     margin:auto;
-    margin-top:20px;
+    margin-top:1.2vh; /* procent of viewport height*/
 }
 
 .profile_image img{
     display: block;
-    height: 100px;
+    height: 20vmin; /* procent of viewport width */
     width:auto;
-}
-.card h3{
-    margin-bottom:0px;
 }
 
 .profile_contact{
   text-align: center;
-    margin-top:15px;
+  margin-top: 0.8vmin; /* procent of viewport height */
 }
 .profile_contact img{
     display: inline-block;
-    width:25px;
-}
-
-.card__back p{
-    margin-left:30px;
-    margin-right:30px;
+    width:3.2vmin; /* procent of viewport height */
 }
 
 .btn-custom{
@@ -265,4 +271,6 @@ a:focus {
   text-align: left;
 }
 
-
+#info-text-team p{
+  font-size: 1.5vmin;
+}
