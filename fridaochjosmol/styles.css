@@ -269,6 +269,7 @@ a:focus {
 .how_it_works{
   padding-left:40px;
   padding-right:40px;
+
 }
 
 .how_it_works p{
@@ -279,13 +280,13 @@ a:focus {
 .how_it_works_img{
   text-align: center;
   margin:auto;
-  width:280px;
-  height:280px;
+  width:240px;
+  height:240px;
   overflow:hidden;
 }
 
 .how_it_works_img img{
-  max-height:280px;
+  max-height:240px;
 }
 
 #section0{
@@ -312,6 +313,10 @@ a:focus {
   padding-left:25px;
   margin-bottom: 40px;
   text-align: left;
+}
+
+#info-text-team p{
+  font-size: 1.4vmin;
 }
 .half-about img{
   width: 100%;
