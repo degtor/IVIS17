@@ -142,6 +142,16 @@ a:focus {
     }
   }
 
+/*Medium and small devices */ 
+@media screen and (max-width: 790px){
+      /* About */
+    .half-about{
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+    }
+}
+
+
 /* PROFILE CARDS *// 
 #section4{
   position: relative;
@@ -302,4 +312,7 @@ a:focus {
   padding-left:25px;
   margin-bottom: 40px;
   text-align: left;
+}
+.half-about img{
+  width: 100%;
 }
