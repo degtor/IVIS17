@@ -39,7 +39,7 @@ p {
 #menu li {
     display:inline-block;
     margin: 10px;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     color: #000;
     -webkit-border-radius: 10px;
@@ -56,7 +56,9 @@ p {
     padding: 10px;
     margin:0;
     text-align: right;
-
+    border-bottom: 1px solid transparent;
+    border-image: linear-gradient(to right, #26A1ED , #FF5252);
+    border-image-slice: 1;
 }
 
 a{
@@ -86,8 +88,14 @@ a:focus {
 #demo-menu:hover, 
 #demo-menu:active,
 .active #demo-menu{
-  color: rgb(252,107,107);
+  color: rgb(133,101,133);
   text-decoration: none;
+}
+#process-menu:hover, 
+#process-menu:active,
+.active #process-menu{
+color: rgb(252,107,107);
+text-decoration: none;
 }
 
 #team-menu:hover, 
@@ -139,9 +147,15 @@ a:focus {
       width: 90% !important;
       height: 30% !important;
     }
+    /* Footer */ 
     #footer{
-      margin-top:50% !important;
-      height:0px;
+      margin-top:60% !important;
+      height:0px !important;
+    }
+
+    /* Menu */
+    #menu li {
+      margin: 5px !important;
     }
   }
 
