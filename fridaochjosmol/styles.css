@@ -20,7 +20,7 @@ h5{
 }
 
 p {
-    font-size:12px;
+    font-size:13px;
     margin:0;
 }
 
@@ -112,18 +112,17 @@ a:focus {
   text-align: left;
 }
 
-/* Small devices */
-@media screen and (max-width: 480px){
-  /*Team section*/
-    #section4{
+#section5{
       padding-left: 10px !important;
       padding-right: 30px !important;
       }
-    #section4 .row{
-      height:50% !important;
+/* Small devices */
+@media screen and (max-width: 480px){
+    #section5 .row{
+      height:40% !important;
     }
     .person{
-      height: 100% !important;
+      height: 90% !important;
     }
 
     .card p{
@@ -140,6 +139,10 @@ a:focus {
       width: 90% !important;
       height: 30% !important;
     }
+    #footer{
+      margin-top:50% !important;
+      height:0px;
+    }
   }
 
 /*Medium and small devices */ 
@@ -153,11 +156,11 @@ a:focus {
 
 
 /* PROFILE CARDS *// 
-#section4{
+#section5{
   position: relative;
 }
-#section4 .row{
-  height:100%;
+#section5 .row{
+  height:90%;
 }
 #team{
   padding-top:4%;
@@ -311,13 +314,14 @@ a:focus {
 
 #info-text-team{
   padding-left:25px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   text-align: left;
 }
 
-#info-text-team p{
-  font-size: 1.4vmin;
-}
 .half-about img{
   width: 100%;
+}
+
+#footer{
+  height:60px;
 }
