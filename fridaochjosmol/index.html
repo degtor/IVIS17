@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Enviromind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
 
@@ -33,193 +35,303 @@
     <li class="menu-item" data-menuanchor="secondPage"><a id="about-menu" href="#secondPage">About</a></li>
     <li class="menu-item" data-menuanchor="3rdPage"><a id="how-it-works-menu" href="#3rdPage">How it works</a></li>
     <li class="menu-item" data-menuanchor="4thPage"><a id="demo-menu" href="#4thPage">Demo</a></li>
-    <li class="menu-item" data-menuanchor="5thPage"><a id="team-menu" href="#5thPage">Team</a></li>
+    <li class="menu-item" data-menuanchor="5thPage"><a id="process-menu" href="#5thPage">Process</a></li>
+    <li class="menu-item" data-menuanchor="6thPage"><a id="team-menu" href="#6thPage">Team</a></li>
+
 </ul>
 
 <div id="fullpage">
     <div class="section" id="section0" data-anchor="firstPage">
         <h1 class="logo">ENVIROMIND</h1>
         <h4>Brings the world together</h4>
-        <button class="btn btn-custom" onclick="window.location.href='/fridaochjosmol/#secondPage'">Learn more</button>
+        <a href="#secondPage"><button class="btn btn-custom">Learn more</button></a>
     </div>
     <div class="section" id="section1" data-anchor="secondPage">
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5"><img src="map.png"/></div>
-            <div class="col-md-5">
+            <div class="col-md-1 col-sm-1"></div>
+            <div class="half-about col-md-5 col-sm-5 col-xs-12"><img src="map.png"/></div>
+            <div class="half-about col-md-5 col-sm-5 cool-xs-12">
                 <h2>About</h2>
                 <p>Climate change is a global issue in a globalised world but responsibility is often distributed on a national level. Each country should meet the same climate goals regardless of their prerequisites. </p><br/>
                 <p>Talking about emissions and climate change can often make you think of big vehicles in heavy traffic and steaming industrial chimneys. We often discuss how production and transportation affect climate change but fail to take the trade between countries into account.</p><br/>
                 <p>Enviromind visualizes both countries' CO2 emissions and trade balances in order to reveal potential relationships between the environmental impact and the economy. By showing the top export and import countries for each country international relationships can also be seen and a global perspective can be obtained.</p>
             </div>
-            <div class="col-md-1"></div>
+            <div class="col-md-1 col-sm-1"></div>
         </div>
         <a href="#3rdPage"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
     
-    <div class="section" id="section2" data-anchor="3rdPage" style="text-align:center;">
+    <div class="section" id="section2" data-anchor="3rdPage">
         <h2>How it works</h2>
-        <br/><br/><br/><br/><br/>
-        <div class="how_it_works col-md-4">
-            <div class="how_it_works_img">
-                <img src="learn-img.png"/>
+        <br/><br/>
+        <div class="row">
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="learn-img.png"/>
+                </div>
+                <h4>Discover</h4>
+                <p>By looking at the map you can quickly gauge if a country is import or export heavy based on it’s color. Below that is a bar chart showing annual carbon dioxide emissions for each country on the map. You can choose whether to show Co2 emissions per capita or in total (since these two values can show two very different sides of reality). 
+
+                </p>
             </div>
-            <h4>Learn</h4>
-            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-            </p>
-        </div>
-        <div class="how_it_works col-md-4">
-            <div class="how_it_works_img">
-                <img src="discover-img.png"/>
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="discover-img.png"/>
+                </div>
+                <h4>Discover more</h4>
+                <p>Use the time slider to move back and forth through time between 1960 and 2015. The data will dynamically change to show the selected year. Drag the slider to select year, or press play and sit back and relax while history plays out in front of you. (Popcorn’s not included.)
+                </p>
             </div>
-            <h4>Discover</h4>
-            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-            </p>
-        </div>
-        <div class="how_it_works col-md-4">
-            <div class="how_it_works_img">
-                <img src="compare-img.png"/>
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="compare-img.png"/>
+                </div>
+                <h4>Learn</h4>
+                <p>By selecting a country in the map you can view details such as top import and export partners, as well as the use of renewable energy sources. You can also view more details about trade balance and Co2-emissions.
+
+                </p>
             </div>
-            <h4>Compare</h4>
-            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-            </p>
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="compare-img.png"/>
+                </div>
+                <h4>Compare</h4>
+                <p>Select multiple countries to compare their emissions and trade balance over time. Take a look at how war and conflicts affects the countries involved, or how CO2 emission change when global production has moved to the east.
+                </p>
+            </div>
         </div>
             <a href="#4thPage"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
     
-    <div class="section" id="section3" data-anchor="4thPage" style="text-align:center;">
+    <div class="section" id="section3" data-anchor="4thPage">
         <h2>Demo</h2>
         <h5>View this demo to learn more about what the visualization has to offer.</h5>
         <br/>
         <iframe width="747" height="420" src="https://www.youtube.com/embed/cEJy2q27hVk" frameborder="0" allowfullscreen></iframe>
         <a href="#5thPage"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
+
+    <!-- Process -->
     <div class="section" id="section4" data-anchor="5thPage">
-<!--<div class="section"> -->
-        <div id="info-text-team">
-          <h2>Team</h2>
-          <p> This is a project made in the course Information Visualization at the KTH Royal Institute of Technology. The time spent on the project was XX hours during XX weeks.
-          <br/>
-          <br/>
-          Our creative prototype-team iterated over several prototypes and hello whats up what ya doing how ya doing. The developers took the data and the design and created smooth interactions and a sweet back-end. Individual contributions can be found by clicking each team member.  </p>
+        <div class="col-md-2 col-sm-2"></div>
+        <div class="col-md-8 col-sm-8">
+            <div id="info-text-team">
+                  <h2>Process</h2>
+                  <p>This project was created by 8 master students at the Royal Institute of Technology as part of the course Information Visualization. The time frame for the project was 4 weeks with a part-time speed. 
+                Our aim was to display environmental and economic data and let the user explore the connections and relationships between them, both on a national and global level. We also wanted to give the user the space and freedom to explore and interpret the data without steering them in a certain direction.
+                <br/><br/>
+                We also decided to work in an iterative and user centered process to stay time effective. Through a lot of prototyping we were able to evaluate at several stages what should be in the final design and not and this helped us to not spend time on unnecessary tasks.
+                <br/><br/>
+                In order to get going with the project we started off by setting up tasks for each person so that we all would get our hands dirty as soon as possible and be able to set things up simultaneously. These tasks involved searching for data, defining the concept, setting up a code structure, creating a time plan for the project and starting to sketch on the first design ideas. We then formed one prototyping team and one team of developers. The prototyping team focused on creating prototypes in several stages and the developing process followed that of the prototyping. We also made sure to keep a good communication throughout the whole process, updating each other about the progress.
+                <br/><br/>
+                <strong>Technologies and tools used:</strong> Trello, Slack, Discord, Google Drive, Github, HTML5, JavaScript, jQuery, Bootstrap, D3.js, analog sketches, Atomic and Photoshop. The data was collected from The World Bank and imported through CSV-files. 
+                <br/><br/>
+                We have gained greater insights into the difficulties and the benefits of information visualization from this project. Visualizing data from the whole world has been challenging and colors and different sizing has helped us achieve what we think is a good representation of the huge dataset.</p>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 col-xs-12">
-                <div class="card effect__click">
-                    <div class="card__front">
-                        <span class="card__text">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
-                            </div>
-                            <h3>George Clooney</h3>
-                            <p>Project manager</p>
-                            <div class="profile_contact">
-                                <img src="mail.png"/>
-                                <img src="linkedin.png"/>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="card__back">
-                        <span class="card__text">
-                            <h3>George Clooney</h3>
-                            <p>Project manager</p>
-                            <br/>
-                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-                            <br/><br/>
-                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
-                            </p>
-                        </span>
-                    </div>
-                </div><!-- /card -->
-            </div> <!-- col md 3 -->
-            <div class="col-md-3 col-xs-12">
-                <div class="card effect__click">
-                    <div class="card__front">
-                        <span class="card__text">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
-                            </div>
-                            <h3>George Clooney</h3>
-                            <p>Project manager</p>
-                            <div class="profile_contact">
-                                <img src="mail.png"/>
-                                <img src="linkedin.png"/>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="card__back">
-                        <span class="card__text">
-                            <h3>George Clooney</h3>
-                            <p>Project manager</p>
-                            <br/>
-                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-                            <br/><br/>
-                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
-                            </p>
-                        </span>
-                    </div>
-                </div><!-- /card -->
-            </div> <!-- col md 3 -->
-            <div class="col-md-3 col-xs-12">
-                <div class="card effect__click">
-                    <div class="card__front">
-                        <span class="card__text">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
-                            </div>
-                            <h3>George Clooney 1</h3>
-                            <p>Project manager</p>
-                            <div class="profile_contact">
-                                <img src="mail.png"/>
-                                <img src="linkedin.png"/>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="card__back">
-                        <span class="card__text">
-                            <h3>George Clooney</h3>
-                            <p>Project manager</p>
-                            <br/>
-                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-                            <br/><br/>
-                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
-                            </p>
-                        </span>
-                    </div>
-                </div><!-- /card -->
-            </div> <!-- col md 3 -->
-            <div class="col-md-3 col-xs-12">
-                <div class="card effect__click">
-                    <div class="card__front">
-                        <span class="card__text">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
-                            </div>
-                            <h3>George Clooney</h3>
-                            <p>Project manager</p>
-                            <div class="profile_contact">
-                                <img src="mail.png"/>
-                                <img src="linkedin.png"/>
-                            </div>
-                        </span>
-                      </div>
-                      <div class="card__back">
-                        <span class="card__text">
-                            <h3>George Clooney</h3>
-                            <p>Project manager</p>
-                            <br/>
-                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-                            <br/><br/>
-                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
-                            </p>
-                        </span>
-                    </div>
-                </div><!-- /card -->
-            </div> <!-- col md 3 -->
-            
-        </div><!-- /row -->
-   <!--  </div>  --><!-- section -->
+        <div class="col-md-2 col-sm-2"></div>
+        <a href="#6thPage"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
+
+    <!-- Team -->
+    <div class="section" id="section5" data-anchor="6thPage">
+        <div class="row" id="team">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="info-text-team">
+                    <h2>Team</h2>
+                    <p>Click on each team member for information about individual contributions.</p>
+                </div>
+            </div>  
+            <div class="col-md-12 col-sm-12 col-xs-12" id="team-members">                    
+                <!-- David -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>David Samuelsson</h3>
+                            <p>Front &amp; Back End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:dsamue@kth.se"><img src="mail.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>For this project I’ve been developing and worked with the interaction between the timeline and responding visualizations, the functional parts of the CO2 bar chart and color coding of the map to name a few. Bug fixes and some initial planning of the work has also been a part of my contribution.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Emma -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>Emma Klint</h3>
+                            <p>UI/UX Designer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:eklint@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/emmaklint/" taget="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>I have contributed to UX/UI, including concept, prototyping and being a support to the developers regarding design. My main task has been UI and the visual design. I have also worked on our presentation, pitch and video demo.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Fredrik -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>Fredrik Spansk</h3>
+                            <p>Back End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:fredrik.spansk@gmail.com"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/fredrik-spansk-01512451/" taget="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>Worked on data gathering and cleaning as well as the back-end structure. Also did some front-end work focusing on the map and line charts.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Frida -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>Frida Eklund</h3>
+                            <p>Front &amp; Back End</p>
+                            <div class="profile_contact">
+                                <img src="mail.png"/>
+                                <img src="linkedin.png"/>
+                            </div>
+                          </div>
+                          <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
+                            <br/><br/>
+                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                            </p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Gustav -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>Gustav H&ouml;glund</h3>
+                            <p>Concept, prototype &amp; presentation</p>
+                            <div class="profile_contact">
+                                <a href="mailto:gushog@kth.se"><img src="mail.png"/></a>
+                                <a href="https://se.linkedin.com/in/gustavhoglund" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>Contributed to the development of our original idea along with sketches and in-team presentations. Along with the rest of our prototyping team I was responsible for developing our high fidelity prototypes. I held our final presentation of Enviromind in the VIC studio. For our C-awards trailer I was responsible for the narration.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Josefine -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>Josefine M&ouml;ller</h3>
+                            <p>UX &amp; Front End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:josmol@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/josefinemoller/" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>I started this project in the prototyping team and then transferred to the developing team. I’ve been working a lot with making sure the visualization meets the aimed user experience goals, especially by making the barchart appear as wished and setting up the final design created by the prototyping team. I also created the line charts for the comparison view and helped plan and structure the work.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Victor -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>Victor Gustavsson</h3>
+                            <p>Prototype &amp; Presentation</p>
+                            <div class="profile_contact">
+                                <img src="mail.png"/>
+                                <img src="linkedin.png"/>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
+                            <br/><br/>
+                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                            </p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Viktor -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image">
+                                <img src="GeorgeClooney.jpg"/>
+                            </div>
+                            <h3>Viktor Gustavsson</h3>
+                            <p>Front End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:vigu@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/viktor-gustafsson-0b4b7b5b/" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                          </div>
+                          <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>My contributions have been very much in the sense of a front end developer.I’ve implemented the fundamental HTML structure and map. I’ve also been involved in coding map functionality, css, interaction features and animations.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+            </div> <!-- End of team-members -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="footer">
+                    <p>© Copyright 2017 ENVIROMIND</p>
+                </div>
+            </div>
+        </div> <!-- End of team -->
+    </div> <!-- End of section -->
 </div>
 
 
@@ -228,9 +340,9 @@
 <script>
 
 $('#fullpage').fullpage({
-    sectionsColor: ['#E8E8E8', '#FFFFFF', '#E8E8E8', '#FFFFFF','#E8E8E8',
-    '#FFFFFF'],
-    anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', 'lastPage'],
+    sectionsColor: ['#E8E8E8', '#FFFFFF', '#ffffff', '#FFFFFF','#ffffff',
+    '#FFFFFF','#FFFFFF'],
+    anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', 'lastPage'],
     menu: '#menu',
     scrollingSpeed: 1000
 });
