@@ -1,6 +1,6 @@
 # ENVIROMIND
 
-![Enviromind inspiration picture](https://github.com/degtor/IVIS17/tree/linking-branch/about-enviromindStartpage_NoText.png "Enviromind")
+![Enviromind inspiration picture](https://github.com/degtor/IVIS17/tree/linking-branch/about-enviromind/Startpage_NoText.png "Enviromind")
 
 We live in a globalized world, where climate change is a global issue. Climate responsibility though, is often distributed on a national level, where all countries should meet the same climate goals, regardless of their prerequisites. 
 
