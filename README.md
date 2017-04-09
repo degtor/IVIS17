@@ -1,7 +1,5 @@
 # ENVIROMIND
 
-![Enviromind inspiration picture](https://github.com/degtor/IVIS17/tree/linking-branch/about-enviromind/map.png "Enviromind")
-
 We live in a globalized world, where climate change is a global issue. Climate responsibility though, is often distributed on a national level, where all countries should meet the same climate goals, regardless of their prerequisites. 
 
 But countries, just as people, have their own unique history and stories to tell. More importantly, they depend on - and are affected by - each other. By treating countries and their emissions as isolated entities these insights can easily fall through the cracks.
