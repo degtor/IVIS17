@@ -40,7 +40,7 @@ var legendHeight = legendFullHeight - legendMargin.top - legendMargin.bottom;
 var legendSvg = d3.select('#container')
 	.append('svg')
 	.attr('id', 'map-legend')
-	.attr('width', legendFullWidth+50)
+	.attr('width', legendFullWidth+40)
 	.attr('height', legendFullHeight)
 	.attr("x", 200)
 	.append('g')
