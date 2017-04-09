@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enviromind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,900" rel="stylesheet">
+    
+    <!-- fullpage -->
+    <link rel="stylesheet" type="text/css" href="fullPage.js-master/jquery.fullPage.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
+    <script src="fullPage.js-master/vendors/jquery.easings.min.js"></script>
+
+    <!-- This following line is only necessary in the case of using the option `scrollOverflow:true` -->
+    <script type="text/javascript" src="fullPage.js-master/vendors/scrolloverflow.min.js"></script>
+    <script type="text/javascript" src="fullPage.js-master/jquery.fullPage.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+<body>
+<div id="menu" class="col-md-12">
+<ul>
+    <li class="menu-item" data-menuanchor="about"><a id="about-menu" href="#about">About</a></li>
+    <li class="menu-item" data-menuanchor="how-it-works"><a id="how-it-works-menu" href="#how-it-works">How it works</a></li>
+    <li class="menu-item" data-menuanchor="demo"><a id="demo-menu" href="#demo">Demo</a></li>
+    <li class="menu-item" data-menuanchor="process"><a id="process-menu" href="#process">Process</a></li>
+    <li class="menu-item" data-menuanchor="team"><a id="team-menu" href="#team">Team</a></li>
+
+</ul>
+</div>
+
+<div id="fullpage">
+    <div class="section" id="section0" data-anchor="home">
+        <h1 class="logo">ENVIROMIND</h1>
+        <h4></h4>
+        <a href="#about"><button class="btn btn-custom">Learn more</button></a>
+    </div>
+    <div class="section fp-auto-height-responsive" id="section1" data-anchor="about">
+        <div class="row">
+            <div class="col-md-1 col-sm-1"></div>
+            <div class="half-about col-md-5 col-sm-5 col-xs-12"><img src="map.png"/></div>
+            <div class="half-about col-md-5 col-sm-5 cool-xs-12">
+                <h2>About</h2>
+                <p>We live in a globalized world, where climate change is a global issue. Climate responsibility though, is often distributed on a national level, where all countries should meet the same climate goals, regardless of their prerequisites. </p></br>
+
+                <p>But countries, just as people, have their own unique history and stories to tell. More importantly, they depend on - and are affected by - each other. By treating countries and their emissions as isolated entities these insights can easily fall through the cracks.</p></br>
+ 
+                <p>Enviromind tries to challenge this by visualising the relationship between countries environmental and economic data. This, we hope, will reveal international relationships and provide historical and economical context to the climate debate.</p>
+                <a href="https://enviromind.github.io/"><button class="btn btn-custom-blue">To Visualization</button></a>
+            </div>
+            <div class="col-md-1 col-sm-1"></div>
+        </div>
+        <a href="#how-it-works"><img class="arrow_down" src="arrow-down.png"/></a>
+    </div>
+    
+    <div class="section fp-auto-height-responsive" id="section2" data-anchor="how-it-works">
+        <h2>How it works</h2>
+        <div class="row">
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="discover-img.png"/>
+                </div>
+                <h4>Discover</h4>
+                <p>By looking at the map you can quickly see if a country is import or export heavy based on it’s color. Below is a bar chart showing annual carbon dioxide emissions for each country on the map. You can choose whether to show Co2 emissions per capita or in total.
+                </p>
+            </div>
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="discover-more-img.png"/>
+                </div>
+                <h4>Discover more</h4>
+                <p>Use the time slider to move back and forth through time between 1960 and 2015. The data will dynamically change to show the selected year. Drag the slider to select year, or press play and sit back and relax while history plays out in front of you.
+                </p>
+            </div>
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="learn-img.png"/>
+                </div>
+                <h4>Learn</h4>
+                <p>By selecting a country in the map you can view details about it such as top import and export partners. You can also view the use of renewable energy sources in the country, and some more info about Co2-emissions and how the country is exporting and importing.
+                </p>
+            </div>
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="compare-img.png"/>
+                </div>
+                <h4>Compare</h4>
+                <p>You can select multiple countries to compare their emissions and trade balance over time. You can for example take a look at how war and conflicts affects the countries involved, or how CO2 emission change when global production has moved to the east. 
+                </p>
+            </div>
+        </div>
+            <a href="#demo"><img class="arrow_down" src="arrow-down.png"/></a>
+    </div>
+    
+    <div class="section" id="section3" data-anchor="demo">
+        <h2>Demo</h2>
+        <h5>View this demo to learn more about what the visualization has to offer.</h5>
+        <br/>
+        <iframe width="747" height="420" src="https://www.youtube.com/embed/10vG-d0hANo" frameborder="0" allowfullscreen></iframe>
+        <a href="#process"><img class="arrow_down" src="arrow-down.png"/></a>
+    </div>
+
+    <!-- Process -->
+    <div class="section fp-auto-height-responsive" id="section4" data-anchor="process">
+        <div class="col-md-2 col-sm-2"></div>
+        <div class="col-md-8 col-sm-8">
+            <div id="info-text-team">
+                  <h2>Process</h2>
+                  <p>This project was created by 8 master students at the Royal Institute of Technology as part of the course Information Visualization. The time frame for the project was 4 weeks with a part-time speed. 
+                Our aim was to display environmental and economic data and let the user explore the connections and relationships between them, both on a national and global level. We also wanted to give the user the space and freedom to explore and interpret the data without steering them in a certain direction.
+                <br/><br/>
+                We also decided to work in an iterative and user centered process to stay time effective. Through a lot of prototyping we were able to evaluate at several stages what should be in the final design and not and this helped us to not spend time on unnecessary tasks.
+                <br/><br/>
+                In order to get going with the project we started off by setting up tasks for each person so that we all would get our hands dirty as soon as possible and be able to set things up simultaneously. These tasks involved searching for data, defining the concept, setting up a code structure, creating a time plan for the project and starting to sketch on the first design ideas. We then formed one prototyping team and one team of developers. The prototyping team focused on creating prototypes in several stages and the developing process followed that of the prototyping. We also made sure to keep a good communication throughout the whole process, updating each other about the progress.
+                <br/><br/>
+                <strong>Technologies and tools used:</strong> Trello, Slack, Discord, Google Drive, Github, HTML5, JavaScript, jQuery, Bootstrap, D3.js, analog sketches, Atomic and Photoshop. The data was collected from The World Bank and imported through CSV-files. 
+                <br/><br/>
+                We have gained greater insights into the difficulties and the benefits of information visualization from this project. Visualizing data from the whole world has been challenging and colors and different sizing has helped us achieve what we think is a good representation of the huge dataset.</p>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2"></div>
+        <a href="#team"><img class="arrow_down" src="arrow-down.png"/></a>
+    </div>
+
+    <!-- Team -->
+    <div class="section" id="section5" data-anchor="team">
+        <div class="row" id="team-row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="info-text-team">
+                    <h2>Team</h2>
+                    <p>Click on each team member for information about individual contributions.</p>
+                </div>
+            </div>  
+            <div class="col-md-12 col-sm-12 col-xs-12" id="team-members">                    
+                <!-- David -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_high">
+                                <img src="David.jpg"/>
+                            </div>
+                            <h3>David Samuelsson</h3>
+                            <p>Front &amp; Back End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:dsamue@kth.se"><img src="mail.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>For this project I’ve been developing and worked with the interaction between the timeline and responding visualizations, the functional parts of the CO2 bar chart and color coding of the map to name a few. Bug fixes and some initial planning of the work has also been a part of my contribution.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Emma -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_wide">
+                                <img src="Emma.jpg"/>
+                            </div>
+                            <h3>Emma Klint</h3>
+                            <p>UI/UX Designer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:eklint@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/emmaklint/" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>I have contributed to UX/UI, including concept, prototyping and being a support to the developers regarding design. My main task has been UI and the visual design. I have also worked on our presentation, pitch and video demo.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Fredrik -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_wide">
+                                <img src="Fredrik.jpg"/>
+                            </div>
+                            <h3>Fredrik Spansk</h3>
+                            <p>Back End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:fredrik.spansk@gmail.com"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/fredrik-spansk-01512451/" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>Worked on data gathering and cleaning as well as the back-end structure. Also did some front-end work focusing on the map and line charts.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Frida -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_wide">
+                                <img src="Frida.jpg"/>
+                            </div>
+                            <h3>Frida Eklund</h3>
+                            <p>Front &amp; Back End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:friekl@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/fridaeklund/" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                          </div>
+                          <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>I’ve been involved in both data gathering and setting up the initial data structures. I’ve further worked with the data in for example selection of countries and with adding user feedback while loading all CSV-files. </br></br>I’ve also done some front end work, for example the info-boxes and the layout in the sidebar. Together with Josefine I designed and set up this website.
+                            </p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Gustav -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_wide">
+                                <img src="Gustav.jpg"/>
+                            </div>
+                            <h3>Gustav H&ouml;glund</h3>
+                            <p>Concept, prototype &amp; presentation</p>
+                            <div class="profile_contact">
+                                <a href="mailto:gushog@kth.se"><img src="mail.png"/></a>
+                                <a href="https://se.linkedin.com/in/gustavhoglund" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>Contributed to the development of our original idea along with sketches and in-team presentations. Along with the rest of our prototyping team I was responsible for developing our high fidelity prototypes. I held our final presentation of Enviromind in the VIC studio. For our C-awards trailer I was responsible for the narration.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Josefine -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_wide">
+                                <img src="Josefine.jpg"/>
+                            </div>
+                            <h3>Josefine M&ouml;ller</h3>
+                            <p>UX &amp; Front End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:josmol@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/josefinemoller/" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>I started this project in the prototyping team and then transferred to the developing team. I worked with making sure our visualization met the aimed user experience goals, by making the barchart appear as wished and setting up the final design created by the prototype team. I also did the line charts for the comparison view and helped plan and structure the work. Together with Frida I designed and created this website.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Victor -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_high">
+                                <img src="Victor.jpg"/>
+                            </div>
+                            <h3>Victor Gustafsson</h3>
+                            <p>Concept developer &amp; designer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:vicgus@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/victor-gustafsson-61a7a65b" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>Mainly, I have been involved in concept development and design. In concept development I have contributed through merging and establishing the relationship between the different variables featured in Enviromind. When it comes to design i have been involved in the overall layout, visualization and interaction. 
+                            Besides from concept and design I was in charge of data collection and was in involved in testing and composed the music in the presentation video.
+                            </p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+                <!-- Viktor -->
+                <div class="person col-md-3 col-xs-3">
+                    <div class="card effect__click">
+                        <div class="card__front">
+                            <div class="profile_image_wide">
+                                <img src="Viktor.jpg"/>
+                            </div>
+                            <h3>Viktor Gustavsson</h3>
+                            <p>Front End Developer</p>
+                            <div class="profile_contact">
+                                <a href="mailto:vigu@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/viktor-gustafsson-0b4b7b5b/" target="_blank"><img src="linkedin.png"/></a>
+                            </div>
+                          </div>
+                          <div class="card__back">
+                            <h3>Contributions</h3>
+                            <br/>
+                            <p>My contributions have been very much in the sense of a front end developer.I’ve implemented the fundamental HTML structure and map. I’ve also been involved in coding map functionality, css, interaction features and animations.</p>
+                        </div>
+                    </div><!-- /card -->
+                </div> <!-- col md 3 -->
+
+            </div> <!-- End of team-members -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div id="footer">
+                   <p>© Copyright 2017 ENVIROMIND</p>
+                    <div id="to-viz"><a href="https://enviromind.github.io/">To Visualization </a></div>
+
+                </div>
+            </div>
+        </div> <!-- End of team -->
+    </div> <!-- End of section -->
+</div>
+
+
+</body>
+
+<script>
+
+    $('#fullpage').fullpage({
+        sectionsColor: ['#E8E8E8', '#FFFFFF', '#ffffff', '#FFFFFF','#ffffff',
+        '#FFFFFF','#FFFFFF'],
+        anchors: ['home', 'about', 'how-it-works', 'demo', 'process', 'team', 'lastPage'],
+        menu: '#menu',
+        scrollingSpeed: 1000,
+        responsiveWidth: 980
+    });
+
+/* Snurrande kort */ 
+    (function() {
+        var cards = document.querySelectorAll(".card.effect__click");
+        for ( var i  = 0, len = cards.length; i < len; i++ ) {
+            var card = cards[i];
+            clickListener( card );
+        }
+
+    function clickListener(card) {
+        card.addEventListener( "click", function() {
+        var c = this.classList;
+        c.contains("flipped") === true ? c.remove("flipped") : c.add("flipped");
+        });
+    }
+    })();   
+
+
+</script>
+</html>
