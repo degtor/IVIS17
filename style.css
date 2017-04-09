@@ -637,3 +637,19 @@ div.info-box-tooltip{
 }
 
 /* Tooltips barchart end */
+
+
+/* Footer */
+
+#footer{
+  text-align: center;
+}
+
+#footer a{
+  color: #26A1ED;
+}
+
+#footer a:hover{
+  color: #FF5252;
+  text-decoration: none;
+}
