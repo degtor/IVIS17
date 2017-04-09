@@ -16,3 +16,5 @@ Learn more about the project at: [https://enviromind.github.io/about-enviromind]
 
 Use the visualization here: [https://enviromind.github.io/](https://enviromind.github.io/)
 
+Watch the demo: [https://www.youtube.com/watch?v=10vG-d0hANo](https://www.youtube.com/watch?v=10vG-d0hANo)
+
