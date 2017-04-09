@@ -3,6 +3,10 @@ body, p, h1, h2, h3, h4{
   color: #424242;
 }
 
+h1{
+    font-size: 52px;
+}
+
 h2{
   margin-top:10px;
   font-weight:bold;
@@ -14,9 +18,9 @@ h4{
   font-weight: bold;
   font-size:15px;
 }
+
 h5{
-  font-size: 16px;
-  
+  font-size: 16px;  
 }
 
 p {
@@ -24,18 +28,17 @@ p {
     margin:0;
 }
 
-
-
 .logo {
     display:inline-block;
     font-family: 'Raleway', sans-serif;
     font-weight:900;
-    font-size: 30px;
+    font-size: 52px;
     color: #FFFFFF;
     background: -webkit-linear-gradient(right, #FF5252 , #26A1ED );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 #menu li {
     display:inline-block;
     margin: 10px;
@@ -59,6 +62,7 @@ p {
     border-bottom: 1px solid transparent;
     border-image: linear-gradient(to right, #26A1ED , #FF5252);
     border-image-slice: 1;
+    background-color: white;
 }
 
 a{
@@ -82,7 +86,6 @@ a:focus {
 .active #how-it-works-menu{
   color: rgb(54,166,235);
   text-decoration: none;
-
 }
 
 #demo-menu:hover, 
@@ -91,6 +94,7 @@ a:focus {
   color: rgb(133,101,133);
   text-decoration: none;
 }
+
 #process-menu:hover, 
 #process-menu:active,
 .active #process-menu{
@@ -103,17 +107,14 @@ text-decoration: none;
 .active #team-menu{
   color: rgb(255, 0, 0);
   text-decoration: none;
-
 }
+
 .section{
   text-align: center;
 }
-#section0{
-    text-align: center;
-}
 
-#section0 h1{
-    font-size: 52px;
+#section0{
+  text-align: center;
 }
 
 #section1{
@@ -121,9 +122,10 @@ text-decoration: none;
 }
 
 #section5{
-      padding-left: 10px !important;
-      padding-right: 30px !important;
-      }
+  padding-left: 10px !important;
+  padding-right: 30px !important;
+}
+
 /* Small devices */
 @media screen and (max-width: 480px){
     #section5 .row{
@@ -173,16 +175,19 @@ text-decoration: none;
 #section5{
   position: relative;
 }
+
 #section5 .row{
-  height:90%;
+  height:80%;
 }
-#team{
-  padding-top:4%;
+
+#team-row{
+  padding-top:50px;
 }
 
 #team-members{
   height: 100%;
 }
+
 .person{
   height: 50%;
 }
@@ -230,6 +235,7 @@ text-decoration: none;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
+
 .card__back p{
   font-size: 1.5vmin; /* procent of viewport(whichever of height or width is lowest) */
   margin-left:30px;
@@ -239,7 +245,6 @@ text-decoration: none;
 .card__front p{
   font-size: 1.5vmin; /* vmin = viewport(whichever of height or width is lowest) */
 }
-
 
 .card.effect__click.flipped .card__front {
   -webkit-transform: rotateY(-180deg);
@@ -251,18 +256,34 @@ text-decoration: none;
           transform: rotateY(0);
 }
 
-.profile_image{
+.profile_image_wide{
     width:20vmin; /*procent of viewport width*/
+    height:20vmin;
     overflow: hidden;
     border-radius: 50%; 
     margin:auto;
     margin-top:1.2vh; /* procent of viewport height*/
 }
 
-.profile_image img{
+.profile_image_wide img{
     display: block;
-    height: 20vmin; /* procent of viewport width */
-    width:auto;
+    height: auto; /* procent of viewport width */
+    width: 100%;
+}
+
+.profile_image_high{
+    width:20vmin; /*procent of viewport width*/
+    height:20vmin;
+    overflow: hidden;
+    border-radius: 50%; 
+    margin:auto;
+    margin-top:1.2vh; /* procent of viewport height*/
+}
+
+.profile_image_high img{
+    display: block;
+    width: 100%; /* procent of viewport width */
+    height: auto;
 }
 
 .profile_contact{
@@ -286,7 +307,6 @@ text-decoration: none;
 .how_it_works{
   padding-left:40px;
   padding-right:40px;
-
 }
 
 .how_it_works p{
@@ -297,13 +317,14 @@ text-decoration: none;
 .how_it_works_img{
   text-align: center;
   margin:auto;
-  width:240px;
-  height:240px;
+  width:200px;
+  height:200px;
   overflow:hidden;
+  box-shadow: 0px 0px 10px #858585; 
 }
 
 .how_it_works_img img{
-  max-height:240px;
+  max-height:200px;
 }
 
 #section0{
@@ -312,6 +333,20 @@ text-decoration: none;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+@media screen and (max-width: 480px){
+  #section0{
+    background: url(Startpage_NoText.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: auto 150%;
+  }
+
+  #section0 h1{
+    font-size:30px;
+  }
 }
 
 .arrow_down{
@@ -338,4 +373,29 @@ text-decoration: none;
 
 #footer{
   height:60px;
+}
+
+#info-text-team{
+  padding-top:50px;
+}
+
+@media screen and (max-width: 480px){
+  h2{
+    font-size: 20px;
+  }
+
+  p{
+    font-size:10px;
+  }
+
+  #menu ul{
+    text-align: center;
+    padding: 0;
+    list-style-type: none;
+  }
+
+
+  #menu li{
+    font-size: 3.0vmin; /* procent of viewport(whichever of height or width is lowest) */
+  }
 }

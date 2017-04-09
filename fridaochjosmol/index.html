@@ -31,64 +31,66 @@
 
 </head>
 <body>
-<ul id="menu">
-    <li class="menu-item" data-menuanchor="secondPage"><a id="about-menu" href="#secondPage">About</a></li>
-    <li class="menu-item" data-menuanchor="3rdPage"><a id="how-it-works-menu" href="#3rdPage">How it works</a></li>
-    <li class="menu-item" data-menuanchor="4thPage"><a id="demo-menu" href="#4thPage">Demo</a></li>
-    <li class="menu-item" data-menuanchor="5thPage"><a id="process-menu" href="#5thPage">Process</a></li>
-    <li class="menu-item" data-menuanchor="6thPage"><a id="team-menu" href="#6thPage">Team</a></li>
+<div id="menu" class="col-md-12">
+<ul>
+    <li class="menu-item" data-menuanchor="about"><a id="about-menu" href="#about">About</a></li>
+    <li class="menu-item" data-menuanchor="how-it-works"><a id="how-it-works-menu" href="#how-it-works">How it works</a></li>
+    <li class="menu-item" data-menuanchor="demo"><a id="demo-menu" href="#demo">Demo</a></li>
+    <li class="menu-item" data-menuanchor="process"><a id="process-menu" href="#process">Process</a></li>
+    <li class="menu-item" data-menuanchor="team"><a id="team-menu" href="#team">Team</a></li>
 
 </ul>
+</div>
 
 <div id="fullpage">
-    <div class="section" id="section0" data-anchor="firstPage">
+    <div class="section" id="section0" data-anchor="home">
         <h1 class="logo">ENVIROMIND</h1>
         <h4>Brings the world together</h4>
-        <a href="#secondPage"><button class="btn btn-custom">Learn more</button></a>
+        <a href="#about"><button class="btn btn-custom">Learn more</button></a>
     </div>
-    <div class="section" id="section1" data-anchor="secondPage">
+    <div class="section fp-auto-height-responsive" id="section1" data-anchor="about">
         <div class="row">
             <div class="col-md-1 col-sm-1"></div>
             <div class="half-about col-md-5 col-sm-5 col-xs-12"><img src="map.png"/></div>
             <div class="half-about col-md-5 col-sm-5 cool-xs-12">
                 <h2>About</h2>
-                <p>Climate change is a global issue in a globalised world but responsibility is often distributed on a national level. Each country should meet the same climate goals regardless of their prerequisites. </p><br/>
-                <p>Talking about emissions and climate change can often make you think of big vehicles in heavy traffic and steaming industrial chimneys. We often discuss how production and transportation affect climate change but fail to take the trade between countries into account.</p><br/>
-                <p>Enviromind visualizes both countries' CO2 emissions and trade balances in order to reveal potential relationships between the environmental impact and the economy. By showing the top export and import countries for each country international relationships can also be seen and a global perspective can be obtained.</p>
+                <p>We live in a globalized world, where climate change is a global issue. Climate responsibility though, is often distributed on a national level, where all countries should meet the same climate goals, regardless of their prerequisites. </p></br>
+
+                <p>But countries, just as people, have their own unique history and stories to tell. More importantly, they depend on - and are affected by - each other. By treating countries and their emissions as isolated entities these insights can easily fall through the cracks.</p></br>
+ 
+                <p>Enviromind tries to challenge this by visualising the relationship between countries environmental and economic data. This, we hope, will reveal international relationships and provide historical and economical context to the climate debate.</p>
             </div>
             <div class="col-md-1 col-sm-1"></div>
         </div>
-        <a href="#3rdPage"><img class="arrow_down" src="arrow-down.png"/></a>
+        <a href="#how-it-works"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
     
-    <div class="section" id="section2" data-anchor="3rdPage">
+    <div class="section" id="section2" data-anchor="how-it-works">
         <h2>How it works</h2>
         <br/><br/>
         <div class="row">
             <div class="how_it_works col-md-3 col-sm-3">
                 <div class="how_it_works_img">
-                    <img src="learn-img.png"/>
-                </div>
-                <h4>Discover</h4>
-                <p>By looking at the map you can quickly gauge if a country is import or export heavy based on it’s color. Below that is a bar chart showing annual carbon dioxide emissions for each country on the map. You can choose whether to show Co2 emissions per capita or in total (since these two values can show two very different sides of reality). 
-
-                </p>
-            </div>
-            <div class="how_it_works col-md-3 col-sm-3">
-                <div class="how_it_works_img">
                     <img src="discover-img.png"/>
                 </div>
-                <h4>Discover more</h4>
-                <p>Use the time slider to move back and forth through time between 1960 and 2015. The data will dynamically change to show the selected year. Drag the slider to select year, or press play and sit back and relax while history plays out in front of you. (Popcorn’s not included.)
+                <h4>Discover</h4>
+                <p>By looking at the map you can quickly see if a country is import or export heavy based on it’s color. Below is a bar chart showing annual carbon dioxide emissions for each country on the map. You can choose whether to show Co2 emissions per capita or in total.
                 </p>
             </div>
             <div class="how_it_works col-md-3 col-sm-3">
                 <div class="how_it_works_img">
-                    <img src="compare-img.png"/>
+                    <img src="discover-more-img.png"/>
+                </div>
+                <h4>Discover more</h4>
+                <p>Use the time slider to move back and forth through time between 1960 and 2015. The data will dynamically change to show the selected year. Drag the slider to select year, or press play and sit back and relax while history plays out in front of you.
+                </p>
+            </div>
+            <div class="how_it_works col-md-3 col-sm-3">
+                <div class="how_it_works_img">
+                    <img src="learn-img.png"/>
                 </div>
                 <h4>Learn</h4>
-                <p>By selecting a country in the map you can view details such as top import and export partners, as well as the use of renewable energy sources. You can also view more details about trade balance and Co2-emissions.
-
+                <p>By selecting a country in the map you can view details about it such as top import and export partners. You can also view the use of renewable energy sources in the country, and some more info about Co2-emissions and how the country is exporting and importing.
                 </p>
             </div>
             <div class="how_it_works col-md-3 col-sm-3">
@@ -96,23 +98,23 @@
                     <img src="compare-img.png"/>
                 </div>
                 <h4>Compare</h4>
-                <p>Select multiple countries to compare their emissions and trade balance over time. Take a look at how war and conflicts affects the countries involved, or how CO2 emission change when global production has moved to the east.
+                <p>You can select multiple countries to compare their emissions and trade balance over time. You can for example take a look at how war and conflicts affects the countries involved, or how CO2 emission change when global production has moved to the east. 
                 </p>
             </div>
         </div>
-            <a href="#4thPage"><img class="arrow_down" src="arrow-down.png"/></a>
+            <a href="#demo"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
     
-    <div class="section" id="section3" data-anchor="4thPage">
+    <div class="section" id="section3" data-anchor="demo">
         <h2>Demo</h2>
         <h5>View this demo to learn more about what the visualization has to offer.</h5>
         <br/>
-        <iframe width="747" height="420" src="https://www.youtube.com/embed/cEJy2q27hVk" frameborder="0" allowfullscreen></iframe>
-        <a href="#5thPage"><img class="arrow_down" src="arrow-down.png"/></a>
+        <iframe width="747" height="420" src="https://www.youtube.com/embed/10vG-d0hANo" frameborder="0" allowfullscreen></iframe>
+        <a href="#process"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
 
     <!-- Process -->
-    <div class="section" id="section4" data-anchor="5thPage">
+    <div class="section" id="section4" data-anchor="process">
         <div class="col-md-2 col-sm-2"></div>
         <div class="col-md-8 col-sm-8">
             <div id="info-text-team">
@@ -130,12 +132,12 @@
             </div>
         </div>
         <div class="col-md-2 col-sm-2"></div>
-        <a href="#6thPage"><img class="arrow_down" src="arrow-down.png"/></a>
+        <a href="#team"><img class="arrow_down" src="arrow-down.png"/></a>
     </div>
 
     <!-- Team -->
-    <div class="section" id="section5" data-anchor="6thPage">
-        <div class="row" id="team">
+    <div class="section" id="section5" data-anchor="team">
+        <div class="row" id="team-row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div id="info-text-team">
                     <h2>Team</h2>
@@ -147,8 +149,8 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_high">
+                                <img src="David.jpg"/>
                             </div>
                             <h3>David Samuelsson</h3>
                             <p>Front &amp; Back End Developer</p>
@@ -168,8 +170,8 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_wide">
+                                <img src="Emma.jpg"/>
                             </div>
                             <h3>Emma Klint</h3>
                             <p>UI/UX Designer</p>
@@ -190,8 +192,8 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_wide">
+                                <img src="Fredrik.jpg"/>
                             </div>
                             <h3>Fredrik Spansk</h3>
                             <p>Back End Developer</p>
@@ -212,22 +214,20 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_wide">
+                                <img src="Frida.jpg"/>
                             </div>
                             <h3>Frida Eklund</h3>
-                            <p>Front &amp; Back End</p>
+                            <p>Front &amp; Back End Developer</p>
                             <div class="profile_contact">
-                                <img src="mail.png"/>
-                                <img src="linkedin.png"/>
+                                <a href="mailto:friekl@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/fridaeklund/" target="_blank"><img src="linkedin.png"/></a>
                             </div>
                           </div>
                           <div class="card__back">
                             <h3>Contributions</h3>
                             <br/>
-                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-                            <br/><br/>
-                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                            <p>I’ve been involved in both data gathering and setting up the initial data structures. I’ve further worked with the data in for example selection of countries and with adding user feedback while loading all CSV-files. </br></br>I’ve also done some front end work, for example the info-boxes and the layout in the sidebar. Together with Josefine I designinged and set up this website.
                             </p>
                         </div>
                     </div><!-- /card -->
@@ -237,8 +237,8 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_wide">
+                                <img src="Gustav.jpg"/>
                             </div>
                             <h3>Gustav H&ouml;glund</h3>
                             <p>Concept, prototype &amp; presentation</p>
@@ -259,8 +259,8 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_wide">
+                                <img src="Josefine.jpg"/>
                             </div>
                             <h3>Josefine M&ouml;ller</h3>
                             <p>UX &amp; Front End Developer</p>
@@ -281,22 +281,20 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_high">
+                                <img src="Victor.jpg"/>
                             </div>
-                            <h3>Victor Gustavsson</h3>
-                            <p>Prototype &amp; Presentation</p>
+                            <h3>Victor Gustafsson</h3>
+                            <p>Concept developer &amp; designer</p>
                             <div class="profile_contact">
-                                <img src="mail.png"/>
-                                <img src="linkedin.png"/>
+                                <a href="mailto:vicgus@kth.se"><img src="mail.png"/></a>
+                                <a href="https://www.linkedin.com/in/victor-gustafsson-61a7a65b" target="_blank"><img src="linkedin.png"/></a>
                             </div>
                         </div>
                         <div class="card__back">
                             <h3>Contributions</h3>
                             <br/>
-                            <p>Pastry muffin muffin bear claw danish jelly liquorice gummies sugar plum. Dessert gingerbread fruitcake brownie muffin. Gummi bears sugar plum carrot cake cheesecake.
-                            <br/><br/>
-                            Gummies cake wafer chocolate bar. Cheesecake jelly gummies. Biscuit cake toffee danish topping.
+                            <p>Mainly, I have been involved in concept development and design. In concept development I have contributed through merging and establishing the relationship between the different variables featured in Enviromind. When it comes to design i have been involved in the overall layout, visualization and interaction. Besides from concept and design I was in charge of data collection and was in involved in testing and composed the music in the presentation video.
                             </p>
                         </div>
                     </div><!-- /card -->
@@ -306,8 +304,8 @@
                 <div class="person col-md-3 col-xs-3">
                     <div class="card effect__click">
                         <div class="card__front">
-                            <div class="profile_image">
-                                <img src="GeorgeClooney.jpg"/>
+                            <div class="profile_image_wide">
+                                <img src="Viktor.jpg"/>
                             </div>
                             <h3>Viktor Gustavsson</h3>
                             <p>Front End Developer</p>
@@ -339,17 +337,15 @@
 
 <script>
 
-$('#fullpage').fullpage({
-    sectionsColor: ['#E8E8E8', '#FFFFFF', '#ffffff', '#FFFFFF','#ffffff',
-    '#FFFFFF','#FFFFFF'],
-    anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage', '6thPage', 'lastPage'],
-    menu: '#menu',
-    scrollingSpeed: 1000
-});
-
+    $('#fullpage').fullpage({
+        sectionsColor: ['#E8E8E8', '#FFFFFF', '#ffffff', '#FFFFFF','#ffffff',
+        '#FFFFFF','#FFFFFF'],
+        anchors: ['home', 'about', 'how-it-works', 'demo', 'process', 'team', 'lastPage'],
+        menu: '#menu',
+        scrollingSpeed: 1000
+    });
 
 /* Snurrande kort */ 
-
     (function() {
         var cards = document.querySelectorAll(".card.effect__click");
         for ( var i  = 0, len = cards.length; i < len; i++ ) {
@@ -364,7 +360,7 @@ $('#fullpage').fullpage({
         });
     }
     })();   
-    
+
 
 </script>
 </html>
